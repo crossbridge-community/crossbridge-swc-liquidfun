@@ -61,7 +61,7 @@ init:
 compile:
 	@echo "------- crossbridge.LiquidFun :: compile --------"
 	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" make -j8
-	cp -f swig.i build/
+	cp -f src/main/swig/swig.i build/
 	make package
 
 package:

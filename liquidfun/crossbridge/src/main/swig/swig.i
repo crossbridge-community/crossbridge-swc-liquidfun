@@ -52,17 +52,12 @@ AS3_GoAsync();
 // Global Rename Definitions
 ///////////////////////////////////////
 
-// rename classes (%$isclass)
-%rename("%(strip:[b2])s") "";
+// strip prefixes from everything
+// @see: http://perldoc.perl.org/perlre.html
+%rename("%(regex:/^(m_|b2_|b2)(.*)/\\2/)s") "";
 
 // rename functions
 %rename("%(lowercamelcase)s", %$isfunction) "";
-
-// rename variables
-%rename("%(regex:/^(m_|b2_)(.*)/\\2/)s", %$isvariable) "";
-
-// rename enums
-%rename("%(strip:[b2_])s", %$isenumitem) "";
 
 ///////////////////////////////////////
 // Global Operator Definitions

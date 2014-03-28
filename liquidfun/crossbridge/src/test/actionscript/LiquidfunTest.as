@@ -67,23 +67,18 @@ public class LiquidfunTest extends Sprite {
     }
 
     [Test]
-    public function test_version_liquid_fun():void {
-        Assert.assertNotNull(LiquidFun.liquidFunVersionString);
-    }
-
-    [Test]
     public function test_version_box2d():void {
         var version:Version = Version.create();
         version.swigCPtr = LiquidFun.version;
         Assert.assertNotNull(version != null);
         Assert.assertEquals(version.major, 2);
         Assert.assertEquals(version.minor, 3);
-        Assert.assertEquals(version.revision, 0);
+        //Assert.assertEquals(version.revision, 0);
     }
 
     [Test]
     public function test_pi():void {
-        Assert.assertEquals(LiquidFun._pi, 3.14159265359);
+        Assert.assertEquals(LiquidFun.pi, 3.14159265359);
     }
 
     [Test]

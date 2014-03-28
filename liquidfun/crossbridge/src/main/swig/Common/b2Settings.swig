@@ -16,13 +16,15 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-// Ignore some functions
+// Ignore all functions
 %ignore b2Alloc;
 %ignore b2Free;
 %ignore b2SetAllocFreeCallbacks;
 %ignore b2SetNumAllocs;
 %ignore b2GetNumAllocs;
 %ignore b2Log;
+%ignore b2_liquidFunVersion;
+%ignore b2_liquidFunVersionString;
 
 %include "../../../Box2D/Box2D/Common/b2Settings.h"
 
