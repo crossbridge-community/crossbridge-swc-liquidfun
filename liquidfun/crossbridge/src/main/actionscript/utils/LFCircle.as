@@ -63,7 +63,7 @@ public class LFCircle extends Sprite {
     public function update():void {
         bodyDefPos.swigCPtr = body.getPosition();
         matrix.identity();
-        matrix.translate(bodyDefPos.x * LFGlobals.SCALE, stage.stageHeight - (bodyDefPos.y * LFGlobals.SCALE));
+        matrix.translate(bodyDefPos.x * LFGlobals.SCALE, 600 - (bodyDefPos.y * LFGlobals.SCALE));
         transform.matrix = matrix;
     }
 }

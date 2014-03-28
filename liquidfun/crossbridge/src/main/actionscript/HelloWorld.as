@@ -30,6 +30,7 @@ import crossbridge.liquidfun.CModule;
 import crossbridge.liquidfun.vfs.ISpecialFile;
 
 import flash.display.Sprite;
+import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 
@@ -120,6 +121,7 @@ public class HelloWorld extends Sprite implements ISpecialFile {
 
         // Initialize the Stage
         stage.scaleMode = StageScaleMode.NO_SCALE;
+        stage.align = StageAlign.TOP_LEFT;
 
         // Initialize CrossBridge module
         CModule.vfs.console = this;
