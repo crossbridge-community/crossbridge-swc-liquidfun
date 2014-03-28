@@ -11,7 +11,8 @@
     <property name="AIR_SDK_HOME" value="${env.AIR_HOME}"/>  
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>   
     <property name="BUILD_DIR" value="bin"/>   
-    <property name="REPORTS_DIR" value="${BUILD_DIR}/reports"/> 
+    <property name="REPORT_DIR" value="${BUILD_DIR}/reports"/> 
+    <property name="ASDOC_DIR" value="${BUILD_DIR}/asdoc"/> 
     <!-- ################################################################### -->
     <!-- ########################### TYPEDEFS ############################## -->
     <!-- ################################################################### -->
@@ -24,6 +25,8 @@
             </fileset>
         </classpath>
     </taskdef>
+    <!-- ASDoc -->
+    <taskdef resource="flexTasks.tasks" classpath="${env.FLEX_HOME}/ant/lib/flexTasks.jar" />
     <!-- ################################################################### -->
     <!-- ########################### TARGETS ############################### -->
     <!-- ################################################################### -->
@@ -31,11 +34,11 @@
     <target name="clean" description="Clean the build folders.">  
         <delete dir="${BUILD_DIR}" />
         <mkdir dir="${BUILD_DIR}" />
+        <mkdir dir="${REPORT_DIR}" />
+        <mkdir dir="${ASDOC_DIR}" />
     </target>
     <!-- BUILD PHASE -->
-    <target name="build" depends="test" description="Build the ActionScript sources."> 
-        <mkdir dir="${BUILD_DIR}" />
-        <mkdir dir="${REPORTS_DIR}" />
+    <target name="build" description="Build the ActionScript sources."> 
         <java classname="com.adobe.flash.compiler.clients.MXMLC" fork="true" failonerror="true" dir="${basedir}" maxmemory="1024m">
             <classpath>
                <pathelement location="${AIR_SDK_HOME}/lib/compiler.jar"/>
@@ -47,17 +50,17 @@
             <arg line="-verbose-stacktraces=true" />
             <arg line="-source-path+=./src/main/actionscript" />
             <arg line="-library-path+=./LiquidFun.swc" />
-            <arg line="-dependency-graph=${REPORTS_DIR}/mxmlc-graph.xml" />
-            <arg line="-link-report=${REPORTS_DIR}/mxmlc-link-report.xml" />
-            <arg line="-size-report=${REPORTS_DIR}/mxmlc-size-report.xml" />
-            <arg line="-dump-config=${REPORTS_DIR}/mxmlc-dump-config.xml" />
+            <arg line="-dependency-graph=${REPORT_DIR}/mxmlc-graph.xml" />
+            <arg line="-link-report=${REPORT_DIR}/mxmlc-link-report.xml" />
+            <arg line="-size-report=${REPORT_DIR}/mxmlc-size-report.xml" />
+            <arg line="-dump-config=${REPORT_DIR}/mxmlc-dump-config.xml" />
             <arg line="-load-config=${AIR_SDK_HOME}/frameworks/flex-config.xml" />
             <arg line="-output=${BUILD_DIR}/HelloWorld.swf" />
         </java>
     </target>
     <!-- TEST PHASE -->
     <target name="test" description="Test the ActionScript sources.">  
-        <flexunit workingDir="${BUILD_DIR}" toDir="${REPORTS_DIR}" haltonfailure="false" verbose="true" player="flash" headless="false" localTrusted="true">
+        <flexunit workingDir="${BUILD_DIR}" toDir="${REPORT_DIR}" haltonfailure="false" verbose="true" player="flash" headless="false" localTrusted="true">
                 <source dir="src/main/actionscript" />
                 <source dir="src/test/actionscript" />
                 <testSource dir="src/test/actionscript">
@@ -68,11 +71,26 @@
                 <library dir="./" />
 
             </flexunit>
-            <junitreport todir="${REPORTS_DIR}">
-                <fileset dir="${REPORTS_DIR}">
+            <junitreport todir="${REPORT_DIR}">
+                <fileset dir="${REPORT_DIR}">
                     <include name="TEST-*.xml" />
                 </fileset>
-                <report format="frames" todir="${REPORTS_DIR}/html" />
+                <report format="frames" todir="${REPORT_DIR}/html" />
             </junitreport>
     </target>
+    <!-- DOCUMENT PHASE -->    
+    <target name="document" description="Generate ASDoc">
+        <asdoc output="${ASDOC_DIR}" lenient="true" failonerror="false">
+            <doc-sources path-element="${basedir}/src/main/actionscript" />
+            <compiler.source-path path-element="${basedir}/src/main/actionscript" />
+            <external-library-path dir="${env.FLEX_HOME}/frameworks/libs/air/" append="true">
+                <include name="*.swc" />
+            </external-library-path>
+            <external-library-path dir="${basedir}" append="true">
+                <include name="LiquidFun.swc" />
+            </external-library-path>
+            <!--define name="VERSION" value="1.0.0" /-->
+        </asdoc>
+    </target>
+
 </project>
