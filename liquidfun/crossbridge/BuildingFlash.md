@@ -39,4 +39,4 @@ Set the following env. variables and run 'ant -f assemble.xml clean build test d
 
 ### Comments
 
-Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux not supported due tooling requirements.
+Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux not supported due tooling requirements).
