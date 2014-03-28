@@ -1,5 +1,5 @@
-LiquidFun CrossBridge
-=====================
+LiquidFun Flash
+===============
 
 Pre-Compiled Library SWC:
 https://dl.dropboxusercontent.com/u/1375050/LiquidFun.swc
