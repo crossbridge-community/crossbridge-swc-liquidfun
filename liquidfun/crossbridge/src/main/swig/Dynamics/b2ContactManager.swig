@@ -19,3 +19,7 @@
  // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
 %module b2ContactManager;
+
+// solves duplicate destroy() method error.
+// TODO: make rename rule
+%ignore b2ContactManager::Destroy(b2Contact* c);

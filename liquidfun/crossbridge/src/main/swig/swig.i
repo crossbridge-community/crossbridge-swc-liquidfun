@@ -77,9 +77,6 @@ AS3_GoAsync();
 %ignore operator-=;
 %ignore operator-;
 
-// rename the == operator
-%rename(equals) operator==;
-
 /* grabbed default rename directives for overloaded operators. */
 %rename(__add__)	     operator+;
 %rename(__pos__)	     operator+();
@@ -148,19 +145,14 @@ AS3_GoAsync();
 // Includes
 ///////////////////////////////////////
 
-// We need to include b2Settings.h separately for swig to parse certain macros
 %include "Common/b2Settings.swig"
-
-// Include all the swig files
-%include "Collision/Shapes/b2Shape.swig" // include before derived classes
+%include "Common/b2Draw.swig"
+%include "Common/b2Math.swig"
+%include "Collision/Shapes/b2Shape.swig" 
 %include "Collision/Shapes/b2CircleShape.swig"
 %include "Collision/Shapes/b2ChainShape.swig"
 %include "Collision/Shapes/b2EdgeShape.swig"
 %include "Collision/Shapes/b2PolygonShape.swig"
-
-%include "Common/b2Draw.swig"
-%include "Common/b2Math.swig"
-
 %include "Dynamics/b2Body.swig"
 %include "Dynamics/b2ContactManager.swig"
 %include "Dynamics/b2Fixture.swig"
@@ -168,20 +160,22 @@ AS3_GoAsync();
 %include "Dynamics/b2TimeStep.swig"
 %include "Dynamics/b2World.swig"
 %include "Dynamics/b2WorldCallbacks.swig"
-
+%include "Dynamics/Joints/b2Joint.swig"
+%include "Dynamics/Joints/b2DistanceJoint.swig"
+%include "Dynamics/Joints/b2FrictionJoint.swig"
+%include "Dynamics/Joints/b2GearJoint.swig"
+%include "Dynamics/Joints/b2MotorJoint.swig"
+%include "Dynamics/Joints/b2MouseJoint.swig"
+%include "Dynamics/Joints/b2PrismaticJoint.swig"
+%include "Dynamics/Joints/b2PulleyJoint.swig"
+%include "Dynamics/Joints/b2RevoluteJoint.swig"
+%include "Dynamics/Joints/b2RopeJoint.swig"
+%include "Dynamics/Joints/b2WeldJoint.swig"
+%include "Dynamics/Joints/b2WheelJoint.swig"
 %include "Particle/b2Particle.swig"
 %include "Particle/b2ParticleGroup.swig"
 %include "Particle/b2ParticleSystem.swig"
-
 %include "Rope/b2Rope.swig"
-
-///////////////////////////////////////
-// Custom Bug Fixes
-///////////////////////////////////////
-
-// solves duplicate destroy() method error.
-// TODO: make rename rule
-%ignore b2ContactManager::Destroy(b2Contact* c);
 
 #endif
 
