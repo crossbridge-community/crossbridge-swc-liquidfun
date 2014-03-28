@@ -40,16 +40,11 @@ AS3_GoAsync();
 
 %}
 
-/* c99 int types */
+// pull in type information declared in stdint.h
 %include "stdint.i"
 
-/* grabbed liquidfun java directives */
-
-// allow const reference typemaps
-%naturalvar;
-
 ///////////////////////////////////////
-// Global Rename Definitions
+// Renames
 ///////////////////////////////////////
 
 // strip prefixes from everything
@@ -60,7 +55,7 @@ AS3_GoAsync();
 %rename("%(lowercamelcase)s", %$isfunction) "";
 
 ///////////////////////////////////////
-// Global Operator Definitions
+// Operators
 ///////////////////////////////////////
 
 // Ignore most operators as they generate new Java or native objects.

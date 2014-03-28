@@ -16,31 +16,27 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-%module b2Particle
+ // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
-/// b2ParticleDef extensions for easier access
-%extend b2ParticleDef {
-    // these won't override the default getters/setters
-    // SWIG generates, but provides a more sane alternative
-    // than to create (and have to destroy) throw away objects
-    void setPosition(float32 x, float32 y) {
-        $self->position.Set(x, y);
-    }
+%module b2Joint
 
-    void setColor(int32 r, int32 g, int32 b, int32 a) {
-        $self->color.Set(r, g, b, a);
-    }
-}
+/// Rename constants
+%rename (UNKNOWN_JOINT) e_unknownJoint;
+%rename (REVOLUTE_JOINT) e_revoluteJoint;
+%rename (PRISMATIC_JOINT) e_prismaticJoint;
+%rename (DISTANCE_JOINT) e_distanceJoint;
+%rename (PULLEY_JOINT) e_pulleyJoint;
+%rename (MOUSE_JOINT) e_mouseJoint;
+%rename (GEAR_JOINT) e_gearJoint;
+%rename (WHEEL_JOINT) e_wheelJoint;
+%rename (WELD_JOINT) e_weldJoint;
+%rename (FRICTION_JOINT) e_frictionJoint;
+%rename (ROPE_JOINT) e_ropeJoint;
+%rename (MOTOR_JOINT) e_motorJoint;
 
-/// Ignore userdata pointers
-%ignore b2ParticleDef::userData;
+/// Ignore functions
+%ignore b2Joint::GetNext;
+%ignore b2Joint::Dump;
 
-/// Ignore methods that generate new objects
-%ignore b2ParticleColor::GetColor;
-
-/// Ignore handler
-%ignore b2ParticleHandle;
-
-/// Include original .h file for SWIG
-/// The original file is simple enough we will just pull it in
-%include "../../../Box2D/Box2D/Particle/b2Particle.h"
+/// Include original header
+%include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"

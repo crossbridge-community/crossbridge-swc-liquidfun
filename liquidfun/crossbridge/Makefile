@@ -67,8 +67,8 @@ compile:
 package:
 	@echo "------- crossbridge.LiquidFun :: package --------"
 	# Generate the SWIG wrappers
-	# -I$(call nativepath,$(FLASCC)/usr/include) 
-	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -w201,501,502 -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing swig.i &> swig.log	
+    # Optional: Filter non-major warnings -w201,302,401,501,502
+	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing swig.i &> swig.log	
 	# Compile the SWIG AS3 wrappers
 	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
 	# Compile the SWIG C++ wrappers
