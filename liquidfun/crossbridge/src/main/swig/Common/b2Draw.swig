@@ -118,7 +118,6 @@
 #endif
 
 /// Include original .h file for SWIG
-/// The original file is simple enough we will just pull it in
 %include "../../../Box2D/Box2D/Common/b2Draw.h"
 
 /// Disable all the Typemaps so they don't get generated for other files

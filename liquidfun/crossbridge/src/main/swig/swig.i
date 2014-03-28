@@ -35,6 +35,15 @@
 #include <Box2D/Box2D.h>
     
 int main() {
+// Sample AS3 code inline at initialization.
+inline_as3("trace(\"LiquidFun loaded.\");");
+// We still need a main function for the SWC. this function must be called
+// so that all the static init code is executed before any library functions
+// are used.
+//
+// The main function for a library must throw an exception so that it does
+// not return normally. Returning normally would cause the static
+// destructors to be executed leaving the library in an unuseable state.
 AS3_GoAsync();
 }
 
@@ -156,6 +165,7 @@ AS3_GoAsync();
 %include "Dynamics/b2World.swig"
 %include "Dynamics/b2WorldCallbacks.swig"
 %include "Dynamics/Joints/b2Joint.swig"
+%include "Dynamics/Contacts/b2Contact.swig"
 %include "Dynamics/Joints/b2DistanceJoint.swig"
 %include "Dynamics/Joints/b2FrictionJoint.swig"
 %include "Dynamics/Joints/b2GearJoint.swig"

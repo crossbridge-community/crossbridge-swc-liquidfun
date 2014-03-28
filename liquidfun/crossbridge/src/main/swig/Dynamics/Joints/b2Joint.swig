@@ -16,7 +16,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
- // @contributor: Andras Csizmadia <www.vpmedia.eu>
+// @contributor: Andras Csizmadia <www.vpmedia.eu>
 
 %module b2Joint
 
@@ -36,7 +36,6 @@
 
 /// Ignore functions
 %ignore b2Joint::GetNext;
-%ignore b2Joint::Dump;
 
-/// Include original header
+/// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"

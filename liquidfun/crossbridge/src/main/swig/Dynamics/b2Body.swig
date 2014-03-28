@@ -16,7 +16,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
- // @contributor: Andras Csizmadia <www.vpmedia.eu>
+// @contributor: Andras Csizmadia <www.vpmedia.eu>
 
 %module b2Body
 
@@ -59,5 +59,4 @@
 };
 
 /// Include original .h file for SWIG
-/// The original file is simple enough we will just pull it in
 %include "../../../Box2D/Box2D/Dynamics/b2Body.h"

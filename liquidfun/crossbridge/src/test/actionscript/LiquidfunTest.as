@@ -82,6 +82,12 @@ public class LiquidfunTest extends Sprite {
     }
 
     [Test]
+    public function test_particle():void {
+        var particle:ParticleDef = ParticleDef.create();
+        world.createParticleSystem(particle.swigCPtr);
+    }
+
+    [Test]
     public function test_body():void {
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.dynamicBody;

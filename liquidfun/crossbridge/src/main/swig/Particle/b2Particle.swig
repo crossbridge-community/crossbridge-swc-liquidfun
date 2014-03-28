@@ -20,9 +20,6 @@
 
 /// b2ParticleDef extensions for easier access
 %extend b2ParticleDef {
-    // these won't override the default getters/setters
-    // SWIG generates, but provides a more sane alternative
-    // than to create (and have to destroy) throw away objects
     void setPosition(float32 x, float32 y) {
         $self->position.Set(x, y);
     }
@@ -42,5 +39,4 @@
 %ignore b2ParticleHandle;
 
 /// Include original .h file for SWIG
-/// The original file is simple enough we will just pull it in
 %include "../../../Box2D/Box2D/Particle/b2Particle.h"
