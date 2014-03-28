@@ -18,18 +18,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package utils {
+package liquidfun.utils {
 import flash.display.Sprite;
 import flash.geom.Matrix;
 
 public class LFCircle extends Sprite {
-    private var bodyDef:BodyDef;
-    private var bodyDefPos:Vec2;
-    private var body:Body;
-    private var dynamicBox:CircleShape;
-    private var fixtureDef:FixtureDef;
-    private var radius:Number;
-    private var matrix:Matrix = new Matrix();
+    public var bodyDef:BodyDef;
+    public var bodyDefPos:Vec2;
+    public var body:Body;
+    public var dynamicBox:CircleShape;
+    public var fixtureDef:FixtureDef;
+    public var radius:Number;
+    public var matrix:Matrix = new Matrix();
 
     public function LFCircle(_x:Number, _y:Number, _r:Number, world:World) {
         radius = _r;
@@ -58,6 +58,8 @@ public class LFCircle extends Sprite {
         fixtureDef.density = 1.0;
         fixtureDef.friction = 0.3;
         body.createFixture(fixtureDef.swigCPtr);
+
+        update();
     }
 
     public function update():void {

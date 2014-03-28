@@ -25,7 +25,7 @@
 //=END MIT LICENSE
 //
 
-package utils {
+package liquidfun.utils {
 import flash.display.Sprite;
 
 public class LFGlobals extends Sprite {

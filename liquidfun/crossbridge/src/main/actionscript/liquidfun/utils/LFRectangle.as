@@ -18,19 +18,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package utils {
+package liquidfun.utils {
 import flash.display.Sprite;
 import flash.geom.Matrix;
 
 public class LFRectangle extends Sprite {
-    private var bodyDef:BodyDef;
-    private var bodyDefPos:Vec2;
-    private var body:Body;
-    private var dynamicBox:PolygonShape;
-    private var fixtureDef:FixtureDef;
-    private var w:Number;
-    private var h:Number;
-    private var matrix:Matrix = new Matrix();
+    public var bodyDef:BodyDef;
+    public var bodyDefPos:Vec2;
+    public var body:Body;
+    public var dynamicBox:PolygonShape;
+    public var fixtureDef:FixtureDef;
+    public var w:Number;
+    public var h:Number;
+    public var matrix:Matrix = new Matrix();
 
     public function LFRectangle(_x:Number, _y:Number, _w:Number, _h:Number, world:World, isDynamic:Boolean = true) {
         w = _w;
@@ -64,6 +64,8 @@ public class LFRectangle extends Sprite {
         fixtureDef.friction = 0.3;
 
         body.createFixture(fixtureDef.swigCPtr);
+
+        update();
     }
 
     public function update():void {

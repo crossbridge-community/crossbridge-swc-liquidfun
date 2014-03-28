@@ -43,7 +43,7 @@
             <classpath>
                <pathelement location="${AIR_SDK_HOME}/lib/compiler.jar"/>
             </classpath>
-            <arg value="src/main/actionscript/HelloWorld.as" />
+            <arg value="src/main/actionscript/TestBed.as" />
             <arg line="-target-player=12.0" />
             <arg line="-swf-version=23" />
             <arg line="-debug=true" />
@@ -55,7 +55,7 @@
             <arg line="-size-report=${REPORT_DIR}/mxmlc-size-report.xml" />
             <arg line="-dump-config=${REPORT_DIR}/mxmlc-dump-config.xml" />
             <arg line="-load-config=${AIR_SDK_HOME}/frameworks/flex-config.xml" />
-            <arg line="-output=${BUILD_DIR}/HelloWorld.swf" />
+            <arg line="-output=${BUILD_DIR}/TestBed.swf" />
         </java>
     </target>
     <!-- TEST PHASE -->
