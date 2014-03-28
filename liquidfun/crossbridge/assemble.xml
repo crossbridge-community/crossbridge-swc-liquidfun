@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="liquidfun.crossbridge.assembler" default="build" basedir=".">
+    <!-- @author: Andras Csizmadia -->
+    <!-- @version: 1.0.0 -->
+    <!-- @usage: ant -f assemble.xml -->
+    <description>LiquidFun-CrossBridge-Assembler</description>
+    <!-- ################################################################### -->
+    <!-- ########################### SETTINGS ############################## -->
+    <!-- ################################################################### -->
+    <property environment="env" />
+    <property name="AIR_SDK_HOME" value="${env.AIR_HOME}"/>  
+    <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>   
+    <property name="BUILD_DIR" value="bin"/>   
+    <property name="REPORTS_DIR" value="${BUILD_DIR}/reports"/> 
+    <!-- ################################################################### -->
+    <!-- ########################### TYPEDEFS ############################## -->
+    <!-- ################################################################### -->
+    <!-- FlexUnit -->
+    <!-- @see: http://docs.flexunit.org/index.php?title=Ant_Task -->
+    <taskdef resource="flexUnitTasks.tasks" onerror="report">
+        <classpath>
+            <fileset dir="src/test/libs">
+                <include name="flexUnitTasks-4.1.0-9.jar" />
+            </fileset>
+        </classpath>
+    </taskdef>
+    <!-- ################################################################### -->
+    <!-- ########################### TARGETS ############################### -->
+    <!-- ################################################################### -->
+    <!-- CLEAN PHASE -->
+    <target name="clean" description="Clean the build folders.">  
+        <delete dir="${BUILD_DIR}" />
+        <mkdir dir="${BUILD_DIR}" />
+    </target>
+    <!-- BUILD PHASE -->
+    <target name="build" depends="test" description="Build the ActionScript sources."> 
+        <mkdir dir="${BUILD_DIR}" />
+        <mkdir dir="${REPORTS_DIR}" />
+        <java classname="com.adobe.flash.compiler.clients.MXMLC" fork="true" failonerror="true" dir="${basedir}" maxmemory="1024m">
+            <classpath>
+               <pathelement location="${AIR_SDK_HOME}/lib/compiler.jar"/>
+            </classpath>
+            <arg value="src/main/actionscript/HelloWorld.as" />
+            <arg line="-target-player=12.0" />
+            <arg line="-swf-version=23" />
+            <arg line="-debug=true" />
+            <arg line="-verbose-stacktraces=true" />
+            <arg line="-source-path+=./src/main/actionscript" />
+            <arg line="-library-path+=./LiquidFun.swc" />
+            <arg line="-dependency-graph=${REPORTS_DIR}/mxmlc-graph.xml" />
+            <arg line="-link-report=${REPORTS_DIR}/mxmlc-link-report.xml" />
+            <arg line="-size-report=${REPORTS_DIR}/mxmlc-size-report.xml" />
+            <arg line="-dump-config=${REPORTS_DIR}/mxmlc-dump-config.xml" />
+            <arg line="-load-config=${AIR_SDK_HOME}/frameworks/flex-config.xml" />
+            <arg line="-output=${BUILD_DIR}/HelloWorld.swf" />
+        </java>
+    </target>
+    <!-- TEST PHASE -->
+    <target name="test" description="Test the ActionScript sources.">  
+        <flexunit workingDir="${BUILD_DIR}" toDir="${REPORTS_DIR}" haltonfailure="false" verbose="true" player="flash" headless="false" localTrusted="true">
+                <source dir="src/main/actionscript" />
+                <source dir="src/test/actionscript" />
+                <testSource dir="src/test/actionscript">
+                    <include name="**/*Test.as" />
+                </testSource>
+                <library dir="src/test/libs/Common" />
+                <library dir="src/test/libs/ASProject" />
+                <library dir="./" />
+
+            </flexunit>
+            <junitreport todir="${REPORTS_DIR}">
+                <fileset dir="${REPORTS_DIR}">
+                    <include name="TEST-*.xml" />
+                </fileset>
+                <report format="frames" todir="${REPORTS_DIR}/html" />
+            </junitreport>
+    </target>
+</project>

@@ -1,0 +1,8 @@
+build/
+bin/
+publish/
+out/
+temp/
+*.ipr
+*.iws
+*.iml
