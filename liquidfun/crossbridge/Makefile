@@ -52,22 +52,38 @@ else
 endif
 
 compile:
-	@echo "------- crossbridge.LiquidFun :: compile --------"
-	# Create build folder
+	########################################
+	# Initializing ...
+	########################################
 	mkdir -p build
-	# Run CMake on Box2D
+	########################################
+	# Making LiquidFun ...
+	########################################
 	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" CC=gcc CXX=g++ CFLAGS="$(CCOMPARGS)" CXXFLAGS="$(CCOMPARGS)" cmake ../../Box2D/ -DBOX2D_BUILD_EXAMPLES=OFF -DBOX2D_BUILD_UNITTESTS=OFF
-	# Run Make on Box2D
+	########################################
+	# Building LiquidFun ...
+	########################################
 	cd build && make -j8
-	# Generate the SWIG wrappers (Filter non-major warnings -w201,302,401,501,502)
+	########################################
+	# Generating CXX ...
+	########################################
 	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
-	# Compile the SWIG AS3 wrappers
+	########################################
+	# Generating ABC ...
+	########################################
 	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
-	# Generate exports
+	########################################
+	# Generating O ...
+	########################################
 	cp -f src/main/templates/exports.txt build/ 
 	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
+	########################################
+	# Generating Exports ...
+	########################################
 	"$(FLASCC)/usr/bin/nm" build/LiquidFun_wrap.o | grep ' T ' | sed 's/.*__/_/' | sed 's/.* T //' >> build/exports.txt
-	# Compile the SWIG C++ wrappers
+	########################################
+	# Generating SWC ...
+	########################################
 	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -lFlash++ -lAS3++ -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
 
 clean:

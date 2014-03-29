@@ -25,4 +25,4 @@
 #=END MIT LICENSE
 #
 #!/bin/sh
-echo "Running..." && cd $CB_PRJ_DIR && make && echo "Completed.";
+echo "build.sh::start" && cd $CB_PRJ_DIR && make && echo "build.sh::complete";
