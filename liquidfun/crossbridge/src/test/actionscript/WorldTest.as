@@ -32,30 +32,30 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
-public class Vec2Test extends Sprite {
+public class WorldTest extends Sprite {
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    private static const timeStep:Number = 1.0 / 60.0;
+    private static const velocityIterations:int = 6;
+    private static const positionIterations:int = 2;
+    private static const particleIterations:int = 1;
 
-    private var vec2:Vec2;
-    private var _x:Number;
-    private var _y:Number;
+    private var world:World;
 
-    public function Vec2Test() {
+    public function WorldTest() {
         CModule.rootSprite = this;
         super();
     }
 
     [Before]
     public function setUp():void {
-        vec2 = Vec2.create();
-        trace(_x, _y, vec2.x, vec2.y);
-        vec2.x = _x = 0.1001;
-        vec2.y = _y = 0.9009;
-        trace(_x, _y, vec2.x, vec2.y);
+        world = World.create(0.0, -10.0);
     }
 
     [After]
     public function tearDown():void {
-        vec2.destroy();
-        vec2 = null;
+        world.destroy();
     }
 
     [BeforeClass]
@@ -67,40 +67,37 @@ public class Vec2Test extends Sprite {
     }
 
     [Test]
-    public function test_get_x():void {
-        const diff:Number = Math.max(vec2.x, _x) - Math.min(vec2.x, _x);
-       Assert.assertTrue(diff < 0.00001);
-    }
+    public function test_world():void {
+        var bodyDefPos:Vec2 = Vec2.create()
+        bodyDefPos.set(0.0, 4.0);
 
-    [Test]
-    public function test_get_y():void {
-        const diff:Number = Math.max(vec2.y, _y) - Math.min(vec2.y, _y);
-        Assert.assertTrue(diff < 0.00001);
-    }
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.position = bodyDefPos.swigCPtr;
 
-    [Test]
-    public function test_isValid():void {
-        Assert.assertTrue(vec2.isValid());
-    }
+        var body:Body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
-    [Test]
-    public function test_length():void {
-        Assert.assertTrue(vec2.length() != NaN);
-    }
+        var dynamicBox:PolygonShape = PolygonShape.create();
+        dynamicBox.setAsBox(1.0, 1.0);
 
-    [Test]
-    public function test_lengthSquared():void {
-        Assert.assertTrue(vec2.lengthSquared() != NaN);
-    }
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = dynamicBox.swigCPtr;
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.3;
+        body.createFixture(fixtureDef.swigCPtr);
 
-    [Test]
-    public function test_skew():void {
-        vec2.skew();
-    }
+        world.step(timeStep, velocityIterations, positionIterations, particleIterations);
 
-    [Test]
-    public function test_normalize():void {
-        Assert.assertTrue(vec2.normalize() != NaN);
+        var pos:Vec2 = new Vec2();
+        pos.swigCPtr = body.getPosition();
+        var angle:Number = body.getAngle();
+
+        // body: 0, 3.9972221851348877, 0
+        trace("body: " + pos.x + ", " + pos.y + ", " + angle);
+
+        Assert.assertNotNull(pos);
+        Assert.assertTrue(angle != NaN);
     }
 
 }

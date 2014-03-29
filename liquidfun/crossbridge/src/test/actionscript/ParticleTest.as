@@ -30,32 +30,30 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-import flexunit.framework.Assert;
+public class ParticleTest extends Sprite {
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    private static const timeStep:Number = 1.0 / 60.0;
+    private static const velocityIterations:int = 6;
+    private static const positionIterations:int = 2;
+    private static const particleIterations:int = 1;
 
-public class Vec2Test extends Sprite {
+    private var world:World;
 
-    private var vec2:Vec2;
-    private var _x:Number;
-    private var _y:Number;
-
-    public function Vec2Test() {
+    public function ParticleTest() {
         CModule.rootSprite = this;
         super();
     }
 
     [Before]
     public function setUp():void {
-        vec2 = Vec2.create();
-        trace(_x, _y, vec2.x, vec2.y);
-        vec2.x = _x = 0.1001;
-        vec2.y = _y = 0.9009;
-        trace(_x, _y, vec2.x, vec2.y);
+        world = World.create(0.0, -10.0);
     }
 
     [After]
     public function tearDown():void {
-        vec2.destroy();
-        vec2 = null;
+        world.destroy();
     }
 
     [BeforeClass]
@@ -67,40 +65,9 @@ public class Vec2Test extends Sprite {
     }
 
     [Test]
-    public function test_get_x():void {
-        const diff:Number = Math.max(vec2.x, _x) - Math.min(vec2.x, _x);
-       Assert.assertTrue(diff < 0.00001);
-    }
-
-    [Test]
-    public function test_get_y():void {
-        const diff:Number = Math.max(vec2.y, _y) - Math.min(vec2.y, _y);
-        Assert.assertTrue(diff < 0.00001);
-    }
-
-    [Test]
-    public function test_isValid():void {
-        Assert.assertTrue(vec2.isValid());
-    }
-
-    [Test]
-    public function test_length():void {
-        Assert.assertTrue(vec2.length() != NaN);
-    }
-
-    [Test]
-    public function test_lengthSquared():void {
-        Assert.assertTrue(vec2.lengthSquared() != NaN);
-    }
-
-    [Test]
-    public function test_skew():void {
-        vec2.skew();
-    }
-
-    [Test]
-    public function test_normalize():void {
-        Assert.assertTrue(vec2.normalize() != NaN);
+    public function test_particle():void {
+        var particle:ParticleDef = ParticleDef.create();
+        world.createParticleSystem(particle.swigCPtr);
     }
 
 }

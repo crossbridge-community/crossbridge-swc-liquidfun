@@ -146,6 +146,11 @@ AS3_GoAsync();
 // Includes
 ///////////////////////////////////////
 
+// CrossBridge shipped
+%include "stdint.i"
+//%include "constraints.i"
+
+// LiquidFun
 %include "Common/b2Settings.swig"
 %include "Common/b2Draw.swig"
 %include "Common/b2Math.swig"

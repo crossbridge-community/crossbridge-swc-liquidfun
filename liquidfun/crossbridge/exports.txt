@@ -12,3 +12,5 @@ _Unwind_SjLj_Register
 _Unwind_SjLj_Resume
 _Unwind_SjLj_Unregister
 _Unwind_SjLj_RaiseException
+
+# generated
