@@ -35,7 +35,7 @@
 FLASCC:=$(FLASCC_ROOT)/sdk
 
 # ASC2 Compiler arguments
-$?AS3COMPILERARGS=java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) -merge -md
+$?AS3COMPILERARGS=java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) -merge -md -warnings
 
 # C/C++ Compiler arguments
 # Debug: -O0 -g
@@ -71,7 +71,7 @@ compile:
 	########################################
 	# Generating ABC ...
 	########################################
-	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
+	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
 	########################################
 	# Generating O ...
 	########################################
@@ -84,7 +84,7 @@ compile:
 	########################################
 	# Generating SWC ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -lAS3++ -lFlash++ -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
 
 clean:
 	rm -rf build

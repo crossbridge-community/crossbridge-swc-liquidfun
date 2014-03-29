@@ -34,10 +34,6 @@ In order to get the build scripts working, set the following environment variabl
 
 * Run 'ant -f assemble.xml clean build test document':
 
-### Code Changes
-
-* b2Joint.h: Destroyer method declaration changed from Protected to Public
-
 ## Releases
 
 ### Pre-Compiled Library SWC

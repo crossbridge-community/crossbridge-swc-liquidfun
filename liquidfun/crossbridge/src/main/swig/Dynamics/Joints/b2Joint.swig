@@ -34,5 +34,21 @@
 %rename (ROPE_JOINT) e_ropeJoint;
 %rename (MOTOR_JOINT) e_motorJoint;
 
+// AS3 specific override
+// When a derived C++ class implements a virtual function as public
+// that was declared protected/private in the base class you will need
+// to suppress the usual use of the "override" keyword.
+%as3suppressoverride b2DistanceJoint::~b2DistanceJoint;
+%as3suppressoverride b2FrictionJoint::~b2FrictionJoint;
+%as3suppressoverride b2GearJoint::~b2GearJoint;
+%as3suppressoverride b2MotorJoint::~b2MotorJoint;
+%as3suppressoverride b2MouseJoint::~b2MouseJoint;
+%as3suppressoverride b2PrismaticJoint::~b2PrismaticJoint;
+%as3suppressoverride b2PulleyJoint::~b2PulleyJoint;
+%as3suppressoverride b2RevoluteJoint::~b2RevoluteJoint;
+%as3suppressoverride b2RopeJoint::~b2RopeJoint;
+%as3suppressoverride b2WeldJoint::~b2WeldJoint;
+%as3suppressoverride b2WheelJoint::~b2WheelJoint;
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"

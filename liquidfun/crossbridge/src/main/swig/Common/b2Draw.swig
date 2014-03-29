@@ -28,6 +28,12 @@
 %rename (CENTER_OF_MASS_BIT) e_centerOfMassBit;
 %rename (PARTICLE_BIT) e_particleBit;
 
+// When using typemaps that require custom ActionScript types to be used in the generated
+// AS3 wrappers you may need to import classes from custom packages.
+// This can be achieved with the as3import directive that allows you to inject
+// as3import annotations into the method declarations in the generated C/C++ wrapper code.
+%as3import("flash.display.Shape") DrawPolygon;
+
 // b2Draw extensions for easier access
 %extend b2Draw {
     // Draw a closed polygon provided in CCW order.
@@ -61,5 +67,6 @@
         inline_as3("trace(\"Draw::DrawSegment\");");
     }*/
 }
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Common/b2Draw.h"
