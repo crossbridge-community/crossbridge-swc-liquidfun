@@ -18,10 +18,11 @@
 
 // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
-%module b2Island;
+%module b2DynamicTree
 
 // excluded classes and methods
-%ignore b2Island;
+%ignore b2DynamicTree;
+%ignore b2TreeNode;
 
 // Include original .h file for SWIG
-%include "../../../Box2D/Box2D/Dynamics/b2Island.h"
+%include "../../../Box2D/Box2D/Collision/b2DynamicTree.h"

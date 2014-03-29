@@ -28,4 +28,4 @@
 %ignore b2SolverData;
 
 // Include original .h file for SWIG
-%include "../../../Box2D/Box2D/Dynamic/b2TimeStep.h"
+%include "../../../Box2D/Box2D/Dynamics/b2TimeStep.h"

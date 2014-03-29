@@ -18,6 +18,8 @@
 
 // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
+%module b2Settings
+
 // Excluded classes and methods
 %ignore b2Alloc;
 %ignore b2Free;

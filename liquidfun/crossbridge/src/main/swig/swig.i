@@ -161,11 +161,17 @@ AS3_GoAsync();
 %include "Common/b2BlockAllocator.swig"
 %include "Common/b2SlabAllocator.swig"
 %include "Common/b2StackAllocator.swig"
+
+%include "Collision/b2Collision.swig"
+%include "Collision/b2Distance.swig"
+%include "Collision/b2DynamicTree.swig"
+%include "Collision/b2TimeOfImpact.swig"
 %include "Collision/Shapes/b2Shape.swig"
 %include "Collision/Shapes/b2CircleShape.swig"
 %include "Collision/Shapes/b2ChainShape.swig"
 %include "Collision/Shapes/b2EdgeShape.swig"
 %include "Collision/Shapes/b2PolygonShape.swig"
+
 %include "Dynamics/b2Body.swig"
 %include "Dynamics/b2ContactManager.swig"
 %include "Dynamics/b2Fixture.swig"
@@ -173,8 +179,10 @@ AS3_GoAsync();
 %include "Dynamics/b2TimeStep.swig"
 %include "Dynamics/b2World.swig"
 %include "Dynamics/b2WorldCallbacks.swig"
-%include "Dynamics/Joints/b2Joint.swig"
+
 %include "Dynamics/Contacts/b2Contact.swig"
+
+%include "Dynamics/Joints/b2Joint.swig"
 %include "Dynamics/Joints/b2DistanceJoint.swig"
 %include "Dynamics/Joints/b2FrictionJoint.swig"
 %include "Dynamics/Joints/b2GearJoint.swig"
@@ -186,9 +194,11 @@ AS3_GoAsync();
 %include "Dynamics/Joints/b2RopeJoint.swig"
 %include "Dynamics/Joints/b2WeldJoint.swig"
 %include "Dynamics/Joints/b2WheelJoint.swig"
+
 %include "Particle/b2Particle.swig"
 %include "Particle/b2ParticleGroup.swig"
 %include "Particle/b2ParticleSystem.swig"
+
 %include "Rope/b2Rope.swig"
 
 #endif
