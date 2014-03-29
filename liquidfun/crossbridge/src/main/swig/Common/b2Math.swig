@@ -20,35 +20,29 @@
 
 %module b2Math
 
-/// b2World struct
-struct b2Vec2 {
-    b2Vec2();
-    b2Vec2(float32 x, float32 y);
-
-    void Set(float32 x_, float32 y_);
-
-    float32 x, y;
-};
-
-/// b2Transform struct
-struct b2Transform {
-    b2Transform();
-
-    void SetIdentity();
-};
+/// b2Vec2 extensions for easier access
+%extend b2Vec2 {
+}
 
 /// b2Transform extensions for easier access
 %extend b2Transform {
-    float32 getPosX() {
+    // Vec2 getter X
+    float32 getX() {
         return $self->p.x;
     }
-    float32 getPosY() {
+    // Vec2 getter Y
+    float32 getY() {
         return $self->p.y;
     }
+    // TBD
     float32 getRotSin() {
         return $self->q.s;
     }
+    // TBD
     float32 getRotCos() {
         return $self->q.c;
     }
 }
+
+/// Include original .h file for SWIG
+%include "../../../Box2D/Box2D/Collision/Common/b2Math.h"

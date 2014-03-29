@@ -45,11 +45,11 @@
 
 // b2Body extensions for easier access
 %extend b2Body {
-    float32 GetPosX() {
+    float32 GetX() {
         return $self->GetPosition().x;
     }
 
-    float32 GetPosY() {
+    float32 GetY() {
         return $self->GetPosition().y;
     }
 

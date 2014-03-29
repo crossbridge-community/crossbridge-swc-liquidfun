@@ -22,15 +22,16 @@
 
 // b2CircleShape extensions for easier access
 %extend b2CircleShape {
+    // Vec2 setter XY
     void SetPosition(float32 x, float32 y) {
         $self->m_p.Set(x, y);
     }
-
-    float32 GetPosX() {
+    // Vec2 getter X
+    float32 GetX() {
         return $self->m_p.x;
     }
-
-    float32 GetPosY() {
+    // Vec2 getter Y
+    float32 GetY() {
         return $self->m_p.y;
     }
 };

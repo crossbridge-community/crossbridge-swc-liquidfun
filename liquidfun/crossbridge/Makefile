@@ -41,7 +41,7 @@ $?AS3COMPILERARGS=java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.
 
 # C/C++ Compiler arguments
 # Debug: -O0 -g
-CCOMPARGS:=-Wall -Wextra -Wno-write-strings -Wno-trigraphs -Wno-long-long -O4 -jvmopt=-Xmx1G -DSWIGFL=ON
+CCOMPARGS:=-Wall -Wextra -Wno-write-strings -Wno-trigraphs -O4 -jvmopt=-Xmx1G -DSWIGFL=ON
 
 # Path helper
 $?UNAME=$(shell uname -s)

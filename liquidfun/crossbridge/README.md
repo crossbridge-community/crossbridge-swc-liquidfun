@@ -54,7 +54,7 @@ https://dl.dropboxusercontent.com/u/1375050/TestBed.swf
 
 ## TODO
 
-* Create ActionScript specific Draw wrapper (flash.display.Shape drawing).
-* Solve Shape <> flash.display.Shape name match issue (AbstractShape would be fine).
+* Expose as much part of the API as possible.
+* Create Flash specific Draw wrapper (flash.display.Shape).
 * Cover all classes with unit tests.
 * Improve TestBed with all CPP like examples.

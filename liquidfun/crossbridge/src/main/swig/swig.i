@@ -49,9 +49,6 @@ AS3_GoAsync();
 
 %}
 
-// pull in type information declared in stdint.h
-%include "stdint.i"
-
 ///////////////////////////////////////
 // Renames
 ///////////////////////////////////////

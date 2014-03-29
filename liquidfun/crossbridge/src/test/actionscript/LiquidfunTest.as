@@ -197,7 +197,7 @@ public class LiquidfunTest extends Sprite {
         trace("body: " + pos.x + ", " + pos.y + ", " + angle);
 
         Assert.assertNotNull(pos);
-        Assert.assertTrue(angle != undefined);
+        Assert.assertTrue(angle != NaN);
     }
 
 }

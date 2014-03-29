@@ -28,6 +28,9 @@
 %rename (CHAIN) e_chain;
 %rename (TYPE_COUNT) e_typeCount;
 
+/// Rename base class as its interferes with flash.display.Shape
+%rename (BaseShape) b2Shape;
+
 /// Ignore functions that have out params.
 %ignore b2Shape::ComputeDistance;
 %ignore b2Shape::RayCast;
