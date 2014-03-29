@@ -62,6 +62,7 @@ Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux 
 ## TODO
 
 * Expose as much part of the API as possible.
-* Create Flash specific Draw wrapper (flash.display.Shape).
+* Create Flash specific b2Draw wrapper (flash.display.Shape).
+* Create Flash specific b2Log wrapper (trace).
 * Cover all classes with unit tests.
 * Improve TestBed with all CPP like examples.

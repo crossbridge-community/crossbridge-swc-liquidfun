@@ -22,3 +22,6 @@
 
 // solves duplicate destroy() method error.
 %rename(destoryContact) b2ContactManager::Destroy(b2Contact* c);
+
+// Include original .h file for SWIG
+%include "../../../Box2D/Box2D/Dynamics/b2ContactManager.h"

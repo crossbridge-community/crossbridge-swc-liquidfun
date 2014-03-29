@@ -18,7 +18,7 @@
 
 // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
-// Ignore all functions
+// Excluded classes and methods
 %ignore b2Alloc;
 %ignore b2Free;
 %ignore b2SetAllocFreeCallbacks;

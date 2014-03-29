@@ -148,11 +148,20 @@ AS3_GoAsync();
 %include "stdint.i"
 %include "math.i"
 
-// LiquidFun
+// LiquidFun (Order is mandatory!)
 %include "Common/b2Settings.swig"
 %include "Common/b2Draw.swig"
 %include "Common/b2Math.swig"
-%include "Collision/Shapes/b2Shape.swig" 
+%include "Common/b2Stat.swig"
+%include "Common/b2Timer.swig"
+%include "Common/b2GrowableStack.swig"
+%include "Common/b2IntrusiveList.swig"
+%include "Common/b2FreeList.swig"
+%include "Common/b2TrackedBlock.swig"
+%include "Common/b2BlockAllocator.swig"
+%include "Common/b2SlabAllocator.swig"
+%include "Common/b2StackAllocator.swig"
+%include "Collision/Shapes/b2Shape.swig"
 %include "Collision/Shapes/b2CircleShape.swig"
 %include "Collision/Shapes/b2ChainShape.swig"
 %include "Collision/Shapes/b2EdgeShape.swig"

@@ -18,11 +18,11 @@
 
 // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
-%module b2Rope
+%module b2TrackedBlock
 
-// excluded classes and methods
-%ignore b2Rope;
-%ignore b2RopeDef;
+// Excluded classes and methods
+%ignore b2TrackedBlock;
+%ignore b2TrackedBlockAllocator;
 
 // Include original .h file for SWIG
-%include "../../../Box2D/Box2D/Rope/b2Rope.h"
+%include "../../../Box2D/Box2D/Common/b2TrackedBlock.h"
