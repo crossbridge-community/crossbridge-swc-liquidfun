@@ -16,6 +16,8 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
+// @contributor: Andras Csizmadia <www.vpmedia.eu>
+
 %module b2Math
 
 /// b2World struct
