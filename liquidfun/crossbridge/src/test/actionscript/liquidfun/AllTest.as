@@ -73,7 +73,6 @@ public class AllTest extends Sprite {
         Assert.assertNotNull(version != null);
         Assert.assertEquals(version.major, 2);
         Assert.assertEquals(version.minor, 3);
-        //Assert.assertEquals(version.revision, 0);
     }
 
     [Test]
@@ -84,16 +83,15 @@ public class AllTest extends Sprite {
     [Test]
     public function test_draw():void {
         var draw:Draw = new Draw();
-        trace("Draw::getFlags", draw.getFlags());
+        Assert.assertNotNull(draw);
+        Assert.assertEquals(draw.getFlags(), 2);
         draw.appendFlags(Draw.AABB_BIT);
         draw.appendFlags(Draw.CENTER_OF_MASS_BIT);
         draw.appendFlags(Draw.JOINT_BIT);
         draw.appendFlags(Draw.PAIR_BIT);
         draw.appendFlags(Draw.PARTICLE_BIT);
         draw.appendFlags(Draw.SHAPE_BIT);
-        //draw.drawTransform(1);
-        trace("Draw::getFlags", draw.getFlags());
-        Assert.assertNotNull(draw);
+        Assert.assertEquals(draw.getFlags(), 63);
     }
 
     [Test]
