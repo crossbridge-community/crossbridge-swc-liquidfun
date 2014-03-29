@@ -31,8 +31,6 @@
 # Platform: Windows
 # Runtime: Cygwin with FlasCC
 
-# @see: http://www.adobe.com/devnet-docs/flascc/README.html
-
 # FlashCC SDK root
 FLASCC:=$(FLASCC_ROOT)/sdk
 
@@ -73,9 +71,9 @@ package:
 	# Compile the SWIG AS3 wrappers
 	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
 	# Generate linker object
-	cp -f exports.txt temp/ 
-	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c temp/swig_wrap.cxx -o temp/swig_wrap.o
-	"$(FLASCC)/usr/bin/nm" temp/swig_wrap.o | grep ' T ' | sed 's/.*__/_/' | sed 's/.* T //' >> temp/exports.txt
+	cp -f src/main/templates/exports.txt build/ 
+	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c build/swig_wrap.cxx -o build/swig_wrap.o
+	"$(FLASCC)/usr/bin/nm" build/swig_wrap.o | grep ' T ' | sed 's/.*__/_/' | sed 's/.* T //' >> build/exports.txt
 	# Compile the SWIG C++ wrappers
 	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../../Box2D/ LiquidFun.abc swig_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
     

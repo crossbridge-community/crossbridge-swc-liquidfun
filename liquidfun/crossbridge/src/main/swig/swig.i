@@ -25,11 +25,6 @@
 //=END MIT LICENSE
 //
 
-// @see: http://www.swig.org/Doc2.0/SWIGDocumentation.html#SWIGPlus
-// @see: http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
-// @see: http://www.adobe.com/devnet-docs/flascc/docs/Reference.html
-// @see: http://www.adobe.com/devnet-docs/flascc/docs/capidocs/as3.html
-
 #ifdef SWIG
 %module LiquidFun
 

@@ -35,22 +35,29 @@ Set the following env. variables and run 'ant -f assemble.xml clean build test d
 
 * b2Joint.h: Destroyer method declaration changed from Protected to Public
 
-### Learning CrossBridge
-
-* https://github.com/adobe-flash/crossbridge/wiki/_pages
-* http://bruce-lab.blogspot.hu/2014/01/crossbridgeflascc-resources-collection.html
-
 ### Comments
 
 Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux not supported due tooling requirements).
 
 ## Release
 
-Pre-Compiled Library SWC:
-https://dl.dropboxusercontent.com/u/1375050/LiquidFun.swc
+### Pre-Compiled Library SWC
 
-Pre-Compiled Library SWF:
-https://dl.dropboxusercontent.com/u/1375050/TestBed.swf
+* https://dl.dropboxusercontent.com/u/1375050/LiquidFun.swc
+
+### Pre-Compiled TestBed SWF
+
+* https://dl.dropboxusercontent.com/u/1375050/TestBed.swf
+
+## Learning SWIG and CrossBridge
+
+* http://www.swig.org/Doc2.0/SWIGDocumentation.html#SWIGPlus
+* http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
+* http://www.adobe.com/devnet-docs/flascc/README.html
+* http://www.adobe.com/devnet-docs/flascc/docs/Reference.html
+* http://www.adobe.com/devnet-docs/flascc/docs/capidocs/as3.html
+* https://github.com/adobe-flash/crossbridge/wiki/_pages
+* http://bruce-lab.blogspot.hu/2014/01/crossbridgeflascc-resources-collection.html
 
 ## TODO
 
