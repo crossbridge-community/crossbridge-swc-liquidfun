@@ -20,6 +20,8 @@
 
 // Ignore methods that generate new objects
 %ignore b2ParticleColor::GetColor;
+%ignore b2ParticleColor::b2ParticleColor();
+%ignore b2ParticleColor::b2ParticleColor(b2Color const &);
 
 // b2ParticleColor extensions for easier access
 %extend b2ParticleColor {
