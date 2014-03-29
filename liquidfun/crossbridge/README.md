@@ -54,9 +54,9 @@ In order to get the build scripts working, set the following environment variabl
 
 ## Missing Features
 
-* Flash specific <Common::b2Draw> wrapper (flash.display::Shape)
-* Flash specific <Common::b2Log> wrapper (::trace)
-* Flash specific <Dynamics.Contacts::b2ContactEvent> wrappers (flash.events::Event)
+* Flash specific Common::b2Draw wrapper (flash.display::Shape)
+* Flash specific Common::b2Log wrapper (::trace)
+* Flash specific Dynamics.Contacts::b2ContactEvent wrappers (flash.events::Event)
 * All classes covered by unit tests
 * Complete TestBed
 
