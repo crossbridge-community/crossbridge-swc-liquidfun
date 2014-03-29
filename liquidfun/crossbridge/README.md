@@ -49,6 +49,10 @@ Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux 
 
 * https://dl.dropboxusercontent.com/u/1375050/TestBed.swf
 
+### Pre-Compiled TestBed APK
+
+* https://dl.dropboxusercontent.com/u/1375050/TestBed.apk
+
 ## Learning SWIG and CrossBridge
 
 * http://www.swig.org/Doc2.0/SWIGDocumentation.html#SWIGPlus
@@ -61,7 +65,8 @@ Work in progress, only tested on Windows 7 x64 platform (MacOS supported, Linux 
 
 ## TODO
 
-* Create Flash specific b2Draw wrapper (flash.display.Shape).
-* Create Flash specific b2Log wrapper (trace).
-* Cover all classes with unit tests.
-* Improve TestBed with all CPP like examples.
+* Create Flash specific <Common::b2Draw> wrapper (flash.display::Shape)
+* Create Flash specific <Common::b2Log> wrapper (::trace)
+* Create Flash specific <Dynamics.Contacts::b2ContactEvent> wrappers (flash.events::Event)
+* Cover all classes with unit tests
+* Improve TestBed with all CPP like examples

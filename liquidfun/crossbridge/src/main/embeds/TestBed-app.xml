@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+  ~ =BEGIN MIT LICENSE
+  ~ 
+  ~  Copyright (c) 2014 Andras Csizmadia
+  ~  http://www.vpmedia.hu
+  ~ 
+  ~  Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~  of this software and associated documentation files (the "Software"), to deal
+  ~  in the Software without restriction, including without limitation the rights
+  ~  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~  copies of the Software, and to permit persons to whom the Software is
+  ~  furnished to do so, subject to the following conditions:
+  ~ 
+  ~  The above copyright notice and this permission notice shall be included in
+  ~  all copies or substantial portions of the Software.
+  ~ 
+  ~  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~  THE SOFTWARE.
+  ~ 
+  ~ =END MIT LICENSE
+-->
+<application xmlns="http://ns.adobe.com/air/application/4.0">
+    <id>liquidfun.flash.testbed</id>
+    <filename>TestBed</filename>
+    <name>TestBed</name>
+    <versionNumber>1.0.0</versionNumber>
+    <versionLabel>v1.0.0</versionLabel>
+    <description>TestBed Mobile Client 1.0.0</description>
+    <copyright>Copyright (c) 2014, Andras Csizmadia. All rights reserved.</copyright>
+    <initialWindow>
+        <content>TestBed.swf</content>
+        <renderMode>direct</renderMode>
+        <autoOrients>true</autoOrients>
+        <!--aspectRatio>landscape</aspectRatio-->
+        <fullScreen>true</fullScreen>
+    </initialWindow>
+    <installFolder>LiquidFun/Flash</installFolder> 
+    <programMenuFolder>TestBed</programMenuFolder>
+    <icon>
+        <!--image16x16></image16x16-->
+        <!--image29x29></image29x29-->
+        <!--image32x32></image32x32-->
+        <!--image36x36></image36x36-->
+        <image48x48>icons/icon_48.png</image48x48>
+        <!--image50x50></image50x50-->
+        <image57x57>icons/icon_57.png</image57x57>
+        <!--image58x58></image58x58-->
+        <image72x72>icons/icon_72.png</image72x72>
+        <!--image100x100></image100x100-->
+        <image114x114>icons/icon_114.png</image114x114>
+        <!--image128x128></image128x128-->
+        <!--image144x144></image144x144-->
+        <image512x512>icons/icon_512.png</image512x512>
+        <!--image1024x1024></image1024x1024-->
+    </icon>
+    <android>
+        <!--colorDepth>16bit</colorDepth-->
+        <manifestAdditions>
+            <![CDATA[            
+            <manifest android:installLocation="auto">                
+                <!--uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /--> 
+                <!--uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /--> 
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+                <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+                <uses-permission android:name="android.permission.CAMERA" /> 
+                <uses-permission android:name="android.permission.DISABLE_KEYGUARD" /> 
+                <uses-permission android:name="android.permission.INTERNET" /> 
+                <uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+                <uses-permission android:name="android.permission.RECORD_AUDIO" /> 
+                <uses-permission android:name="android.permission.WAKE_LOCK" /> 
+                <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+                <uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+                <uses-feature android:name="android.hardware.camera" android:required="true"/>
+                <uses-feature android:name="android.hardware.camera.autofocus" android:required="true"/>
+                <uses-feature android:name="android.hardware.camera.flash" android:required="true"/>
+                <application android:hardwareAccelerated="true">
+                    <activity android:name="com.sbhave.nativeExtension.ui.CameraActivity"/>
+                </application>
+            </manifest>            
+        ]]>
+        </manifestAdditions>
+    </android>
+    <iPhone>
+        <InfoAdditions>
+            <![CDATA[ 
+        
+            <key>UIStatusBarStyle</key> 
+            <string>UIStatusBarStyleBlackOpaque</string> 
+            <key>UIRequiresPersistentWiFi</key> 
+            <string>NO</string>
+            <key>UIPrerenderedIcon</key>  
+            <true/>
+            <key>UIApplicationExitsOnSuspend</key>
+            <true/>
+            
+            <key>UIDeviceFamily</key>
+            <array>
+                <!-- iPhone support -->
+                <string>1</string> 
+                <!-- iPad support -->
+                <string>2</string>
+            </array>
+                
+        ]]>
+        </InfoAdditions>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+    </iPhone>
+</application>
