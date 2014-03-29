@@ -1,29 +1,29 @@
-//
-//=BEGIN MIT LICENSE
-//
-// Copyright (c) 2014 Andras Csizmadia
-// http://www.vpmedia.hu
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-//
-//=END MIT LICENSE
-//
+/*
+ * Copyright (c) 2014 Google, Inc.
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+// @contributor: Andras Csizmadia <www.vpmedia.eu>
+
+// @see: http://www.swig.org/Doc2.0/SWIGDocumentation.html#SWIGPlus
+// @see: http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
+// @see: http://www.adobe.com/devnet-docs/flascc/README.html
+// @see: http://www.adobe.com/devnet-docs/flascc/docs/Reference.html
+// @see: http://www.adobe.com/devnet-docs/flascc/docs/capidocs/as3.html
+// @see: https://github.com/adobe-flash/crossbridge/wiki/_pages
 
 #ifdef SWIG
 %module LiquidFun
@@ -49,8 +49,19 @@ AS3_GoAsync();
 %}
 
 ///////////////////////////////////////
+// Features
+///////////////////////////////////////
+
+// @see: http://www.swig.org/Doc2.0/Customization.html#Customization_feature_flags
+
+// enable compact default arguments feature
+%feature("compactdefaultargs");
+
+///////////////////////////////////////
 // Renames
 ///////////////////////////////////////
+
+// @see: http://www.swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_ambiguity_resolution_renaming
 
 // strip prefixes from everything
 // @see: http://perldoc.perl.org/perlre.html
@@ -63,9 +74,11 @@ AS3_GoAsync();
 // Operators
 ///////////////////////////////////////
 
-// Ignore most operators as they generate new Java or native objects.
-// Note that swig will return a new Java object when a reference is returned,
-// which could lead to multiple Java proxy objects pointing to the same C-
+// @see: http://www.swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_ambiguity_resolution_renaming
+
+// Ignore most operators as they generate new AS3 or native objects.
+// Note that swig will return a new AS3 object when a reference is returned,
+// which could lead to multiple AS3 proxy objects pointing to the same C-
 // memory.
 // Alas, there doesn't seem to be any wildcard symbols other than *, which
 // doesn't work in this case (operator* maps to the * operator).

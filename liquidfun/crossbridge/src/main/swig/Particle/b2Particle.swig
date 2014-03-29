@@ -29,14 +29,8 @@
     }
 }
 
-// Ignore userdata pointers
-%ignore b2ParticleDef::userData;
-
 // Ignore methods that generate new objects
 %ignore b2ParticleColor::GetColor;
-
-// Ignore handler
-%ignore b2ParticleHandle;
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2Particle.h"

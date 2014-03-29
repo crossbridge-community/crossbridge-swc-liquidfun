@@ -1,30 +1,3 @@
-#
-#=BEGIN MIT LICENSE
-#
-# Copyright (c) 2014 Andras Csizmadia
-# http://www.vpmedia.hu
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-#
-#=END MIT LICENSE
-#
-
 # Purpose: FlasCC library makefile
 # Author: Andras Csizmadia
 # Version: 1.0.0
@@ -60,15 +33,15 @@ compile:
 	# Run Make on Box2D
 	cd build && make -j8
 	# Generate the SWIG wrappers (Filter non-major warnings -w201,302,401,501,502)
-	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing swig.i &> swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun-swig.log
 	# Compile the SWIG AS3 wrappers
 	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
 	# Generate exports
 	cp -f src/main/templates/exports.txt build/ 
-	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c build/swig_wrap.cxx -o build/swig_wrap.o
-	"$(FLASCC)/usr/bin/nm" build/swig_wrap.o | grep ' T ' | sed 's/.*__/_/' | sed 's/.* T //' >> build/exports.txt
+	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
+	"$(FLASCC)/usr/bin/nm" build/LiquidFun_wrap.o | grep ' T ' | sed 's/.*__/_/' | sed 's/.* T //' >> build/exports.txt
 	# Compile the SWIG C++ wrappers
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc swig_wrap.cxx Box2D/Release/libLiquidFun.a -lFlash++ -lAS3++ -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -lFlash++ -lAS3++ -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
 
 clean:
 	rm -rf build
