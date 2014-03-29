@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
 =BEGIN MIT LICENSE
@@ -26,7 +27,6 @@
 =END MIT LICENSE
 
 -->
-<?xml version="1.0" encoding="UTF-8"?>
 <project name="liquidfun.crossbridge.assembler" default="build" basedir=".">
     <!-- @usage: ant -f assemble.xml -->
     <description>LiquidFun-CrossBridge-Assembler</description>
