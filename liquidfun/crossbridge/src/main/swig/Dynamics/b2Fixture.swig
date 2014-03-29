@@ -20,5 +20,5 @@
 
 %module b2Fixture
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/b2Fixture.h"

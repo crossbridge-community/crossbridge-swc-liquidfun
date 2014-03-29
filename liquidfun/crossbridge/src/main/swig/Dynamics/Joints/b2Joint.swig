@@ -20,7 +20,7 @@
 
 %module b2Joint
 
-/// Rename constants
+// Rename constants
 %rename (UNKNOWN_JOINT) e_unknownJoint;
 %rename (REVOLUTE_JOINT) e_revoluteJoint;
 %rename (PRISMATIC_JOINT) e_prismaticJoint;
@@ -34,8 +34,5 @@
 %rename (ROPE_JOINT) e_ropeJoint;
 %rename (MOTOR_JOINT) e_motorJoint;
 
-/// Ignore functions
-%ignore b2Joint::GetNext;
-
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"

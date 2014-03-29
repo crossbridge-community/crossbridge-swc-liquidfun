@@ -18,7 +18,7 @@
 
 %module b2Particle
 
-/// b2ParticleDef extensions for easier access
+// b2ParticleDef extensions for easier access
 %extend b2ParticleDef {
     void setPosition(float32 x, float32 y) {
         $self->position.Set(x, y);
@@ -29,14 +29,14 @@
     }
 }
 
-/// Ignore userdata pointers
+// Ignore userdata pointers
 %ignore b2ParticleDef::userData;
 
-/// Ignore methods that generate new objects
+// Ignore methods that generate new objects
 %ignore b2ParticleColor::GetColor;
 
-/// Ignore handler
+// Ignore handler
 %ignore b2ParticleHandle;
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2Particle.h"

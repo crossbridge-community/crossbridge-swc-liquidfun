@@ -20,10 +20,10 @@
 
 %module b2World
 
-/// Forward declarations
+// Forward declarations
 class b2Body;
 
-/// b2World class
+// b2World class
 class b2World {
 public:
     ~b2World();
@@ -45,7 +45,7 @@ public:
     b2ParticleSystem* CreateParticleSystem(const b2ParticleSystemDef* def);
 };
 
-/// b2World extensions for easier access
+// b2World extensions for easier access
 %extend b2World {
     // Constructor without the need for creating b2Vec2
     b2World(float32 gravityX, float32 gravityY) {

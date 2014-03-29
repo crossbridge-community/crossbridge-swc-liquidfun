@@ -20,21 +20,16 @@
 
 %module b2Shape
 
-/// Rename the enums as SWIG doesn't allow multiple rename rules except with
-/// a script that can slow SWIG down quite a bit.
+// Rename the enums as SWIG doesn't allow multiple rename rules except with
+// a script that can slow SWIG down quite a bit.
 %rename (CIRCLE) e_circle;
 %rename (EDGE) e_edge;
 %rename (POLYGON) e_polygon;
 %rename (CHAIN) e_chain;
 %rename (TYPE_COUNT) e_typeCount;
 
-/// Rename base class as its interferes with flash.display.Shape
+// Rename base class as its interferes with flash.display.Shape
 %rename (BaseShape) b2Shape;
 
-/// Ignore functions that have out params.
-%ignore b2Shape::ComputeDistance;
-%ignore b2Shape::RayCast;
-%ignore b2Shape::ComputeAABB;
-
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Collision/Shapes/b2Shape.h"

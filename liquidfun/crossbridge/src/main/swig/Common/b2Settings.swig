@@ -28,6 +28,5 @@
 %ignore b2_liquidFunVersion;
 %ignore b2_liquidFunVersionString;
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Common/b2Settings.h"
-

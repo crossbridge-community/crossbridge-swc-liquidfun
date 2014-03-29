@@ -19,3 +19,6 @@
 // @contributor: Andras Csizmadia <www.vpmedia.eu>
 
 %module b2WheelJoint
+
+// Include original .h file for SWIG
+%include "../../../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h"

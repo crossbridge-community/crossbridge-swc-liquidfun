@@ -36,5 +36,5 @@
     }
 };
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Collision/Shapes/b2CircleShape.h"

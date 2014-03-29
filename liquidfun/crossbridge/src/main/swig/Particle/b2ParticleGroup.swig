@@ -23,7 +23,7 @@
 %ignore b2_particleGroupNeedsUpdateDepth;
 %ignore b2_particleGroupInternalMask;
 
-/// b2ParticleGroupDef extensions for easier access
+// b2ParticleGroupDef extensions for easier access
 %extend b2ParticleGroupDef {
     void setPosition(float32 x, float32 y) {
         $self->position.Set(x, y);
@@ -34,5 +34,5 @@
     }
 }
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2ParticleGroup.h"

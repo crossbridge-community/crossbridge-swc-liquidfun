@@ -22,7 +22,7 @@
 
 %feature("director") b2QueryCallback;
 
-/// Forward declarations
+// Forward declarations
 class b2ParticleSystem;
 
 %nodefaultctor b2QueryCallback;

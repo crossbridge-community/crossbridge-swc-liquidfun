@@ -20,9 +20,8 @@
 
 %module b2Body
 
-/// b2BodyDef class
-// Ignore userData
-//%ignore b2BodyDef::userData;
+// Rename overloaded method
+%rename(createFixture2) CreateFixture(const b2Shape* shape, float32 density);
 
 // b2BodyDef extensions for easier access
 %extend b2BodyDef {
@@ -34,14 +33,6 @@
         $self->type = (b2BodyType)type;
     }
 };
-
-// Ignore userData
-//%ignore b2Body::m_userData;
-//%ignore b2Body::GetUserData;
-//%ignore b2Body::SetUserData;
-
-// Rename overloaded method
-%rename(createFixture2) CreateFixture(const b2Shape* shape, float32 density);
 
 // b2Body extensions for easier access
 %extend b2Body {
@@ -58,5 +49,5 @@
     }
 };
 
-/// Include original .h file for SWIG
+// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/b2Body.h"

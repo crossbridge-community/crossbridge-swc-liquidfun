@@ -21,5 +21,4 @@
 %module b2ContactManager;
 
 // solves duplicate destroy() method error.
-// TODO: make rename rule
-%ignore b2ContactManager::Destroy(b2Contact* c);
+%rename(destoryContact) b2ContactManager::Destroy(b2Contact* c);

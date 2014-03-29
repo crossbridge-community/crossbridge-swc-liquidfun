@@ -20,11 +20,11 @@
 
 %module b2Math
 
-/// b2Vec2 extensions for easier access
+// b2Vec2 extensions for easier access
 %extend b2Vec2 {
 }
 
-/// b2Transform extensions for easier access
+// b2Transform extensions for easier access
 %extend b2Transform {
     // Vec2 getter X
     float32 getX() {
@@ -44,5 +44,5 @@
     }
 }
 
-/// Include original .h file for SWIG
-%include "../../../Box2D/Box2D/Collision/Common/b2Math.h"
+// Include original .h file for SWIG
+%include "../../../Box2D/Box2D/Common/b2Math.h"
