@@ -45,7 +45,7 @@ public class LFCircle extends Sprite {
         graphics.endFill();
 
         bodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
         bodyDefPos = Vec2.create()
         bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
         bodyDef.position = bodyDefPos.swigCPtr;

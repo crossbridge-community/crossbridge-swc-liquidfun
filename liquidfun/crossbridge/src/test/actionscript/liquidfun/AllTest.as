@@ -100,7 +100,7 @@ public class AllTest extends Sprite {
         bodyDefPos.set(0.0, 4.0);
 
         var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
         bodyDef.position = bodyDefPos.swigCPtr;
 
         var body:Body = new Body();
@@ -137,7 +137,7 @@ public class AllTest extends Sprite {
         bodyDef.awake = true;
         bodyDef.active = true;
         bodyDef.bullet = true;
-        bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
         var body:Body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
         Assert.assertEquals(body.getType(), bodyDef.type);
@@ -150,12 +150,12 @@ public class AllTest extends Sprite {
     [Test]
     public function test_body_setType_getType():void {
         var body:Body = new Body();
-        body.setType(LiquidFun.kinematicBody);
-        Assert.assertEquals(body.getType(), LiquidFun.kinematicBody);
-        body.setType(LiquidFun.staticBody);
-        Assert.assertEquals(body.getType(), LiquidFun.staticBody);
-        body.setType(LiquidFun.dynamicBody);
-        Assert.assertEquals(body.getType(), LiquidFun.dynamicBody);
+        body.setType(LiquidFun.KINEMATIC_BODY);
+        Assert.assertEquals(body.getType(), LiquidFun.KINEMATIC_BODY);
+        body.setType(LiquidFun.STATIC_BODY);
+        Assert.assertEquals(body.getType(), LiquidFun.STATIC_BODY);
+        body.setType(LiquidFun.DYNAMIC_BODY);
+        Assert.assertEquals(body.getType(), LiquidFun.DYNAMIC_BODY);
     }
 
     [Test]
@@ -202,7 +202,7 @@ public class AllTest extends Sprite {
         bodyDefPos.set(0.0, 4.0);
 
         var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
         bodyDef.position = bodyDefPos.swigCPtr;
 
         var body:Body = new Body();

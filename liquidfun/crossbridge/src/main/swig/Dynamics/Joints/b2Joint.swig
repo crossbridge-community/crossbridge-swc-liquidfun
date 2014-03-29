@@ -36,6 +36,10 @@
 %rename (FRICTION_JOINT) e_frictionJoint;
 %rename (ROPE_JOINT) e_ropeJoint;
 %rename (MOTOR_JOINT) e_motorJoint;
+%rename (INACTIVE_LIMIT) e_inactiveLimit;
+%rename (LOWER_LIMIT) e_atLowerLimit;
+%rename (UPPER_LIMIT) e_atUpperLimit;
+%rename (EQUAL_LIMITS) e_equalLimits;
 
 // AS3 specific override
 // When a derived C++ class implements a virtual function as public

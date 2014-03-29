@@ -47,7 +47,7 @@ public class LFRectangle extends Sprite {
         graphics.endFill();
 
         bodyDef = BodyDef.create();
-        bodyDef.type = isDynamic ? LiquidFun.dynamicBody : LiquidFun.staticBody;
+        bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
         bodyDefPos = Vec2.create()
         bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
         bodyDef.position = bodyDefPos.swigCPtr;

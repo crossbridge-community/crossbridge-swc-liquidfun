@@ -20,5 +20,14 @@
 
 %module b2ParticleSystem
 
+// Ignore methods
+%ignore b2ParticleSystem::GetNext();
+%ignore b2ParticleSystem::GetUserDataBuffer();
+%ignore b2ParticleSystem::GetGroupBuffer();
+%ignore b2ParticleSystem::GetColorBuffer();
+%ignore b2ParticleSystem::GetVelocityBuffer();
+%ignore b2ParticleSystem::GetPositionBuffer();
+%ignore b2ParticleSystem::GetParticleGroupList();
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2ParticleSystem.h"

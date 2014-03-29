@@ -18,6 +18,14 @@
 
 %module b2Particle
 
+// Ignore methods that generate new objects
+%ignore b2ParticleColor::GetColor;
+
+// b2ParticleColor extensions for easier access
+%extend b2ParticleColor {
+
+}
+
 // b2ParticleDef extensions for easier access
 %extend b2ParticleDef {
     void setPosition(float32 x, float32 y) {
@@ -28,9 +36,6 @@
         $self->color.Set(r, g, b, a);
     }
 }
-
-// Ignore methods that generate new objects
-%ignore b2ParticleColor::GetColor;
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2Particle.h"

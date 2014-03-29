@@ -20,6 +20,12 @@
 
 %module b2Body
 
+// Rename constants
+%rename (STATIC_BODY) b2_staticBody;
+%rename (KINEMATIC_BODY) b2_kinematicBody;
+%rename (DYNAMIC_BODY) b2_dynamicBody;
+//%rename (BULLET_BODY) b2_bulletBody;
+
 // Ignored classes and methods
 %ignore b2Body::GetBody();
 %ignore b2Body::GetContactList();

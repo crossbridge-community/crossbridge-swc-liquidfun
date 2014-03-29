@@ -18,10 +18,6 @@
 
 %module b2ParticleGroup
 
-// Ignore internal enum flags
-%ignore b2_particleGroupWillBeDestroyed;
-%ignore b2_particleGroupNeedsUpdateDepth;
-%ignore b2_particleGroupInternalMask;
 // Ignore methods
 %ignore b2ParticleGroup::GetNext();
 %ignore b2ParticleGroup::GetParticleSystem();
