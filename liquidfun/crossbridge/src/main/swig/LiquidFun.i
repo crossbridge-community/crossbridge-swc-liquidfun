@@ -16,7 +16,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-// @contributor: Andras Csizmadia <www.vpmedia.eu>
+// @contributor: Andras Csizmadia <www.vpmedia.hu>
 
 // @see: http://www.swig.org/Doc2.0/SWIGDocumentation.html#SWIGPlus
 // @see: http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html
