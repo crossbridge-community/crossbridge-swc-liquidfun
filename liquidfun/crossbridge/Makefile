@@ -60,7 +60,7 @@ compile:
 	# Run Make on Box2D
 	cd build && make -j8
 	# Generate the SWIG wrappers (Filter non-major warnings -w201,302,401,501,502)
-	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun-swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
 	# Compile the SWIG AS3 wrappers
 	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
 	# Generate exports
