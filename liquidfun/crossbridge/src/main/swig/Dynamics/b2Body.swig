@@ -20,6 +20,15 @@
 
 %module b2Body
 
+// Ignored classes and methods
+%ignore b2Body::GetBody();
+%ignore b2Body::GetContactList();
+%ignore b2Body::GetFixtureList();
+%ignore b2Body::GetJointList();
+%ignore b2Body::GetNext();
+%ignore b2Body::GetWorld();
+%ignore b2Body::SetTransform(b2Vec2 const &,float32);
+
 // Rename overloaded method
 %rename(createFixture2) CreateFixture(const b2Shape* shape, float32 density);
 

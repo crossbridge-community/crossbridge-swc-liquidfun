@@ -28,25 +28,43 @@
 #ifdef SWIG
 %module LiquidFun
 
+///////////////////////////////////////
+// Core Start
+///////////////////////////////////////
+
 %{
+
+///////////////////////////////////////
+// Includes
+///////////////////////////////////////
+
+// Flash headers
 #include <AS3/AS3.h>
 #include <Flash++.h>
+// Module headers
 #include <Box2D/Box2D.h>
-    
+
+///////////////////////////////////////
+// Main
+///////////////////////////////////////
+
 int main() {
-// Sample AS3 code inline at initialization.
-inline_as3("trace(\"LiquidFun loaded.\");");
-// We still need a main function for the SWC. this function must be called
-// so that all the static init code is executed before any library functions
-// are used.
-//
-// The main function for a library must throw an exception so that it does
-// not return normally. Returning normally would cause the static
-// destructors to be executed leaving the library in an unuseable state.
-AS3_GoAsync();
+    AS3_Trace("LiquidFun loaded.");
+    // We still need a main function for the SWC. this function must be called
+    // so that all the static init code is executed before any library functions
+    // are used.
+    //
+    // The main function for a library must throw an exception so that it does
+    // not return normally. Returning normally would cause the static
+    // destructors to be executed leaving the library in an unuseable state.
+    AS3_GoAsync();
 }
 
 %}
+
+///////////////////////////////////////
+// Core End
+///////////////////////////////////////
 
 ///////////////////////////////////////
 // Features
@@ -158,7 +176,8 @@ AS3_GoAsync();
 // Includes
 ///////////////////////////////////////
 
-// CrossBridge shipped
+// This directive tells swig to pull in type information from CrossBridge library
+// for the types declared in stdint.h and math.h.
 %include "stdint.i"
 %include "math.i"
 

@@ -22,6 +22,10 @@
 %ignore b2_particleGroupWillBeDestroyed;
 %ignore b2_particleGroupNeedsUpdateDepth;
 %ignore b2_particleGroupInternalMask;
+// Ignore methods
+%ignore b2ParticleGroup::GetNext();
+%ignore b2ParticleGroup::GetParticleSystem();
+%ignore b2ParticleGroup::DestroyParticles();
 
 // b2ParticleGroupDef extensions for easier access
 %extend b2ParticleGroupDef {

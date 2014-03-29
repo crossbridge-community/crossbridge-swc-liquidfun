@@ -20,5 +20,11 @@
 
 %module b2Contact
 
+// Ignored classes and methods
+%ignore b2Contact::GetManifold();
+%ignore b2Contact::GetNext();
+%ignore b2Contact::GetFixtureA();
+%ignore b2Contact::GetFixtureB();
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/Contacts/b2Contact.h"

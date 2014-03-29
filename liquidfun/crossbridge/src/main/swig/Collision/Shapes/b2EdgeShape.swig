@@ -20,6 +20,9 @@
 
 %module b2EdgeShape
 
+// Ignored classes and methods
+%ignore b2EdgeShape::Set(b2Vec2 const &,b2Vec2 const &);
+
 // b2EdgeShape extensions for easier access
 %extend b2EdgeShape {
     void Set(float32 vx1, float32 vy1, float32 vx2, float32 vy2) {

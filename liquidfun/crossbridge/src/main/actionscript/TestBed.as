@@ -79,7 +79,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private static const I_POSITION:int = 4;
 
-    private static const I_PARTICLE:int = 2;
+    private static const I_PARTICLE:int = 1;
 
     //----------------------------------
     //  Constructor

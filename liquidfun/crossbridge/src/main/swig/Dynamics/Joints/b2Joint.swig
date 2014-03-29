@@ -20,6 +20,9 @@
 
 %module b2Joint
 
+// Ignored classes and methods
+%ignore b2Joint::GetNext();
+
 // Rename constants
 %rename (UNKNOWN_JOINT) e_unknownJoint;
 %rename (REVOLUTE_JOINT) e_revoluteJoint;
