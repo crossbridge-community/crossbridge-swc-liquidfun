@@ -34,11 +34,11 @@
     float32 getY() {
         return $self->p.y;
     }
-    // TBD
+    // Rotation getter Sin
     float32 getRotSin() {
         return $self->q.s;
     }
-    // TBD
+    // Rotation getter Cos
     float32 getRotCos() {
         return $self->q.c;
     }

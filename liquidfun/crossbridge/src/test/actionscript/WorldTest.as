@@ -68,7 +68,7 @@ public class WorldTest extends Sprite {
 
     [Test]
     public function test_world():void {
-        var bodyDefPos:Vec2 = Vec2.create()
+        var bodyDefPos:Vec2 = Vec2.create();
         bodyDefPos.set(0.0, 4.0);
 
         var bodyDef:BodyDef = BodyDef.create();

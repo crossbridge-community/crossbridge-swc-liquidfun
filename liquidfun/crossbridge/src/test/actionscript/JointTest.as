@@ -70,7 +70,18 @@ public class JointTest extends Sprite {
         jointDef.type = LiquidFun.DISTANCE_JOINT;
         jointDef.collideConnected = false;
         var joint:DistanceJoint = new DistanceJoint();
-        joint.swigCPtr = world.createBody(jointDef.swigCPtr);
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
+    }
+
+    [Test]
+    public function test_pulley_joint():void {
+        var jointDef:PulleyJointDef = PulleyJointDef.create();
+        jointDef.type = LiquidFun.PULLEY_JOINT;
+        jointDef.collideConnected = false;
+        var joint:PulleyJoint = new PulleyJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
     }
 
 }

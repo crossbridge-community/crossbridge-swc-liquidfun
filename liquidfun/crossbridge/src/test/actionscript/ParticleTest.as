@@ -65,9 +65,21 @@ public class ParticleTest extends Sprite {
     }
 
     [Test]
+    public function test_particle_system():void {
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+    }
+
+    [Test]
     public function test_particle():void {
-        var particle:ParticleDef = ParticleDef.create();
-        world.createParticleSystem(particle.swigCPtr);
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+        var particleDef:ParticleDef = ParticleDef.create();
+        system.destroyParticle(system.createParticle(particleDef.swigCPtr))
     }
 
 }
