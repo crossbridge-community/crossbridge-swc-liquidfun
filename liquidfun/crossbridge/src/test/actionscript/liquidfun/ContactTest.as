@@ -25,12 +25,12 @@
 //=END MIT LICENSE
 //
 
-package {
+package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-public class JointTest extends Sprite {
+public class ContactTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -41,7 +41,7 @@ public class JointTest extends Sprite {
 
     private var world:World;
 
-    public function JointTest() {
+    public function ContactTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -64,25 +64,9 @@ public class JointTest extends Sprite {
     public static function tearDownAfterClass():void {
     }
 
-    [Test]
-    public function test_distance_joint():void {
-        var jointDef:DistanceJointDef = DistanceJointDef.create();
-        jointDef.type = LiquidFun.DISTANCE_JOINT;
-        jointDef.collideConnected = false;
-        var joint:DistanceJoint = new DistanceJoint();
-        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
-        world.destroyJoint(joint.swigCPtr);
-    }
-
-    [Test]
-    public function test_pulley_joint():void {
-        var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.type = LiquidFun.PULLEY_JOINT;
-        jointDef.collideConnected = false;
-        var joint:PulleyJoint = new PulleyJoint();
-        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
-        world.destroyJoint(joint.swigCPtr);
-    }
+    //[Test]
+    /*public function test_contact():void {
+     }*/
 
 }
 }

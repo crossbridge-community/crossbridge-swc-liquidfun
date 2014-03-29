@@ -25,25 +25,35 @@
 //=END MIT LICENSE
 //
 
-package {
+package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-import flexunit.framework.Assert;
+public class JointTest extends Sprite {
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    private static const timeStep:Number = 1.0 / 60.0;
+    private static const velocityIterations:int = 6;
+    private static const positionIterations:int = 2;
+    private static const particleIterations:int = 1;
 
-public class LiquidfunTest extends Sprite {
-    public function LiquidfunTest() {
+    private var world:World;
+
+    public function JointTest() {
         CModule.rootSprite = this;
         super();
     }
 
     [Before]
     public function setUp():void {
+        world = World.create(0.0, -10.0);
     }
 
     [After]
     public function tearDown():void {
+        world.destroy();
     }
 
     [BeforeClass]
@@ -55,18 +65,24 @@ public class LiquidfunTest extends Sprite {
     }
 
     [Test]
-    public function test_version_box2d():void {
-        var version:Version = Version.create();
-        version.swigCPtr = LiquidFun.version;
-        Assert.assertNotNull(version != null);
-        Assert.assertEquals(version.major, 2);
-        Assert.assertEquals(version.minor, 3);
-        //Assert.assertEquals(version.revision, 0);
+    public function test_distance_joint():void {
+        var jointDef:DistanceJointDef = DistanceJointDef.create();
+        jointDef.type = LiquidFun.DISTANCE_JOINT;
+        jointDef.collideConnected = false;
+        var joint:DistanceJoint = new DistanceJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
     }
 
     [Test]
-    public function test_pi():void {
-        Assert.assertEquals(LiquidFun.pi, 3.14159265359);
+    public function test_pulley_joint():void {
+        var jointDef:PulleyJointDef = PulleyJointDef.create();
+        jointDef.type = LiquidFun.PULLEY_JOINT;
+        jointDef.collideConnected = false;
+        var joint:PulleyJoint = new PulleyJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
     }
+
 }
 }

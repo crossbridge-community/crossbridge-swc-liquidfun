@@ -28,7 +28,8 @@
 package liquidfun.tests {
 import flash.events.Event;
 
-import liquidfun.utils.LFRectangle;
+import liquidfun.display.LFRectangle;
+import liquidfun.utils.LFGlobals;
 
 //----------------------------------
 //  Metadata
@@ -40,7 +41,7 @@ import liquidfun.utils.LFRectangle;
  *
  * @author Andras Csizmadia
  */
-public class Pyramid extends BaseTest {
+public class PyramidExample extends BaseExample {
 
     //----------------------------------
     //  Private variables
@@ -58,7 +59,7 @@ public class Pyramid extends BaseTest {
     //  Constructor
     //----------------------------------
 
-    public function Pyramid() {
+    public function PyramidExample() {
     }
 
     /**
@@ -81,7 +82,7 @@ public class Pyramid extends BaseTest {
         var n:int;
         n = boxes.length;
         for (i = 0; i < n; i++) {
-            TestBed.world.destroyBody(boxes[i].body.swigCPtr);
+            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
             removeChild(boxes[i]);
         }
         boxes.length = 0;
@@ -99,7 +100,7 @@ public class Pyramid extends BaseTest {
             for (var column:int = 0; column <= row; column++) {
                 const nx:int = (column - row / 2) * 10;
                 const ny:int = (size - row) * 10;
-                var bs:LFRectangle = new LFRectangle(400 + nx, 300 + ny, 10, 10, TestBed.world);
+                var bs:LFRectangle = new LFRectangle(400 + nx, 300 + ny, 10, 10, LFGlobals.world);
                 boxes.push(bs);
                 addChild(bs);
             }

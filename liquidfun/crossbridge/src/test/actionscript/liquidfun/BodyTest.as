@@ -25,7 +25,7 @@
 //=END MIT LICENSE
 //
 
-package {
+package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;

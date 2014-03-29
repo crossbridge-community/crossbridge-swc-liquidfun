@@ -25,7 +25,7 @@
 //=END MIT LICENSE
 //
 
-package {
+package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
@@ -69,7 +69,7 @@ public class Vec2Test extends Sprite {
     [Test]
     public function test_get_x():void {
         const diff:Number = Math.max(vec2.x, _x) - Math.min(vec2.x, _x);
-       Assert.assertTrue(diff < 0.00001);
+        Assert.assertTrue(diff < 0.00001);
     }
 
     [Test]

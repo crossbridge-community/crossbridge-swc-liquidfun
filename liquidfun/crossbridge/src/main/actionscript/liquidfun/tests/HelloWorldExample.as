@@ -28,8 +28,9 @@
 package liquidfun.tests {
 import flash.events.Event;
 
-import liquidfun.utils.LFCircle;
-import liquidfun.utils.LFRectangle;
+import liquidfun.display.LFCircle;
+import liquidfun.display.LFRectangle;
+import liquidfun.utils.LFGlobals;
 
 //----------------------------------
 //  Metadata
@@ -41,7 +42,7 @@ import liquidfun.utils.LFRectangle;
  *
  * @author Andras Csizmadia
  */
-public class HelloWorld extends BaseTest {
+public class HelloWorldExample extends BaseExample {
 
     //----------------------------------
     //  Private variables
@@ -67,7 +68,7 @@ public class HelloWorld extends BaseTest {
     //  Constructor
     //----------------------------------
 
-    public function HelloWorld() {
+    public function HelloWorldExample() {
     }
 
     /**
@@ -94,12 +95,12 @@ public class HelloWorld extends BaseTest {
         var n:int;
         n = boxes.length;
         for (i = 0; i < n; i++) {
-            TestBed.world.destroyBody(boxes[i].body.swigCPtr);
+            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
             removeChild(boxes[i]);
         }
         n = circles.length;
         for (i = 0; i < n; i++) {
-            TestBed.world.destroyBody(circles[i].body.swigCPtr);
+            LFGlobals.world.destroyBody(circles[i].body.swigCPtr);
             removeChild(circles[i]);
         }
         circles.length = 0;
@@ -112,19 +113,19 @@ public class HelloWorld extends BaseTest {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
-        var wall:LFRectangle = new LFRectangle(400, 300, 200, 5, TestBed.world, false);
+        var wall:LFRectangle = new LFRectangle(400, 300, 200, 5, LFGlobals.world, false);
         boxes.push(wall);
         addChild(wall);
 
         // boxes
         for (var i:int = 0; i < MAX_ITEMS; i++) {
-            var bs:LFRectangle = new LFRectangle(200 + random() * 400, 10 + random() * 3000, 10 + random() * 5, 10 + random() * 5, TestBed.world);
+            var bs:LFRectangle = new LFRectangle(200 + random() * 400, 10 + random() * 3000, 10 + random() * 5, 10 + random() * 5, LFGlobals.world);
             boxes.push(bs);
             addChild(bs);
         }
         // circles
         for (var j:int = 0; j < MAX_ITEMS; j++) {
-            var bc:LFCircle = new LFCircle(200 + random() * 400, 10 + random() * 3000, 5 + random() * 5, TestBed.world);
+            var bc:LFCircle = new LFCircle(200 + random() * 400, 10 + random() * 3000, 5 + random() * 5, LFGlobals.world);
             circles.push(bc);
             addChild(bc);
         }

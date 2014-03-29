@@ -18,9 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package liquidfun.utils {
+package liquidfun.display {
 import flash.display.Sprite;
 import flash.geom.Matrix;
+
+import liquidfun.utils.*;
 
 public class LFRectangle extends Sprite {
     public var bodyDef:BodyDef;
@@ -47,13 +49,13 @@ public class LFRectangle extends Sprite {
         bodyDef = BodyDef.create();
         bodyDef.type = isDynamic ? LiquidFun.dynamicBody : LiquidFun.staticBody;
         bodyDefPos = Vec2.create()
-        bodyDefPos.set(_x / LFGlobals.SCALE, _y / LFGlobals.SCALE);
+        bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
         bodyDef.position = bodyDefPos.swigCPtr;
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
         dynamicBox = PolygonShape.create();
-        dynamicBox.setAsBox(_w / (LFGlobals.SCALE * 2), _h / (LFGlobals.SCALE * 2));
+        dynamicBox.setAsBox(_w / (LFGlobals.scale * 2), _h / (LFGlobals.scale * 2));
 
         fixtureDef = FixtureDef.create();
         fixtureDef.shape = dynamicBox.swigCPtr;
@@ -74,7 +76,7 @@ public class LFRectangle extends Sprite {
         matrix.translate(-w * 0.5, -h * 0.5);
         matrix.rotate(-body.getAngle());
         // matrix.translate(w * 0.5, h * 0.5);
-        matrix.translate(bodyDefPos.x * LFGlobals.SCALE, 600 - (bodyDefPos.y * LFGlobals.SCALE));
+        matrix.translate(bodyDefPos.x * LFGlobals.scale, 600 - (bodyDefPos.y * LFGlobals.scale));
         transform.matrix = matrix;
     }
 }

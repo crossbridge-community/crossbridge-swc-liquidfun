@@ -25,14 +25,12 @@
 //=END MIT LICENSE
 //
 
-package {
+package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-import flexunit.framework.Assert;
-
-public class WorldTest extends Sprite {
+public class ParticleTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -43,7 +41,7 @@ public class WorldTest extends Sprite {
 
     private var world:World;
 
-    public function WorldTest() {
+    public function ParticleTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -67,37 +65,21 @@ public class WorldTest extends Sprite {
     }
 
     [Test]
-    public function test_world():void {
-        var bodyDefPos:Vec2 = Vec2.create();
-        bodyDefPos.set(0.0, 4.0);
+    public function test_particle_system():void {
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+    }
 
-        var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.dynamicBody;
-        bodyDef.position = bodyDefPos.swigCPtr;
-
-        var body:Body = new Body();
-        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
-
-        var dynamicBox:PolygonShape = PolygonShape.create();
-        dynamicBox.setAsBox(1.0, 1.0);
-
-        var fixtureDef:FixtureDef = FixtureDef.create();
-        fixtureDef.shape = dynamicBox.swigCPtr;
-        fixtureDef.density = 1.0;
-        fixtureDef.friction = 0.3;
-        body.createFixture(fixtureDef.swigCPtr);
-
-        world.step(timeStep, velocityIterations, positionIterations, particleIterations);
-
-        var pos:Vec2 = new Vec2();
-        pos.swigCPtr = body.getPosition();
-        var angle:Number = body.getAngle();
-
-        // body: 0, 3.9972221851348877, 0
-        trace("body: " + pos.x + ", " + pos.y + ", " + angle);
-
-        Assert.assertNotNull(pos);
-        Assert.assertTrue(angle != NaN);
+    [Test]
+    public function test_particle():void {
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+        var particleDef:ParticleDef = ParticleDef.create();
+        system.destroyParticle(system.createParticle(particleDef.swigCPtr))
     }
 
 }

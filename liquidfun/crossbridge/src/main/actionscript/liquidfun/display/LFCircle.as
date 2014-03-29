@@ -18,9 +18,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-package liquidfun.utils {
+package liquidfun.display {
 import flash.display.Sprite;
 import flash.geom.Matrix;
+
+import liquidfun.utils.*;
 
 public class LFCircle extends Sprite {
     public var bodyDef:BodyDef;
@@ -45,13 +47,13 @@ public class LFCircle extends Sprite {
         bodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.dynamicBody;
         bodyDefPos = Vec2.create()
-        bodyDefPos.set(_x / LFGlobals.SCALE, _y / LFGlobals.SCALE);
+        bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
         bodyDef.position = bodyDefPos.swigCPtr;
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
         dynamicBox = CircleShape.create();
-        dynamicBox.radius = _r * 0.1;
+        dynamicBox.radius = _r / LFGlobals.scale;
 
         fixtureDef = FixtureDef.create();
         fixtureDef.shape = dynamicBox.swigCPtr;
@@ -65,7 +67,7 @@ public class LFCircle extends Sprite {
     public function update():void {
         bodyDefPos.swigCPtr = body.getPosition();
         matrix.identity();
-        matrix.translate(bodyDefPos.x * LFGlobals.SCALE, 600 - (bodyDefPos.y * LFGlobals.SCALE));
+        matrix.translate(bodyDefPos.x * LFGlobals.scale, 600 - (bodyDefPos.y * LFGlobals.scale));
         transform.matrix = matrix;
     }
 }

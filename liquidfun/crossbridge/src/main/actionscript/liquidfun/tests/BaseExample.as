@@ -25,50 +25,50 @@
 //=END MIT LICENSE
 //
 
-package {
-import crossbridge.liquidfun.CModule;
-
+package liquidfun.tests {
 import flash.display.Sprite;
+import flash.events.Event;
 
-import flexunit.framework.Assert;
+//----------------------------------
+//  Metadata
+//----------------------------------
+[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
 
-public class ContactTest extends Sprite {
-    // Prepare for simulation. Typically we use a time step of 1/60 of a
-    // second (60Hz) and 10 iterations. This provides a high quality simulation
-    // in most game scenarios.
-    private static const timeStep:Number = 1.0 / 60.0;
-    private static const velocityIterations:int = 6;
-    private static const positionIterations:int = 2;
-    private static const particleIterations:int = 1;
+/**
+ * Hello LiquidFun Physics World Example
+ *
+ * @author Andras Csizmadia
+ */
+public class BaseExample extends Sprite {
 
-    private var world:World;
+    //----------------------------------
+    //  Constructor
+    //----------------------------------
 
-    public function ContactTest() {
-        CModule.rootSprite = this;
-        super();
+    public function BaseExample() {
+        addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
     }
 
-    [Before]
-    public function setUp():void {
-        world = World.create(0.0, -10.0);
+    /**
+     * @private
+     */
+    protected function onAdded(event:Event):void {
+        removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+        addEventListener(Event.REMOVED_FROM_STAGE, onRemoved, false, 0, true);
     }
 
-    [After]
-    public function tearDown():void {
-        world.destroy();
+    /**
+     * @private
+     */
+    protected function onRemoved(event:Event):void {
+        removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
     }
 
-    [BeforeClass]
-    public static function setUpBeforeClass():void {
+    /**
+     * @private
+     */
+    public function update():void {
+        // abstract
     }
-
-    [AfterClass]
-    public static function tearDownAfterClass():void {
-    }
-
-    //[Test]
-    /*public function test_contact():void {
-    }*/
-
 }
 }

@@ -37,10 +37,11 @@ import flash.events.KeyboardEvent;
 import flash.system.System;
 import flash.ui.Keyboard;
 
-import liquidfun.tests.BaseTest;
-import liquidfun.tests.HelloWorld;
-import liquidfun.tests.Pyramid;
-import liquidfun.utils.LFRectangle;
+import liquidfun.tests.BaseExample;
+import liquidfun.tests.HelloWorldExample;
+import liquidfun.tests.PyramidExample;
+import liquidfun.utils.LFGlobals;
+import liquidfun.display.LFRectangle;
 
 import net.hires.debug.Stats;
 
@@ -60,11 +61,13 @@ public class TestBed extends Sprite implements ISpecialFile {
     //  Private variables
     //----------------------------------
 
-    private var currentTest:BaseTest;
+    private var currentTest:BaseExample;
 
     private var currentIndex:int;
 
-    private const tests:Vector.<Class> = Vector.<Class>([HelloWorld,Pyramid]);
+    private var world:World;
+
+    private const tests:Vector.<Class> = Vector.<Class>([HelloWorldExample,PyramidExample]);
 
     //----------------------------------
     //  Private static constants
@@ -77,12 +80,6 @@ public class TestBed extends Sprite implements ISpecialFile {
     private static const I_POSITION:int = 4;
 
     private static const I_PARTICLE:int = 2;
-
-    //----------------------------------
-    //  Public static variables
-    //----------------------------------
-
-    public static var world:World;
 
     //----------------------------------
     //  Constructor
@@ -114,7 +111,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         addChild(new Stats());
 
         // Construct a world object, which will hold and simulate the rigid bodies.
-        world = World.create(0.0, -10.0)
+        world = LFGlobals.world = World.create(0.0, -10.0)
 
         var wall:LFRectangle;
         /*
@@ -123,15 +120,15 @@ public class TestBed extends Sprite implements ISpecialFile {
          addChild(wall);*/
 
         // Bottom
-        wall = new LFRectangle(400, 5, 800, 5, world, false);
+        wall = new LFRectangle(400, 5, 800, 5, LFGlobals.world, false);
         addChild(wall);
 
         // Left
-        wall = new LFRectangle(5, 300, 10, 600, world, false);
+        wall = new LFRectangle(5, 300, 10, 600, LFGlobals.world, false);
         addChild(wall);
 
         // Right
-        wall = new LFRectangle(795, 300, 10, 600, world, false);
+        wall = new LFRectangle(795, 300, 10, 600, LFGlobals.world, false);
         addChild(wall);
 
         // Set first test
@@ -177,7 +174,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         // run gc
         System.pauseForGCIfCollectionImminent();
         // add new test
-        currentTest = BaseTest(addChild(new tests[currentIndex++]()));
+        currentTest = BaseExample(addChild(new tests[currentIndex++]()));
         if (currentIndex > tests.length - 1) currentIndex = 0;
         // debug log
         trace("nextTest", currentIndex, currentTest);
