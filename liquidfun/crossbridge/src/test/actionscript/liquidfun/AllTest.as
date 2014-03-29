@@ -32,7 +32,7 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
-public class BodyTest extends Sprite {
+public class AllTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -43,7 +43,7 @@ public class BodyTest extends Sprite {
 
     private var world:World;
 
-    public function BodyTest() {
+    public function AllTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -67,15 +67,135 @@ public class BodyTest extends Sprite {
     }
 
     [Test]
-    public function test_body():void {
+    public function test_version_box2d():void {
+        var version:Version = Version.create();
+        version.swigCPtr = LiquidFun.version;
+        Assert.assertNotNull(version != null);
+        Assert.assertEquals(version.major, 2);
+        Assert.assertEquals(version.minor, 3);
+        //Assert.assertEquals(version.revision, 0);
+    }
+
+    [Test]
+    public function test_pi():void {
+        Assert.assertEquals(LiquidFun.pi, 3.14159265359);
+    }
+
+    [Test]
+    public function test_draw():void {
+        var draw:Draw = new Draw();
+        trace("Draw::getFlags", draw.getFlags());
+        draw.appendFlags(Draw.AABB_BIT);
+        draw.appendFlags(Draw.CENTER_OF_MASS_BIT);
+        draw.appendFlags(Draw.JOINT_BIT);
+        draw.appendFlags(Draw.PAIR_BIT);
+        draw.appendFlags(Draw.PARTICLE_BIT);
+        draw.appendFlags(Draw.SHAPE_BIT);
+        //draw.drawTransform(1);
+        trace("Draw::getFlags", draw.getFlags());
+        Assert.assertNotNull(draw);
+    }
+
+    [Test]
+    public function test_world():void {
+        var bodyDefPos:Vec2 = Vec2.create();
+        bodyDefPos.set(0.0, 4.0);
+
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.dynamicBody;
+        bodyDef.position = bodyDefPos.swigCPtr;
+
+        var body:Body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+
+        Assert.assertEquals(world.getBodyCount(), 1);
+
+        var dynamicBox:PolygonShape = PolygonShape.create();
+        dynamicBox.setAsBox(1.0, 1.0);
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = dynamicBox.swigCPtr;
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.3;
+        body.createFixture(fixtureDef.swigCPtr);
+
+        world.step(timeStep, velocityIterations, positionIterations, particleIterations);
+
+        var pos:Vec2 = new Vec2();
+        pos.swigCPtr = body.getPosition();
+        var angle:Number = body.getAngle();
+
+        // body: 0, 3.9972221851348877, 0
+        trace("body: " + pos.x + ", " + pos.y + ", " + angle);
+
+        Assert.assertNotNull(pos);
+        Assert.assertTrue(angle != NaN);
+    }
+
+    [Test]
+    public function test_body():void {
+        var bodyDef:BodyDef = BodyDef.create();
         bodyDef.allowSleep = false;
         bodyDef.awake = true;
         bodyDef.active = true;
         bodyDef.bullet = true;
+        bodyDef.type = LiquidFun.dynamicBody;
         var body:Body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+        Assert.assertEquals(body.getType(), bodyDef.type);
+        Assert.assertEquals(body.isSleepingAllowed(), bodyDef.allowSleep);
+        Assert.assertEquals(body.isAwake(), bodyDef.awake);
+        Assert.assertEquals(body.isActive(), bodyDef.active);
+        Assert.assertEquals(body.isBullet(), bodyDef.bullet);
+    }
+
+    [Test]
+    public function test_body_setType_getType():void {
+        var body:Body = new Body();
+        body.setType(LiquidFun.kinematicBody);
+        Assert.assertEquals(body.getType(), LiquidFun.kinematicBody);
+        body.setType(LiquidFun.staticBody);
+        Assert.assertEquals(body.getType(), LiquidFun.staticBody);
+        body.setType(LiquidFun.dynamicBody);
+        Assert.assertEquals(body.getType(), LiquidFun.dynamicBody);
+    }
+
+    [Test]
+    public function test_particle_system():void {
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+    }
+
+    [Test]
+    public function test_particle():void {
+        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
+        var system:ParticleSystem = new ParticleSystem();
+        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        world.destroyParticleSystem(system.swigCPtr);
+        var particleDef:ParticleDef = ParticleDef.create();
+        system.destroyParticle(system.createParticle(particleDef.swigCPtr))
+    }
+
+    [Test]
+    public function test_distance_joint():void {
+        var jointDef:DistanceJointDef = DistanceJointDef.create();
+        jointDef.type = LiquidFun.DISTANCE_JOINT;
+        jointDef.collideConnected = false;
+        var joint:DistanceJoint = new DistanceJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
+    }
+
+    [Test]
+    public function test_pulley_joint():void {
+        var jointDef:PulleyJointDef = PulleyJointDef.create();
+        jointDef.type = LiquidFun.PULLEY_JOINT;
+        jointDef.collideConnected = false;
+        var joint:PulleyJoint = new PulleyJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        world.destroyJoint(joint.swigCPtr);
     }
 
     [Test]
@@ -143,6 +263,8 @@ public class BodyTest extends Sprite {
                 + "<" + n3.x + " " + n3.y + ">"
                 + "<" + n4.x + " " + n4.y + ">");
 
+        CModule.free(verticePtrsPtr);
     }
+
 }
 }

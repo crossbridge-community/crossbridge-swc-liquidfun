@@ -30,5 +30,17 @@
 // Rename base class as its interferes with flash.display.Shape
 %rename (BaseShape) b2Shape;
 
+// b2MassData extensions for easier access
+%extend b2MassData {
+    // Center getter X
+    float32 GetCenterX() {
+        return $self->center.x;
+    }
+    // Center getter Y
+    float32 GetCenterY() {
+        return $self->center.y;
+    }
+};
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Collision/Shapes/b2Shape.h"

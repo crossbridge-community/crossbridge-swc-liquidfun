@@ -84,7 +84,7 @@ compile:
 	########################################
 	# Generating SWC ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -lFlash++ -lAS3++ -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
 
 clean:
 	rm -rf build

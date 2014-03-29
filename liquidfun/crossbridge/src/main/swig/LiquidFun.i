@@ -30,7 +30,6 @@
 
 %{
 #include <AS3/AS3.h>
-#include <Flash++.h>
 #include <Box2D/Box2D.h>
     
 int main() {
