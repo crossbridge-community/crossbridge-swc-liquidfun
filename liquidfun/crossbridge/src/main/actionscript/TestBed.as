@@ -39,6 +39,7 @@ import flash.ui.Keyboard;
 
 import liquidfun.tests.BaseTest;
 import liquidfun.tests.HelloWorld;
+import liquidfun.tests.Pyramid;
 import liquidfun.utils.LFRectangle;
 
 import net.hires.debug.Stats;
@@ -63,7 +64,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var currentIndex:int;
 
-    private const tests:Vector.<Class> = Vector.<Class>([HelloWorld]);
+    private const tests:Vector.<Class> = Vector.<Class>([HelloWorld,Pyramid]);
 
     //----------------------------------
     //  Private static constants
