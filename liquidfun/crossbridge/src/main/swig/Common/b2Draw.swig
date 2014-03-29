@@ -20,17 +20,13 @@
 
 %module b2Draw
 
-// Rename the enums as SWIG doesn't allow multiple rename rules except with
-// a script that can slow SWIG down quite a bit
+// Rename enums.
 %rename (SHAPE_BIT) e_shapeBit;
 %rename (JOINT_BIT) e_jointBit;
 %rename (AABB_BIT) e_aabbBit;
 %rename (PAIR_BIT) e_pairBit;
 %rename (CENTER_OF_MASS_BIT) e_centerOfMassBit;
 %rename (PARTICLE_BIT) e_particleBit;
-
-// Import flash class from package
-%as3import("flash.display.Shape") b2Draw;
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Common/b2Draw.h"

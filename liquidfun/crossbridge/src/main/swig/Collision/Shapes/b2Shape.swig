@@ -20,8 +20,7 @@
 
 %module b2Shape
 
-// Rename the enums as SWIG doesn't allow multiple rename rules except with
-// a script that can slow SWIG down quite a bit.
+// Rename enums.
 %rename (CIRCLE) e_circle;
 %rename (EDGE) e_edge;
 %rename (POLYGON) e_polygon;

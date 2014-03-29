@@ -38,7 +38,7 @@
         <mkdir dir="${ASDOC_DIR}" />
     </target>
     <!-- BUILD PHASE -->
-    <target name="build" description="Build the ActionScript sources."> 
+    <target name="build" depends="clean" description="Build the ActionScript sources."> 
         <java classname="com.adobe.flash.compiler.clients.MXMLC" fork="true" failonerror="true" dir="${basedir}" maxmemory="1024m">
             <classpath>
                <pathelement location="${AIR_SDK_HOME}/lib/compiler.jar"/>
@@ -46,12 +46,12 @@
             <arg value="src/main/actionscript/TestBed.as" />
             <arg line="-target-player=12.0" />
             <arg line="-swf-version=23" />
-            <arg line="-debug=true" />
-            <arg line="-verbose-stacktraces=true" />
+            <!--arg line="-debug=true" /-->
+            <!--arg line="-verbose-stacktraces=true" /-->
             <arg line="-source-path+=./src/main/actionscript" />
             <arg line="-library-path+=./LiquidFun.swc" />
-            <arg line="-dependency-graph=${REPORT_DIR}/mxmlc-graph.xml" />
-            <arg line="-link-report=${REPORT_DIR}/mxmlc-link-report.xml" />
+            <!--arg line="-dependency-graph=${REPORT_DIR}/mxmlc-graph.xml" /-->
+            <!--arg line="-link-report=${REPORT_DIR}/mxmlc-link-report.xml" /-->
             <arg line="-size-report=${REPORT_DIR}/mxmlc-size-report.xml" />
             <arg line="-dump-config=${REPORT_DIR}/mxmlc-dump-config.xml" />
             <arg line="-load-config=${AIR_SDK_HOME}/frameworks/flex-config.xml" />
