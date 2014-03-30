@@ -24,9 +24,10 @@
 %ignore b2ParticleColor::b2ParticleColor(b2Color const &);
 
 // b2ParticleColor extensions for easier access
-%extend b2ParticleColor {
-
-}
+/*%extend b2ParticleColor {
+    void testMethod() {
+     }
+}*/
 
 // b2ParticleDef extensions for easier access
 %extend b2ParticleDef {
