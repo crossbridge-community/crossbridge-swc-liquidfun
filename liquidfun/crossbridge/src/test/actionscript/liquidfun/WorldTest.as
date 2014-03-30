@@ -113,7 +113,7 @@ public class WorldTest extends Sprite {
         var angle:Number = body.getAngle();
 
         // body: 0, 3.9972221851348877, 0
-        trace("body: " + pos.x + ", " + pos.y + ", " + angle);
+        trace(this, "body: " + pos.x + ", " + pos.y + ", " + angle);
 
         Assert.assertNotNull(pos);
         Assert.assertTrue(angle != NaN);
@@ -237,7 +237,7 @@ public class WorldTest extends Sprite {
         }
         CModule.writeIntVector(verticePtrsPtr, verticePtrs);
         // 4305024,4305016,4305008,4305000
-        trace(CModule.readIntVector(verticePtrsPtr, verticePtrs.length));
+        trace(this, CModule.readIntVector(verticePtrsPtr, verticePtrs.length));
         dynamicBox.set(verticePtrsPtr, 4);
 
         Assert.assertEquals(dynamicBox.getVertexCount(), 4);
@@ -253,7 +253,7 @@ public class WorldTest extends Sprite {
         n3.swigCPtr = dynamicBox.getVertex(2);
         n4.swigCPtr = dynamicBox.getVertex(3);
         // <-1, -1> <1, -1> <1, 1> <-1, 1>
-        trace("<" + n1.x + " " + n1.y + ">"
+        trace(this, "<" + n1.x + " " + n1.y + ">"
                 + "<" + n2.x + " " + n2.y + ">"
                 + "<" + n3.x + " " + n3.y + ">"
                 + "<" + n4.x + " " + n4.y + ">");

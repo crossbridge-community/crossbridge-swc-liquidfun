@@ -35,7 +35,11 @@ import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.system.System;
+import flash.text.TextField;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
+import flash.utils.getTimer;
 
 import liquidfun.tests.BaseExample;
 import liquidfun.tests.HelloWorldExample;
@@ -66,6 +70,10 @@ public class TestBed extends Sprite implements ISpecialFile {
     private var currentIndex:int;
 
     private var world:World;
+
+    private var message:TextField;
+
+    private var startTime:int;
 
     private const tests:Vector.<Class> = Vector.<Class>([HelloWorldExample,PyramidExample]);
 
@@ -110,7 +118,15 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Add FPS and Memory monitor
         addChild(new Stats());
 
-        // Construct a world object, which will hold and simulate the rigid bodies.
+        message = new TextField();
+        message.width = 800;
+        addChild(message);
+        var tf:TextFormat = new TextFormat("Arial", 11, 0xFFFFFF);
+        tf.align = TextFormatAlign.CENTER;
+        message.defaultTextFormat = tf;
+        message.text = "Press SPACE to switch test";
+
+            // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, -10.0)
 
         var wall:LFRectangle;
@@ -149,10 +165,12 @@ public class TestBed extends Sprite implements ISpecialFile {
         // from background workers that want to use flash APIs that need main worker privileges.
         CModule.serviceUIRequests();
         // update physics world
+        //startTime = getTimer();
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
         // update current test
         if (currentTest && currentTest.parent)
             currentTest.update();
+        //message.text = "TimeDelta : " + (getTimer() - startTime) + "ms";
     }
 
     /**

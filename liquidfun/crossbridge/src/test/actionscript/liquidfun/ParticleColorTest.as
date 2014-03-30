@@ -78,5 +78,27 @@ public class ParticleColorTest extends Sprite {
         Assert.assertEquals(color.b, 0x72);
         Assert.assertEquals(color.a, 0xFF);
     }
+
+    [Test]
+    public function test_setViolet():void {
+        color.set(0x8d, 0x38, 0xc9, 0xff);
+        Assert.assertEquals(0x8d, color.r);
+        Assert.assertEquals(0x38, color.g);
+        Assert.assertEquals(0xc9, color.b);
+        Assert.assertEquals(0xff, color.a);
+    }
+
+     [Test]
+     public function test_mix():void {
+         // Error #1065: Variable F_abort is not defined.
+         // ReferenceError: Error #1065: Variable F_abort is not defined.
+         //var colorB:ParticleColor = ParticleColor.create();
+         //color.mix(colorB.swigCPtr);
+     }
+
+    [Test]
+    public function test_from_b2color():void {
+
+    }
 }
 }

@@ -56,11 +56,52 @@ public class ColorTest extends Sprite {
     }
 
     [Test]
+    public function test_reconstruct():void {
+        var color:Color = Color.create(255, 254, 253);
+        Assert.assertEquals(color.r, 255);
+        Assert.assertEquals(color.g, 254);
+        Assert.assertEquals(color.b, 253);
+        color.destroy();
+        // Destroy does not clear color values
+        /*Assert.assertEquals(color.r, 0);
+        Assert.assertEquals(color.g, 0);
+        Assert.assertEquals(color.b, 0);*/
+        color = Color.create(252, 251, 250);
+        Assert.assertEquals(color.r, 252);
+        Assert.assertEquals(color.g, 251);
+        Assert.assertEquals(color.b, 250);
+        // cleanup
+        color.destroy();
+        color = null;
+    }
+
+    [Test]
+    public function test_destroy_twice():void {
+        var color:Color = Color.create(255, 254, 253);
+        color.destroy();
+        // cleanup
+        color.destroy();
+        color = null;
+    }
+
+    [Test]
     public function test_construct_zero():void {
         var color:Color = Color.create(0, 0, 0);
         Assert.assertEquals(color.r, 0);
         Assert.assertEquals(color.g, 0);
         Assert.assertEquals(color.b, 0);
+        // cleanup
+        color.destroy();
+        color = null;
+    }
+
+    [Test]
+    public function test_construct_salmon():void {
+        var color:Color = Color.create(0xFA, 0x80, 0x72);
+        Assert.assertEquals(color.r, 0xFA);
+        Assert.assertEquals(color.g, 0x80);
+        Assert.assertEquals(color.b, 0x72);
+        // cleanup
         color.destroy();
         color = null;
     }

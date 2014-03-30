@@ -46,10 +46,10 @@ public class Vec2Test extends Sprite {
     [Before]
     public function setUp():void {
         vec2 = Vec2.create();
-        trace(_x, _y, vec2.x, vec2.y);
+       // trace(this, _x, _y, vec2.x, vec2.y);
         vec2.x = _x = 0.1001;
         vec2.y = _y = 0.9009;
-        trace(_x, _y, vec2.x, vec2.y);
+       // trace(this, _x, _y, vec2.x, vec2.y);
     }
 
     [After]
