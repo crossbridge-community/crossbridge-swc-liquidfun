@@ -48,6 +48,7 @@
 // Flash headers
 #include <AS3/AS3++.h>
 #include <Flash++.h>
+
 // Module headers
 #include <Box2D/Box2D.h>
 
@@ -55,15 +56,17 @@
 // Main
 ///////////////////////////////////////
 
+// We still need a main function for the SWC. this function must be called
+// so that all the static init code is executed before any library functions
+// are used.
+//
+// The main function for a library must throw an exception so that it does
+// not return normally. Returning normally would cause the static
+// destructors to be executed leaving the library in an unuseable state.
 int main() {
+    #ifdef __FLASHPLAYER__
     AS3_Trace("LiquidFun loaded.");
-    // We still need a main function for the SWC. this function must be called
-    // so that all the static init code is executed before any library functions
-    // are used.
-    //
-    // The main function for a library must throw an exception so that it does
-    // not return normally. Returning normally would cause the static
-    // destructors to be executed leaving the library in an unuseable state.
+    #endif
     AS3_GoAsync();
 }
 

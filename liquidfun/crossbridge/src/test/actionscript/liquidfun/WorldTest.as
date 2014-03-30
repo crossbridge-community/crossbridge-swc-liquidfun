@@ -178,7 +178,7 @@ public class WorldTest extends Sprite {
     [Test]
     public function test_distance_joint():void {
         var jointDef:DistanceJointDef = DistanceJointDef.create();
-        jointDef.type = LiquidFun.DISTANCE_JOINT;
+        jointDef.type = LiquidFun.JOINT_DISTANCE;
         jointDef.collideConnected = false;
         var joint:DistanceJoint = new DistanceJoint();
         joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
@@ -189,7 +189,7 @@ public class WorldTest extends Sprite {
     [Test]
     public function test_pulley_joint():void {
         var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.type = LiquidFun.PULLEY_JOINT;
+        jointDef.type = LiquidFun.JOINT_PULLEY;
         jointDef.collideConnected = false;
         var joint:PulleyJoint = new PulleyJoint();
         joint.swigCPtr = world.createJoint(jointDef.swigCPtr);

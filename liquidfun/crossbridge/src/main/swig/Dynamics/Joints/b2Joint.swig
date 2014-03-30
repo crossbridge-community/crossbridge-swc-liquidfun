@@ -38,22 +38,22 @@
 //  Renames
 //----------------------------------
 
-%rename (UNKNOWN_JOINT) e_unknownJoint;
-%rename (REVOLUTE_JOINT) e_revoluteJoint;
-%rename (PRISMATIC_JOINT) e_prismaticJoint;
-%rename (DISTANCE_JOINT) e_distanceJoint;
-%rename (PULLEY_JOINT) e_pulleyJoint;
-%rename (MOUSE_JOINT) e_mouseJoint;
-%rename (GEAR_JOINT) e_gearJoint;
-%rename (WHEEL_JOINT) e_wheelJoint;
-%rename (WELD_JOINT) e_weldJoint;
-%rename (FRICTION_JOINT) e_frictionJoint;
-%rename (ROPE_JOINT) e_ropeJoint;
-%rename (MOTOR_JOINT) e_motorJoint;
-%rename (INACTIVE_LIMIT) e_inactiveLimit;
-%rename (LOWER_LIMIT) e_atLowerLimit;
-%rename (UPPER_LIMIT) e_atUpperLimit;
-%rename (EQUAL_LIMITS) e_equalLimits;
+%rename (JOINT_UNKNOWN) e_unknownJoint;
+%rename (JOINT_REVOLUTE) e_revoluteJoint;
+%rename (JOINT_PRISMATIC) e_prismaticJoint;
+%rename (JOINT_DISTANCE) e_distanceJoint;
+%rename (JOINT_PULLEY) e_pulleyJoint;
+%rename (JOINT_MOUSE) e_mouseJoint;
+%rename (JOINT_GEAR) e_gearJoint;
+%rename (JOINT_WHEEL) e_wheelJoint;
+%rename (JOINT_WELD) e_weldJoint;
+%rename (JOINT_FRICTION) e_frictionJoint;
+%rename (JOINT_ROPE) e_ropeJoint;
+%rename (JOINT_MOTOR) e_motorJoint;
+%rename (LIMIT_INACTIVE) e_inactiveLimit;
+%rename (LIMIT_LOWER) e_atLowerLimit;
+%rename (LIMIT_UPPER) e_atUpperLimit;
+%rename (LIMIT_EQUAL) e_equalLimits;
 
 //----------------------------------
 //  Overrides

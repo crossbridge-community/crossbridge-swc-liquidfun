@@ -132,6 +132,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, -10.0);
+        world.dump();
 
         // Create debug draw instance and assign to world
         debugDraw = new Draw();
