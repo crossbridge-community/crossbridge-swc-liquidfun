@@ -19,14 +19,13 @@
 // THE SOFTWARE.
 
 package liquidfun.display {
-import flash.display.Sprite;
+import flash.events.Event;
 import flash.geom.Matrix;
 
 import liquidfun.utils.*;
 
-public class LFCircle extends Sprite {
+public class LFCircle extends LFBaseShape {
     public var bodyDef:BodyDef;
-    public var bodyDefPos:Vec2;
     public var body:Body;
     public var dynamicBox:CircleShape;
     public var fixtureDef:FixtureDef;
@@ -46,9 +45,7 @@ public class LFCircle extends Sprite {
 
         bodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDefPos = Vec2.create()
-        bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
-        bodyDef.position = bodyDefPos.swigCPtr;
+        bodyDef.setPosition(_x / LFGlobals.scale, _y / LFGlobals.scale);
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
@@ -65,10 +62,23 @@ public class LFCircle extends Sprite {
     }
 
     public function update():void {
-        bodyDefPos.swigCPtr = body.getPosition();
+        if(!stage)
+            return;
         matrix.identity();
-        matrix.translate(bodyDefPos.x * LFGlobals.scale, 600 - (bodyDefPos.y * LFGlobals.scale));
+        matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
         transform.matrix = matrix;
+    }
+
+    override protected function onRemoved(event:Event):void {
+        super.onRemoved(event);
+        bodyDef.destroy();
+        bodyDef = null;
+        fixtureDef.destroy();
+        fixtureDef = null;
+        dynamicBox.destroy();
+        dynamicBox = null;
+        matrix = null;
+        body = null;
     }
 }
 }

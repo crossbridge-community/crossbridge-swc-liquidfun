@@ -45,11 +45,11 @@
 // Includes
 ///////////////////////////////////////
 
-// Flash headers
+// CrossBridge
 #include <AS3/AS3++.h>
 #include <Flash++.h>
 
-// Module headers
+// Box2D Core
 #include <Box2D/Box2D.h>
 
 ///////////////////////////////////////
@@ -182,6 +182,9 @@ int main() {
 %include "Rope/b2Rope.swig"
 
 %include "Common/b2Draw.swig"
+
+// Contributions
+// %include "Dynamics/Controllers/b2Controller.swig"
 
 #endif
 

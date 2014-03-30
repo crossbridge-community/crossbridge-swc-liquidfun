@@ -20,11 +20,12 @@
 
 package liquidfun.display {
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.geom.Matrix;
 
 import liquidfun.utils.*;
 
-public class LFRectangle extends Sprite {
+public class LFRectangle extends LFBaseShape {
     public var bodyDef:BodyDef;
     public var bodyDefPos:Vec2;
     public var body:Body;
@@ -71,6 +72,7 @@ public class LFRectangle extends Sprite {
     }
 
     public function update():void {
+
         bodyDefPos.swigCPtr = body.getPosition();
         matrix.identity();
         matrix.translate(-w * 0.5, -h * 0.5);
@@ -78,6 +80,18 @@ public class LFRectangle extends Sprite {
         // matrix.translate(w * 0.5, h * 0.5);
         matrix.translate(bodyDefPos.x * LFGlobals.scale, 600 - (bodyDefPos.y * LFGlobals.scale));
         transform.matrix = matrix;
+    }
+
+    override protected function onRemoved(event:Event):void {
+        super.onRemoved(event);
+        bodyDef.destroy();
+        bodyDef = null;
+        fixtureDef.destroy();
+        fixtureDef = null;
+        dynamicBox.destroy();
+        dynamicBox = null;
+        matrix = null;
+        body = null;
     }
 }
 }

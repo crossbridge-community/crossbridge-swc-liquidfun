@@ -56,6 +56,8 @@ compile:
 	# Initializing ...
 	########################################
 	mkdir -p build
+	mkdir -p ../Box2D/Box2D/Dynamics/Controllers/
+	cp -r ../Contributions/Enhancements/Controllers/* ../Box2D/Box2D/Dynamics/Controllers/
 	########################################
 	# Making LiquidFun ...
 	########################################
@@ -85,7 +87,11 @@ compile:
 	# Generating SWC ...
 	########################################
 	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -lAS3++ -lFlash++ -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
-
+	########################################
+	# Post cleaning ...
+	########################################
+	rm -rf ../Box2D/Box2D/Dynamics/Controllers/
+    
 clean:
 	rm -rf build
 	rm -f LiquidFun.swc
