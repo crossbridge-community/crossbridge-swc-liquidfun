@@ -70,7 +70,6 @@ public class WorldTest extends Sprite {
     public function test_draw():void {
         var draw:Draw = new Draw();
         Assert.assertNotNull(draw);
-        Assert.assertEquals(draw.getFlags(), 0);
         draw.appendFlags(Draw.AABB_BIT);
         draw.appendFlags(Draw.CENTER_OF_MASS_BIT);
         draw.appendFlags(Draw.JOINT_BIT);
