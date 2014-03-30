@@ -32,7 +32,7 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
-public class AllTest extends Sprite {
+public class WorldTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
     // in most game scenarios.
@@ -43,7 +43,7 @@ public class AllTest extends Sprite {
 
     private var world:World;
 
-    public function AllTest() {
+    public function WorldTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -67,24 +67,10 @@ public class AllTest extends Sprite {
     }
 
     [Test]
-    public function test_version_box2d():void {
-        var version:Version = Version.create();
-        version.swigCPtr = LiquidFun.version;
-        Assert.assertNotNull(version != null);
-        Assert.assertEquals(version.major, 2);
-        Assert.assertEquals(version.minor, 3);
-    }
-
-    [Test]
-    public function test_pi():void {
-        Assert.assertEquals(LiquidFun.pi, 3.14159265359);
-    }
-
-    [Test]
     public function test_draw():void {
         var draw:Draw = new Draw();
         Assert.assertNotNull(draw);
-        Assert.assertEquals(draw.getFlags(), 2);
+        Assert.assertEquals(draw.getFlags(), 0);
         draw.appendFlags(Draw.AABB_BIT);
         draw.appendFlags(Draw.CENTER_OF_MASS_BIT);
         draw.appendFlags(Draw.JOINT_BIT);
@@ -92,6 +78,9 @@ public class AllTest extends Sprite {
         draw.appendFlags(Draw.PARTICLE_BIT);
         draw.appendFlags(Draw.SHAPE_BIT);
         Assert.assertEquals(draw.getFlags(), 63);
+        // cleanup
+        draw.destroy();
+        draw = null;
     }
 
     [Test]
@@ -145,6 +134,8 @@ public class AllTest extends Sprite {
         Assert.assertEquals(body.isAwake(), bodyDef.awake);
         Assert.assertEquals(body.isActive(), bodyDef.active);
         Assert.assertEquals(body.isBullet(), bodyDef.bullet);
+        // cleanup
+        world.destroyBody(body.swigCPtr);
     }
 
     [Test]
@@ -156,6 +147,8 @@ public class AllTest extends Sprite {
         Assert.assertEquals(body.getType(), LiquidFun.STATIC_BODY);
         body.setType(LiquidFun.DYNAMIC_BODY);
         Assert.assertEquals(body.getType(), LiquidFun.DYNAMIC_BODY);
+        // cleanup
+        world.destroyBody(body.swigCPtr);
     }
 
     [Test]
@@ -163,6 +156,7 @@ public class AllTest extends Sprite {
         var systemDef:ParticleSystemDef = ParticleSystemDef.create();
         var system:ParticleSystem = new ParticleSystem();
         system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
+        // cleanup
         world.destroyParticleSystem(system.swigCPtr);
     }
 
@@ -173,6 +167,7 @@ public class AllTest extends Sprite {
         system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
         world.destroyParticleSystem(system.swigCPtr);
         var particleDef:ParticleDef = ParticleDef.create();
+        // cleanup
         system.destroyParticle(system.createParticle(particleDef.swigCPtr))
     }
 
@@ -183,6 +178,7 @@ public class AllTest extends Sprite {
         jointDef.collideConnected = false;
         var joint:DistanceJoint = new DistanceJoint();
         joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        // cleanup
         world.destroyJoint(joint.swigCPtr);
     }
 
@@ -193,6 +189,7 @@ public class AllTest extends Sprite {
         jointDef.collideConnected = false;
         var joint:PulleyJoint = new PulleyJoint();
         joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        // cleanup
         world.destroyJoint(joint.swigCPtr);
     }
 
