@@ -27,8 +27,19 @@
 
 %module b2Collision
 
-// excluded classes and methods
+// excluded classes
 %ignore b2Collision;
+// excluded methods
+%ignore b2TestOverlap;
+// excluded structures
+%ignore b2ContactFeature;
+%ignore b2ManifoldPoint;
+%ignore b2Manifold;
+%ignore b2WorldManifold;
+%ignore b2ClipVertex;
+%ignore b2RayCastInput;
+%ignore b2RayCastOutput;
+%ignore b2AABB;
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Collision/b2Collision.h"

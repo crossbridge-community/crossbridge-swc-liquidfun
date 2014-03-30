@@ -30,6 +30,7 @@
 // Excluded classes and methods
 %ignore b2IntrusiveList;
 %ignore b2IntrusiveListNode;
+%ignore b2TypedIntrusiveListNode;
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Common/b2IntrusiveList.h"

@@ -35,6 +35,8 @@
 %ignore b2ParticleSystem::GetVelocityBuffer();
 %ignore b2ParticleSystem::GetPositionBuffer();
 %ignore b2ParticleSystem::GetParticleGroupList();
+%ignore b2ParticleSystem::DestroyParticle(int32,bool);
+%ignore b2ParticleSystem::DestroyParticlesInShape(b2Shape const &,b2Transform const &,bool);
 
 // b2ParticleSystem extensions for easier access
 %extend b2ParticleSystem {

@@ -31,6 +31,15 @@
 %ignore b2ParticleColor::GetColor;
 %ignore b2ParticleColor::b2ParticleColor();
 %ignore b2ParticleColor::b2ParticleColor(b2Color const &);
+%ignore b2ParticleColor::Set(b2Color const &);
+%ignore b2ParticleHandle;
+
+// solves:
+// Warning 401: Nothing known about base class 'b2TypedIntrusiveListNode< b2ParticleHandle >'. Ignored.
+// Warning 401: Maybe you forgot to instantiate 'b2TypedIntrusiveListNode< b2ParticleHandle >' using %template.
+// @see: http://www.swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_nn30
+// generates make error with code 139
+// %template(typedIntrusiveParticleHandleList) b2TypedIntrusiveListNode<b2ParticleHandle>;
 
 // b2ParticleColor extensions for easier access
 %extend b2ParticleColor {

@@ -31,5 +31,8 @@
 %ignore b2TrackedBlock;
 %ignore b2TrackedBlockAllocator;
 
+// @see: http://www.swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_nn30
+%template(typedIntrusiveTrackedBlockList) b2TypedIntrusiveListNode<b2TrackedBlock>;
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Common/b2TrackedBlock.h"

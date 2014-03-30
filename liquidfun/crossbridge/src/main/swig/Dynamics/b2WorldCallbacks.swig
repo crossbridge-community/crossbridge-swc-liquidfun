@@ -32,6 +32,12 @@
 %rename (SayGoodbyeToFixture) b2DestructionListener::SayGoodbye(b2Fixture* fixture);
 %rename (SayGoodbyeToParticleGroup) b2DestructionListener::SayGoodbye(b2ParticleGroup* group);
 %rename (SayGoodbyeToParticleSystem) b2DestructionListener::SayGoodbye(b2ParticleSystem* particleSystem, int32 index);
+%rename (EndContact2) b2ContactListener::EndContact(b2Fixture *,b2ParticleSystem *,int32);
+%rename (EndContact3) b2ContactListener::EndContact(b2ParticleSystem *,int32,int32);
+%rename (BeginContact2) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleBodyContact *);
+%rename (BeginContact3) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleContact *);
+%rename (ShouldCollide2) b2ContactFilter::ShouldCollide(b2Fixture *,b2ParticleSystem *,int32);
+%rename (ShouldCollide3) b2ContactFilter::ShouldCollide(b2ParticleSystem *,int32,int32);
 
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/b2WorldCallbacks.h"

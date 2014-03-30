@@ -129,7 +129,6 @@ int main() {
 %include "Common/b2Settings.swig"
 %include "Common/b2Math.swig"
 
-%include "Common/b2Draw.swig"
 %include "Common/b2Stat.swig"
 %include "Common/b2Timer.swig"
 
@@ -160,8 +159,8 @@ int main() {
 %include "Dynamics/b2Fixture.swig"
 %include "Dynamics/b2Island.swig"
 %include "Dynamics/b2TimeStep.swig"
-%include "Dynamics/b2World.swig"
 %include "Dynamics/b2WorldCallbacks.swig"
+%include "Dynamics/b2World.swig"
 
 %include "Dynamics/Contacts/b2Contact.swig"
 
@@ -179,6 +178,8 @@ int main() {
 %include "Dynamics/Joints/b2WheelJoint.swig"
 
 %include "Rope/b2Rope.swig"
+
+%include "Common/b2Draw.swig"
 
 #endif
 
