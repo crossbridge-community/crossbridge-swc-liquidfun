@@ -69,15 +69,15 @@ public class ParticleColorTest extends Sprite {
         Assert.assertEquals(color.isZero(), true);
     }
 
-    /* [Test]
-     public function test_construct_salmon():void {
-     const color:ParticleColor = ParticleColor.create();
-     color.set("0xFA", "0x80", "0x72", "0xFF");
-     trace("ColorTest", "test_construct_salmon", color.r, color.g, color.b, color.a);
-     Assert.assertEquals(color.a, 0xFA);
-     Assert.assertEquals(color.r, 0x80);
-     Assert.assertEquals(color.g, 0x72);
-     Assert.assertEquals(color.b, 0xFF);
-     }*/
+    [Test]
+    public function test_construct_salmon():void {
+        const color:ParticleColor = ParticleColor.create();
+        color.set(0xFA, 0x80, 0x72, 0xFF);
+        trace("ColorTest", "test_construct_salmon", color.r, color.g, color.b, color.a);
+        Assert.assertEquals(color.r, 0xFA);
+        Assert.assertEquals(color.g, 0x80);
+        Assert.assertEquals(color.b, 0x72);
+        Assert.assertEquals(color.a, 0xFF);
+    }
 }
 }
