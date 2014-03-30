@@ -27,6 +27,20 @@
 
 %module b2Math
 
+// ignores
+%ignore b2Mat22;
+%ignore b2Mat33;
+%ignore b2Cross;
+%ignore b2Rot;
+%ignore b2Dot;
+%ignore b2Mul;
+%ignore b2MulT;
+%ignore b2Abs;
+%ignore b2Transform::b2Transform(b2Vec2 const &,b2Rot const &);
+%ignore b2Vec2::b2Vec2(float32,float32);
+%ignore b2Vec3::b2Vec3(float32,float32,float32);
+%ignore b2Vec4::b2Vec4(float32,float32,float32,float32);
+
 // b2Vec2 extensions for easier access
 %extend b2Vec2 {
 }

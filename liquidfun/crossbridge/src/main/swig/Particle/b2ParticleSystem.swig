@@ -36,5 +36,9 @@
 %ignore b2ParticleSystem::GetPositionBuffer();
 %ignore b2ParticleSystem::GetParticleGroupList();
 
+// b2ParticleSystem extensions for easier access
+%extend b2ParticleSystem {
+}
+
 // Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Particle/b2ParticleSystem.h"

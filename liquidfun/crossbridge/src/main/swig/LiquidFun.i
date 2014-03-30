@@ -127,10 +127,12 @@ int main() {
 
 // LiquidFun (Order is mandatory!)
 %include "Common/b2Settings.swig"
-%include "Common/b2Draw.swig"
 %include "Common/b2Math.swig"
+
+%include "Common/b2Draw.swig"
 %include "Common/b2Stat.swig"
 %include "Common/b2Timer.swig"
+
 %include "Common/b2GrowableStack.swig"
 %include "Common/b2IntrusiveList.swig"
 %include "Common/b2FreeList.swig"
@@ -148,6 +150,10 @@ int main() {
 %include "Collision/Shapes/b2ChainShape.swig"
 %include "Collision/Shapes/b2EdgeShape.swig"
 %include "Collision/Shapes/b2PolygonShape.swig"
+
+%include "Particle/b2Particle.swig"
+%include "Particle/b2ParticleGroup.swig"
+%include "Particle/b2ParticleSystem.swig"
 
 %include "Dynamics/b2Body.swig"
 %include "Dynamics/b2ContactManager.swig"
@@ -171,10 +177,6 @@ int main() {
 %include "Dynamics/Joints/b2RopeJoint.swig"
 %include "Dynamics/Joints/b2WeldJoint.swig"
 %include "Dynamics/Joints/b2WheelJoint.swig"
-
-%include "Particle/b2Particle.swig"
-%include "Particle/b2ParticleGroup.swig"
-%include "Particle/b2ParticleSystem.swig"
 
 %include "Rope/b2Rope.swig"
 
