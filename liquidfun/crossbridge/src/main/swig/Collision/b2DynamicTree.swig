@@ -27,9 +27,15 @@
 
 %module b2DynamicTree
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2DynamicTree;
 %ignore b2TreeNode;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/b2DynamicTree.h"

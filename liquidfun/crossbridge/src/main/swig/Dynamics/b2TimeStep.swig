@@ -27,12 +27,18 @@
 
 %module b2TimeStep;
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2TimeStep;
 %ignore b2Profile;
 %ignore b2Position;
 %ignore b2Velocity;
 %ignore b2SolverData;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/b2TimeStep.h"

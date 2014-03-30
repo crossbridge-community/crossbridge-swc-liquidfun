@@ -27,8 +27,14 @@
 
 %module b2Island;
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Island;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/b2Island.h"

@@ -27,7 +27,10 @@
 
 %module b2WorldCallbacks;
 
-// Renames
+//----------------------------------
+//  Renames
+//----------------------------------
+
 %rename (SayGoodbyeToJoint) b2DestructionListener::SayGoodbye(b2Joint* joint);
 %rename (SayGoodbyeToFixture) b2DestructionListener::SayGoodbye(b2Fixture* fixture);
 %rename (SayGoodbyeToParticleGroup) b2DestructionListener::SayGoodbye(b2ParticleGroup* group);
@@ -39,5 +42,8 @@
 %rename (ShouldCollide2) b2ContactFilter::ShouldCollide(b2Fixture *,b2ParticleSystem *,int32);
 %rename (ShouldCollide3) b2ContactFilter::ShouldCollide(b2ParticleSystem *,int32,int32);
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/b2WorldCallbacks.h"

@@ -27,7 +27,10 @@
 
 %module b2ParticleSystem
 
-// Ignore methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2ParticleSystem::GetNext();
 %ignore b2ParticleSystem::GetUserDataBuffer();
 %ignore b2ParticleSystem::GetGroupBuffer();
@@ -38,9 +41,16 @@
 %ignore b2ParticleSystem::DestroyParticle(int32,bool);
 %ignore b2ParticleSystem::DestroyParticlesInShape(b2Shape const &,b2Transform const &,bool);
 
-// b2ParticleSystem extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2ParticleSystem {
+    // TODO
 }
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Particle/b2ParticleSystem.h"

@@ -27,5 +27,8 @@
 
 %module b2Body
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h"

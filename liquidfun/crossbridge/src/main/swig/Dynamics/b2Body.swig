@@ -27,13 +27,10 @@
 
 %module b2Body
 
-// Rename constants
-%rename (STATIC_BODY) b2_staticBody;
-%rename (KINEMATIC_BODY) b2_kinematicBody;
-%rename (DYNAMIC_BODY) b2_dynamicBody;
-//%rename (BULLET_BODY) b2_bulletBody;
+//----------------------------------
+//  Ignores
+//----------------------------------
 
-// Ignored classes and methods
 %ignore b2Body::GetBody();
 %ignore b2Body::GetContactList();
 %ignore b2Body::GetFixtureList();
@@ -42,10 +39,20 @@
 %ignore b2Body::GetWorld();
 %ignore b2Body::SetTransform(b2Vec2 const &,float32);
 
-// Rename overloaded method
+//----------------------------------
+//  Renames
+//----------------------------------
+
+%rename (STATIC_BODY) b2_staticBody;
+%rename (KINEMATIC_BODY) b2_kinematicBody;
+%rename (DYNAMIC_BODY) b2_dynamicBody;
+//%rename (BULLET_BODY) b2_bulletBody;
 %rename(createFixture2) CreateFixture(const b2Shape* shape, float32 density);
 
-// b2BodyDef extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2BodyDef {
     void SetPosition(float32 posX, float32 posY) {
         $self->position.x = posX;
@@ -56,7 +63,6 @@
     }
 };
 
-// b2Body extensions for easier access
 %extend b2Body {
     float32 GetX() {
         return $self->GetPosition().x;
@@ -71,5 +77,8 @@
     }
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/b2Body.h"

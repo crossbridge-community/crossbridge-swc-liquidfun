@@ -27,16 +27,34 @@
 
 %module b2Draw
 
-// Ignored classes and methods
-%ignore b2Color::b2Color();
+//----------------------------------
+//  Ignores
+//----------------------------------
 
-// Rename enums.
+%ignore b2Color::b2Color();
+/*
+%ignore b2Draw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color);
+%ignore b2Draw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color);
+%ignore b2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color);
+%ignore b2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color);
+%ignore b2Draw::DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count);
+%ignore b2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color);
+*/
+
+//----------------------------------
+//  Renames
+//----------------------------------
+
 %rename (SHAPE_BIT) e_shapeBit;
 %rename (JOINT_BIT) e_jointBit;
 %rename (AABB_BIT) e_aabbBit;
 %rename (PAIR_BIT) e_pairBit;
 %rename (CENTER_OF_MASS_BIT) e_centerOfMassBit;
 %rename (PARTICLE_BIT) e_particleBit;
+
+//----------------------------------
+//  Extensions
+//----------------------------------
 
 // When using typemaps that require custom ActionScript types to be used in the generated
 // AS3 wrappers you may need to import classes from custom packages.
@@ -45,32 +63,41 @@
 // %as3import("flash.display.Shape") DrawPolygon;
 
 // b2Draw extensions for easier access
-%extend b2Draw {
+/*%extend b2Draw {
     // Draw a closed polygon provided in CCW order.
-    /*void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+    void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
         // TODO
-    }*/
+        AS3_Trace("DrawPolygon");
+    }
     // Draw a solid closed polygon provided in CCW order.
-    /*void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+    void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
         // TODO
-    }*/
+        AS3_Trace("DrawSolidPolygon");
+    }
     // Draw a circle.
-    /*void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
+    void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
         // TODO
-    }*/
+        AS3_Trace("DrawCircle");
+    }
     // Draw a solid circle.
-    /*void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
+    void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
         // TODO
-    }*/
+        AS3_Trace("DrawSolidCircle");
+    }
     // Draw a particle array
-    /*void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
+    void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
         // TODO
-    }*/
+        AS3_Trace("DrawParticles");
+    }
     // Draw a line segment.
-    /*void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color){
+    void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color){
         // TODO
-    }*/
-}
+        AS3_Trace("DrawSegment");
+    }
+}*/
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2Draw.h"

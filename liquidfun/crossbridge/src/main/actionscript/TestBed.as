@@ -75,6 +75,10 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var startTime:int;
 
+    private var isDrawDebug:Boolean;
+
+    private var debugDraw:Draw;
+
     private const tests:Vector.<Class> = Vector.<Class>([HelloWorldExample,PyramidExample]);
 
     //----------------------------------
@@ -126,8 +130,13 @@ public class TestBed extends Sprite implements ISpecialFile {
         message.defaultTextFormat = tf;
         message.text = "Press SPACE to switch test";
 
-            // Construct a world object, which will hold and simulate the rigid bodies.
-        world = LFGlobals.world = World.create(0.0, -10.0)
+        // Construct a world object, which will hold and simulate the rigid bodies.
+        world = LFGlobals.world = World.create(0.0, -10.0);
+
+        // Create debug draw instance and assign to world
+        debugDraw = new Draw();
+        debugDraw.setFlags(Draw.SHAPE_BIT | Draw.JOINT_BIT);
+        world.setDebugDraw(debugDraw.swigCPtr);
 
         var wall:LFRectangle;
         /*
@@ -166,7 +175,11 @@ public class TestBed extends Sprite implements ISpecialFile {
         CModule.serviceUIRequests();
         // update physics world
         //startTime = getTimer();
+        // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
+        // draw debug if enabled
+        if(isDrawDebug)
+            world.drawDebugData();
         // update current test
         if (currentTest && currentTest.parent)
             currentTest.update();
@@ -179,6 +192,10 @@ public class TestBed extends Sprite implements ISpecialFile {
     private function onKeyUp(event:KeyboardEvent):void {
         if (event.keyCode == Keyboard.SPACE)
             nextTest();
+        else if (event.keyCode == Keyboard.D)
+            isDrawDebug = !isDrawDebug;
+        else if (event.keyCode == Keyboard.C)
+            world.clearForces();
     }
 
     /**

@@ -27,12 +27,29 @@
 
 %module b2ParticleGroup
 
-// Ignore methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2ParticleGroup::GetNext();
 %ignore b2ParticleGroup::GetParticleSystem();
 %ignore b2ParticleGroup::DestroyParticles();
 
-// b2ParticleGroupDef extensions for easier access
+//----------------------------------
+//  Renames
+//----------------------------------
+
+%rename (PARTICLE_GROUP_SOLID) b2_solidParticleGroup;
+%rename (PARTICLE_GROUP_RIGID) b2_rigidParticleGroup;
+%rename (PARTICLE_GROUP_CAN_BE_EMPTY) b2_particleGroupCanBeEmpty;
+%rename (PARTICLE_GROUP_WILL_BE_DESTROYED) b2_particleGroupWillBeDestroyed;
+%rename (PARTICLE_GROUP_NEEDS_UPDATE_DEPTH) b2_particleGroupNeedsUpdateDepth;
+%rename (PARTICLE_GROUP_INTERNAL_MASK) b2_particleGroupInternalMask;
+
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2ParticleGroupDef {
     void setPosition(float32 x, float32 y) {
         $self->position.Set(x, y);
@@ -43,5 +60,8 @@
     }
 }
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Particle/b2ParticleGroup.h"

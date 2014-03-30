@@ -27,10 +27,16 @@
 
 %module b2PolygonShape
 
-// Rename overloaded method
+//----------------------------------
+//  Renames
+//----------------------------------
+
 %rename(setAsBox2) b2PolygonShape::SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
 
-// b2PolygonShape extensions for easier Java access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2PolygonShape {
     void SetCentroid2(float32 x, float32 y) {
         $self->m_centroid.Set(x, y);
@@ -46,5 +52,8 @@
     }
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h"

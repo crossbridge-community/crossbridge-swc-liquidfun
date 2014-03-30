@@ -27,5 +27,8 @@
 
 %module b2PrismaticJoint
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h"

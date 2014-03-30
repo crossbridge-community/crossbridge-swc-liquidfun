@@ -27,17 +27,21 @@
 
 %module b2Shape
 
-// Rename enums.
+//----------------------------------
+//  Renames
+//----------------------------------
+
 %rename (CIRCLE) e_circle;
 %rename (EDGE) e_edge;
 %rename (POLYGON) e_polygon;
 %rename (CHAIN) e_chain;
 %rename (TYPE_COUNT) e_typeCount;
-
-// Rename base class as its interferes with flash.display.Shape
 %rename (BaseShape) b2Shape;
 
-// b2MassData extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2MassData {
     // Center getter X
     float32 GetCenterX() {
@@ -49,5 +53,8 @@
     }
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/Shapes/b2Shape.h"

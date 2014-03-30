@@ -27,7 +27,10 @@
 
 %module b2CircleShape
 
-// b2CircleShape extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2CircleShape {
     // Vec2 setter XY
     void SetPosition(float32 x, float32 y) {
@@ -43,5 +46,8 @@
     }
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/Shapes/b2CircleShape.h"

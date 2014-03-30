@@ -27,10 +27,17 @@
 
 %module b2Joint
 
-// Ignored classes and methods
-%ignore b2Joint::GetNext();
+//----------------------------------
+//  Ignores
+//----------------------------------
 
-// Rename constants
+%ignore b2Joint::GetNext();
+%ignore b2Jacobian;
+
+//----------------------------------
+//  Renames
+//----------------------------------
+
 %rename (UNKNOWN_JOINT) e_unknownJoint;
 %rename (REVOLUTE_JOINT) e_revoluteJoint;
 %rename (PRISMATIC_JOINT) e_prismaticJoint;
@@ -48,10 +55,14 @@
 %rename (UPPER_LIMIT) e_atUpperLimit;
 %rename (EQUAL_LIMITS) e_equalLimits;
 
-// AS3 specific override
+//----------------------------------
+//  Overrides
+//----------------------------------
+
 // When a derived C++ class implements a virtual function as public
 // that was declared protected/private in the base class you will need
 // to suppress the usual use of the "override" keyword.
+
 %as3suppressoverride b2DistanceJoint::~b2DistanceJoint;
 %as3suppressoverride b2FrictionJoint::~b2FrictionJoint;
 %as3suppressoverride b2GearJoint::~b2GearJoint;
@@ -64,5 +75,8 @@
 %as3suppressoverride b2WeldJoint::~b2WeldJoint;
 %as3suppressoverride b2WheelJoint::~b2WheelJoint;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"

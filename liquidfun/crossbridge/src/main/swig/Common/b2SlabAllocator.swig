@@ -27,8 +27,14 @@
 
 %module b2SlabAllocator
 
-// Excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2SlabAllocator;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2SlabAllocator.h"

@@ -27,9 +27,15 @@
 
 %module b2TimeOfImpact
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2TOIInput;
 %ignore b2TOIOutput;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/b2TimeOfImpact.h"

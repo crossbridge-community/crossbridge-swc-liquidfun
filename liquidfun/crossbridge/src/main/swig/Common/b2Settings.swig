@@ -27,7 +27,10 @@
 
 %module b2Settings
 
-// Excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Alloc;
 %ignore b2Free;
 %ignore b2SetAllocFreeCallbacks;
@@ -37,5 +40,8 @@
 %ignore b2_liquidFunVersion;
 %ignore b2_liquidFunVersionString;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2Settings.h"

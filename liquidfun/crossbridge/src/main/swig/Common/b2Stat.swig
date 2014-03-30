@@ -27,8 +27,14 @@
 
 %module b2Stat
 
-// Excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Stat;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2Stat.h"

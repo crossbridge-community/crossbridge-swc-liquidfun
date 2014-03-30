@@ -27,9 +27,15 @@
 
 %module b2StackAllocator
 
-// Excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2StackAllocator;
 %ignore b2StackEntry;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2StackAllocator.h"

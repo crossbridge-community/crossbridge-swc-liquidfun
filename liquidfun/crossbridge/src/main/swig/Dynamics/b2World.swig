@@ -27,7 +27,10 @@
 
 %module b2World
 
-// Ignored classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2World(const b2Vec2& gravity);
 %ignore b2World::Step(float32,int32,int32);
 %ignore b2World::GetBodyList();
@@ -36,7 +39,10 @@
 %ignore b2World::GetParticleSystemList();
 %ignore b2World::SetGravity(b2Vec2 const &);
 
-// b2World extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2World {
     // Constructor without the need for creating b2Vec2
     b2World(float32 gravityX, float32 gravityY) {
@@ -47,7 +53,15 @@
     void SetGravity(float32 gravityX, float32 gravityY) {
         $self->SetGravity(b2Vec2(gravityX, gravityY));
     }
+    // Getter for debug draw
+    // Dev: Cannot expose private var
+    /*bool HasDebugDraw() {
+        return $self->m_debugDraw != NULL;
+    }*/
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/b2World.h"

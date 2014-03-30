@@ -27,13 +27,19 @@
 
 %module b2Fixture
 
-// Ignored classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2FixtureProxy;
 %ignore b2Fixture::GetBody();
 %ignore b2Fixture::GetNext();
 %ignore b2Fixture::GetShape();
 
-// b2Fixture extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2Fixture {
     uint16 GetFilterCategoryBits() {
         return $self->GetFilterData().categoryBits;
@@ -46,6 +52,8 @@
     }
 };
 
+//----------------------------------
+//  Includes
+//----------------------------------
 
-// Include original .h file for SWIG
 %include "../../../Box2D/Box2D/Dynamics/b2Fixture.h"

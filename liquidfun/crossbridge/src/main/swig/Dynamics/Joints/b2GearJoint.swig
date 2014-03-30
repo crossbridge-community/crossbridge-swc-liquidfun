@@ -27,5 +27,8 @@
 
 %module b2GearJoint
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h"

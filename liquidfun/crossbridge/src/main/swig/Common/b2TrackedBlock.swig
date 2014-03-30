@@ -27,12 +27,22 @@
 
 %module b2TrackedBlock
 
-// Excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2TrackedBlock;
 %ignore b2TrackedBlockAllocator;
+
+//----------------------------------
+//  Templates
+//----------------------------------
 
 // @see: http://www.swig.org/Doc2.0/SWIGPlus.html#SWIGPlus_nn30
 %template(typedIntrusiveTrackedBlockList) b2TypedIntrusiveListNode<b2TrackedBlock>;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2TrackedBlock.h"

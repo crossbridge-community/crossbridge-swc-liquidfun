@@ -27,9 +27,15 @@
 
 %module b2Rope
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Rope;
 %ignore b2RopeDef;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Rope/b2Rope.h"

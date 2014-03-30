@@ -83,6 +83,11 @@ public class WorldTest extends Sprite {
     }
 
     [Test]
+    public function test_world_get_version_string():void {
+        Assert.assertEquals(world.getVersionString(), "LiquidFun 1.0.0");
+    }
+
+    [Test]
     public function test_world():void {
         var bodyDefPos:Vec2 = Vec2.create();
         bodyDefPos.set(0.0, 4.0);

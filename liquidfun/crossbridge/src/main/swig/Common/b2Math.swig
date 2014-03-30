@@ -27,7 +27,10 @@
 
 %module b2Math
 
-// ignores
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Mat22;
 %ignore b2Mat33;
 %ignore b2Cross;
@@ -41,11 +44,14 @@
 %ignore b2Vec3::b2Vec3(float32,float32,float32);
 %ignore b2Vec4::b2Vec4(float32,float32,float32,float32);
 
-// b2Vec2 extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2Vec2 {
+    // TODO
 }
 
-// b2Transform extensions for easier access
 %extend b2Transform {
     // Vec2 getter X
     float32 getX() {
@@ -65,5 +71,8 @@
     }
 }
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Common/b2Math.h"

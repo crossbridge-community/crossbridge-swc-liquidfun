@@ -27,15 +27,24 @@
 
 %module b2EdgeShape
 
-// Ignored classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2EdgeShape::Set(b2Vec2 const &,b2Vec2 const &);
 
-// b2EdgeShape extensions for easier access
+//----------------------------------
+//  Extensions
+//----------------------------------
+
 %extend b2EdgeShape {
     void Set(float32 vx1, float32 vy1, float32 vx2, float32 vy2) {
         $self->Set(b2Vec2(vx1, vy1), b2Vec2(vx2, vy2));
     }
 };
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h"

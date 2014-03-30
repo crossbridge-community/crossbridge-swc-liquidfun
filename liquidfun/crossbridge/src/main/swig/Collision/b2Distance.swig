@@ -27,12 +27,18 @@
 
 %module b2Distance
 
-// excluded classes and methods
+//----------------------------------
+//  Ignores
+//----------------------------------
+
 %ignore b2Distance;
 %ignore b2DistanceProxy;
 %ignore b2DistanceInput;
 %ignore b2DistanceOutput;
 %ignore b2SimplexCache;
 
-// Include original .h file for SWIG
+//----------------------------------
+//  Includes
+//----------------------------------
+
 %include "../../../Box2D/Box2D/Collision/b2Distance.h"

@@ -46,7 +46,7 @@
 ///////////////////////////////////////
 
 // Flash headers
-#include <AS3/AS3.h>
+#include <AS3/AS3++.h>
 #include <Flash++.h>
 // Module headers
 #include <Box2D/Box2D.h>
@@ -120,9 +120,7 @@ int main() {
 // Includes
 ///////////////////////////////////////
 
-// This directive tells swig to pull in type information from CrossBridge library
-// for the types declared in stdint.h and math.h.
-%include "stdint.i"
+// Pull in type information from CrossBridge library for the types declared in math.h.
 %include "math.i"
 
 // LiquidFun (Order is mandatory!)
@@ -150,6 +148,8 @@ int main() {
 %include "Collision/Shapes/b2EdgeShape.swig"
 %include "Collision/Shapes/b2PolygonShape.swig"
 
+%include "Dynamics/b2TimeStep.swig"
+
 %include "Particle/b2Particle.swig"
 %include "Particle/b2ParticleGroup.swig"
 %include "Particle/b2ParticleSystem.swig"
@@ -158,7 +158,6 @@ int main() {
 %include "Dynamics/b2ContactManager.swig"
 %include "Dynamics/b2Fixture.swig"
 %include "Dynamics/b2Island.swig"
-%include "Dynamics/b2TimeStep.swig"
 %include "Dynamics/b2WorldCallbacks.swig"
 %include "Dynamics/b2World.swig"
 

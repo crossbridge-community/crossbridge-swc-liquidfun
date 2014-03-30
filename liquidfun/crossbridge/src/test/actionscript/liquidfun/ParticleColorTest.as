@@ -43,7 +43,7 @@ public class ParticleColorTest extends Sprite {
 
     [Before]
     public function setUp():void {
-        color = ParticleColor.create();
+        color = ParticleColor.create(0, 0, 0, 0);
     }
 
     [After]
