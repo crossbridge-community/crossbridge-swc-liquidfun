@@ -59,7 +59,16 @@ public class BodyDefTest extends Sprite {
     [Test]
     public function test_constructor():void {
         var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.setPosition(10, 10);
+        // position
+        Assert.assertEquals(bodyDef.getX(), 0);
+        Assert.assertEquals(bodyDef.getY(), 0);
+        bodyDef.setX(10);
+        bodyDef.setY(20);
+        Assert.assertEquals(bodyDef.getX(), 10);
+        Assert.assertEquals(bodyDef.getY(), 20);
+        bodyDef.setXY(30,40);
+        Assert.assertEquals(bodyDef.getX(), 30);
+        Assert.assertEquals(bodyDef.getY(), 40);
         // active
         bodyDef.active = true;
         Assert.assertTrue(bodyDef.active);

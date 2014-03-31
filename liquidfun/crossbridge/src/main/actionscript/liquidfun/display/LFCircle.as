@@ -45,7 +45,7 @@ public class LFCircle extends LFBaseShape {
 
         bodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDef.setPosition(_x / LFGlobals.scale, _y / LFGlobals.scale);
+        bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 

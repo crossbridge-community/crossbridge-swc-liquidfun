@@ -59,6 +59,16 @@ public class ParticleDefTest extends Sprite {
     [Test]
     public function test_constructor():void {
         var particleDef:ParticleDef = ParticleDef.create();
+        // position
+        Assert.assertEquals(particleDef.getX(), 0);
+        Assert.assertEquals(particleDef.getY(), 0);
+        particleDef.setX(10);
+        particleDef.setY(20);
+        Assert.assertEquals(particleDef.getX(), 10);
+        Assert.assertEquals(particleDef.getY(), 20);
+        particleDef.setXY(30,40);
+        Assert.assertEquals(particleDef.getX(), 30);
+        Assert.assertEquals(particleDef.getY(), 40);
         // color
         particleDef.setColor(0xFF, 0x00, 0xFF, 0xFF);
         //Assert.assertEquals(particleDef.color, 0xFF00FF);

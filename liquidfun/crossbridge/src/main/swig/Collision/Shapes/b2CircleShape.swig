@@ -32,17 +32,26 @@
 //----------------------------------
 
 %extend b2CircleShape {
-    // Vec2 setter XY
-    void SetPosition(float32 x, float32 y) {
-        $self->m_p.Set(x, y);
-    }
-    // Vec2 getter X
+    // Getter X
     float32 GetX() {
         return $self->m_p.x;
     }
-    // Vec2 getter Y
+    // Setter X
+    void SetX(float32 posX) {
+            $self->m_p.x = posX;
+    }
+    // Getter Y
     float32 GetY() {
         return $self->m_p.y;
+    }
+    // Setter Y
+    void SetY(float32 posY) {
+            $self->m_p.y = posY;
+    }
+    // Setter XY
+    void SetXY(float32 posX, float32 posY) {
+        $self->m_p.x = posX;
+        $self->m_p.y = posY;
     }
 };
 

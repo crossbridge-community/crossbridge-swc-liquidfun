@@ -54,10 +54,52 @@
 //----------------------------------
 
 %extend b2BodyDef {
-    void SetPosition(float32 posX, float32 posY) {
+    /*POSITION*/
+    // Getter X
+    float32 GetX() {
+        return $self->position.x;
+    }
+    // Setter X
+    void SetX(float32 posX) {
+            $self->position.x = posX;
+    }
+    // Getter Y
+    float32 GetY() {
+        return $self->position.y;
+    }
+    // Setter Y
+    void SetY(float32 posY) {
+            $self->position.y = posY;
+    }
+    // Setter XY
+    void SetXY(float32 posX, float32 posY) {
         $self->position.x = posX;
         $self->position.y = posY;
     }
+    /* VELOCITY */
+    // Getter X
+    float32 GetVX() {
+        return $self->linearVelocity.x;
+    }
+    // Setter X
+    void SetVX(float32 posX) {
+            $self->linearVelocity.x = posX;
+    }
+    // Getter Y
+    float32 GetVX() {
+        return $self->linearVelocity.y;
+    }
+    // Setter Y
+    void SetVY(float32 posY) {
+            $self->linearVelocity.y = posY;
+    }
+    // Setter XY
+    void SetVXY(float32 posX, float32 posY) {
+        $self->linearVelocity.x = posX;
+        $self->linearVelocity.y = posY;
+    }
+    /*OTHER*/
+    // Setter Type
     void SetType(int type) {
         $self->type = (b2BodyType)type;
     }

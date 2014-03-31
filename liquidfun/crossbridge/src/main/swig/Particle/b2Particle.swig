@@ -77,10 +77,52 @@
 
 // b2ParticleDef extensions for easier access
 %extend b2ParticleDef {
-    void setPosition(float32 x, float32 y) {
-        $self->position.Set(x, y);
+    /* POSITION */
+    // Getter X
+    float32 GetX() {
+        return $self->position.x;
     }
-
+    // Setter X
+    void SetX(float32 posX) {
+            $self->position.x = posX;
+    }
+    // Getter Y
+    float32 GetY() {
+        return $self->position.y;
+    }
+    // Setter Y
+    void SetY(float32 posY) {
+            $self->position.y = posY;
+    }
+    // Setter XY
+    void SetXY(float32 posX, float32 posY) {
+        $self->position.x = posX;
+        $self->position.y = posY;
+    }
+    /* VELOCITY */
+    // Getter X
+    float32 GetVX() {
+        return $self->velocity.x;
+    }
+    // Setter X
+    void SetVX(float32 posX) {
+            $self->velocity.x = posX;
+    }
+    // Getter Y
+    float32 GetVY() {
+        return $self->velocity.y;
+    }
+    // Setter Y
+    void SetVY(float32 posY) {
+            $self->velocity.y = posY;
+    }
+    // Setter XY
+    void SetVXY(float32 posX, float32 posY) {
+        $self->velocity.x = posX;
+        $self->velocity.y = posY;
+    }
+    /*OTHER*/
+    // Setter Color
     void setColor(int32 r, int32 g, int32 b, int32 a) {
         $self->color.Set(r, g, b, a);
     }

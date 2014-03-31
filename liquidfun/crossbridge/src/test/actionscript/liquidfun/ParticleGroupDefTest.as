@@ -59,6 +59,16 @@ public class ParticleGroupDefTest extends Sprite {
     [Test]
     public function test_constructor():void {
         var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
+        // position
+        Assert.assertEquals(particleGroupDef.getX(), 0);
+        Assert.assertEquals(particleGroupDef.getY(), 0);
+        particleGroupDef.setX(10);
+        particleGroupDef.setY(20);
+        Assert.assertEquals(particleGroupDef.getX(), 10);
+        Assert.assertEquals(particleGroupDef.getY(), 20);
+        particleGroupDef.setXY(30,40);
+        Assert.assertEquals(particleGroupDef.getX(), 30);
+        Assert.assertEquals(particleGroupDef.getY(), 40);
         //
         particleGroupDef.angle = 1;
         // cleanup
