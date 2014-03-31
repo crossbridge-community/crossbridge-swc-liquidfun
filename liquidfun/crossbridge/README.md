@@ -16,7 +16,7 @@ need for building LiquidFun for Flash:
 
 ### Env. Variable Requirements
 
-In order to get the build scripts working, set the following environment variables (format if important):
+In order to get the build scripts working, set the following environment variables (style is important):
 
 * FLASCC_ROOT=\SDK_DIR\adobe-crossbridge\1.0.1
 * FLASCC_AIR_ROOT=/cygdrive/c/SDK_DIR/adobe-air/4.0.0
