@@ -50,12 +50,6 @@ public class PyramidExample extends BaseExample {
     private var boxes:Vector.<LFRectangle> = new Vector.<LFRectangle>();
 
     //----------------------------------
-    //  Private static variables
-    //----------------------------------
-
-    private static var _currentSeed:uint = 1234;
-
-    //----------------------------------
     //  Constructor
     //----------------------------------
 
@@ -78,6 +72,8 @@ public class PyramidExample extends BaseExample {
      * @private
      */
     override protected function onRemoved(event:Event):void {
+        super.onRemoved(event);
+
         var i:int;
         var n:int;
         n = boxes.length;
@@ -105,18 +101,6 @@ public class PyramidExample extends BaseExample {
                 addChild(bs);
             }
         }
-    }
-
-    // ======================================================
-    // The following code is from Grant Skinner's Rndm.as
-    // ======================================================
-
-    /**
-     * @private
-     * @return a number between 0-1 exclusive.
-     */
-    private function random():Number {
-        return (_currentSeed = (_currentSeed * 16807) % 2147483647) / 0x7FFFFFFF + 0.000000000233;
     }
 
 }

@@ -28,11 +28,6 @@
 package liquidfun.tests {
 import flash.events.Event;
 
-import liquidfun.display.LFCircle;
-import liquidfun.display.LFRectangle;
-import liquidfun.utils.LFGlobals;
-import liquidfun.utils.RandomUtil;
-
 //----------------------------------
 //  Metadata
 //----------------------------------
@@ -43,43 +38,30 @@ import liquidfun.utils.RandomUtil;
  *
  * @author Andras Csizmadia
  */
-public class HelloWorldExample extends BaseExample {
+public class ParticlesExample extends BaseExample {
 
     //----------------------------------
     //  Private variables
     //----------------------------------
 
-    private var boxes:Vector.<LFRectangle> = new Vector.<LFRectangle>();
-
-    private var circles:Vector.<LFCircle> = new Vector.<LFCircle>();
-
     //----------------------------------
-    //  Private static constants
+    //  Private static variables
     //----------------------------------
 
-    private static const MAX_ITEMS:int = 200;
+    private static var _currentSeed:uint = 1234;
 
     //----------------------------------
     //  Constructor
     //----------------------------------
 
-    public function HelloWorldExample() {
+    public function ParticlesExample() {
     }
 
     /**
      * @private
      */
     override public function update():void {
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            boxes[i].update();
-        }
-        n = circles.length;
-        for (i = 0; i < n; i++) {
-            circles[i].update();
-        }
+
     }
 
     /**
@@ -88,20 +70,6 @@ public class HelloWorldExample extends BaseExample {
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
 
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-            removeChild(boxes[i]);
-        }
-        n = circles.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(circles[i].body.swigCPtr);
-            removeChild(circles[i]);
-        }
-        circles.length = 0;
-        boxes.length = 0;
     }
 
     /**
@@ -110,24 +78,6 @@ public class HelloWorldExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
-        var wall:LFRectangle = new LFRectangle(400, 300, 200, 5, LFGlobals.world, false);
-        boxes.push(wall);
-        addChild(wall);
-
-        // boxes
-        for (var i:int = 0; i < MAX_ITEMS; i++) {
-            var bs:LFRectangle = new LFRectangle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 10 + RandomUtil.float() * 5, 10 + RandomUtil.float() * 5, LFGlobals.world);
-            boxes.push(bs);
-            addChild(bs);
-        }
-        // circles
-        for (var j:int = 0; j < MAX_ITEMS; j++) {
-            var bc:LFCircle = new LFCircle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 5 + RandomUtil.float() * 5, LFGlobals.world);
-            circles.push(bc);
-            addChild(bc);
-        }
-
-        trace("Created " + MAX_ITEMS * 2 + " objects.");
     }
 
 }
