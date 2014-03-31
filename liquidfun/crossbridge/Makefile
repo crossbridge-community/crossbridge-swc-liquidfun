@@ -69,7 +69,7 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" -fcompact -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
 	########################################
 	# Generating ABC ...
 	########################################

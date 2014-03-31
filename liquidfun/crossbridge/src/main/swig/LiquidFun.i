@@ -87,6 +87,7 @@ int main() {
 // Core End
 ///////////////////////////////////////
 
+// overwrite AS3 swig wrapper behaviour
 %apply int {unsigned char, signed char};
 
 ///////////////////////////////////////
@@ -97,6 +98,9 @@ int main() {
 
 // enable compact default arguments feature
 %feature("compactdefaultargs");
+
+// allow const reference typemaps
+%naturalvar;
 
 ///////////////////////////////////////
 // Renames

@@ -101,6 +101,24 @@ public class BodyDefTest extends Sprite {
     }
 
     [Test]
+    public function test_reconstruct():void {
+        var bodyDef:BodyDef = BodyDef.create();
+        // assert default value
+        Assert.assertEquals(bodyDef.type, LiquidFun.STATIC_BODY);
+        // modify first
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+        // destroy first
+        bodyDef.destroy();
+        // create second
+        bodyDef = BodyDef.create();
+        // assert default value
+        Assert.assertEquals(bodyDef.type, LiquidFun.STATIC_BODY);
+        // cleanup
+        bodyDef.destroy();
+        bodyDef = null;
+    }
+
+    [Test]
     public function test_get_set():void {
         var bodyDef:BodyDef = BodyDef.create();
         // position

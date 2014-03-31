@@ -34,7 +34,6 @@ import flexunit.framework.Assert;
 
 public class FixtureDefTest extends Sprite {
 
-
     public function FixtureDefTest() {
         CModule.rootSprite = this;
         super();
@@ -80,16 +79,18 @@ public class FixtureDefTest extends Sprite {
     [Test]
     public function test_get_set():void {
         var fixtureDef:FixtureDef = FixtureDef.create();
-        // density
-        fixtureDef.density = 1;
-        // filter
-        fixtureDef.filter = 1;
         // friction
         fixtureDef.friction = 1;
-        // isSensor
-        fixtureDef.isSensor = true;
+        Assert.assertEquals(fixtureDef.friction, 1);
         // restitution
         fixtureDef.restitution = 1;
+        Assert.assertEquals(fixtureDef.restitution, 1);
+        // density
+        fixtureDef.density = 1;
+        Assert.assertEquals(fixtureDef.density, 1);
+        // isSensor
+        fixtureDef.isSensor = true;
+        Assert.assertEquals(fixtureDef.isSensor, true);
         // cleanup
         fixtureDef.destroy();
         fixtureDef = null;
