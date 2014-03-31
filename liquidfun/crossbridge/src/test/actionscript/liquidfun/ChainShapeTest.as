@@ -37,9 +37,9 @@ import flexunit.framework.Assert;
  *
  * @author Andras Csizmadia
  */
-public class ParticleDefTest extends Sprite {
+public class ChainShapeTest extends Sprite {
 
-    public function ParticleDefTest() {
+    public function ChainShapeTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -62,54 +62,9 @@ public class ParticleDefTest extends Sprite {
 
     [Test]
     public function test_construct():void {
-        /*
-         flags = 0;
-         position = b2Vec2_zero;
-         velocity = b2Vec2_zero;
-         color = b2ParticleColor_zero;
-         lifetime = 0.0f;
-         userData = NULL;
-         group = NULL;
-         */
-        var particleDef:ParticleDef = ParticleDef.create();
-        // default properties
-        Assert.assertEquals(particleDef.flags, 0);
-        Assert.assertEquals(particleDef.getX(), 0);
-        Assert.assertEquals(particleDef.getY(), 0);
-        Assert.assertEquals(particleDef.getVX(), 0);
-        Assert.assertEquals(particleDef.getVY(), 0);
-        Assert.assertEquals(particleDef.lifetime, 0);
-        // cleanup
-        particleDef.destroy();
-        particleDef = null;
-    }
-
-    [Test]
-    public function test_get_set():void {
-        var particleDef:ParticleDef = ParticleDef.create();
-        // position
-        particleDef.setX(10);
-        particleDef.setY(20);
-        Assert.assertEquals(particleDef.getX(), 10);
-        Assert.assertEquals(particleDef.getY(), 20);
-        particleDef.setXY(30, 40);
-        Assert.assertEquals(particleDef.getX(), 30);
-        Assert.assertEquals(particleDef.getY(), 40);
-        // color
-        particleDef.setColor(0xFF, 0x00, 0xFF, 0xFF);
-        //Assert.assertEquals(particleDef.color, 0xFF00FF);
-        // lifetime
-        particleDef.lifetime = 50;
-        Assert.assertEquals(particleDef.lifetime, 50);
-        // group
-        particleDef.group = 1;
-        Assert.assertEquals(particleDef.group, 1);
-        // flags
-        particleDef.flags = 2;
-        Assert.assertEquals(particleDef.flags, 2);
-        // cleanup
-        particleDef.destroy();
-        particleDef = null;
+        var shape:ChainShape = ChainShape.create();
+        Assert.assertEquals(shape.getChildCount(), -1);
+        shape.destroy();
     }
 
 }

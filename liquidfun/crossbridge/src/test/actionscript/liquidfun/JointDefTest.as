@@ -57,6 +57,24 @@ public class JointDefTest extends Sprite {
     }
 
     [Test]
+    public function test_construct():void {
+        /*
+         type = e_unknownJoint;
+         userData = NULL;
+         bodyA = NULL;
+         bodyB = NULL;
+         collideConnected = false;
+         */
+        var jointDef:JointDef = JointDef.create();
+        // default properties
+        Assert.assertFalse(jointDef.collideConnected);
+        Assert.assertEquals(jointDef.type, LiquidFun.JOINT_UNKNOWN);
+        // cleanup
+        jointDef.destroy();
+        jointDef = null;
+    }
+
+    [Test]
     public function test_get_set():void {
         var jointDef:JointDef = JointDef.create();
         // collideConnected

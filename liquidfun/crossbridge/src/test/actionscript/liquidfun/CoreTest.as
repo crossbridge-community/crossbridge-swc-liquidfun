@@ -29,12 +29,15 @@ package liquidfun {
 import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
+import flash.net.LocalConnection;
+import flash.system.System;
+import flash.utils.Dictionary;
 
-import flexunit.framework.Assert;
+public class CoreTest extends Sprite {
 
-public class ColorTest extends Sprite {
+    private var dictionary:Dictionary = new Dictionary(true);
 
-    public function ColorTest() {
+    public function CoreTest() {
         CModule.rootSprite = this;
         super();
     }
@@ -56,45 +59,46 @@ public class ColorTest extends Sprite {
     }
 
     [Test]
-    public function test_reconstruct():void {
-        var color:Color = Color.create(255, 254, 253);
-        Assert.assertEquals(color.r, 255);
-        Assert.assertEquals(color.g, 254);
-        Assert.assertEquals(color.b, 253);
-        color.destroy();
-        // Destroy does not clear color values
-        /*Assert.assertEquals(color.r, 0);
-         Assert.assertEquals(color.g, 0);
-         Assert.assertEquals(color.b, 0);*/
-        color = Color.create(252, 251, 250);
-        Assert.assertEquals(color.r, 252);
-        Assert.assertEquals(color.g, 251);
-        Assert.assertEquals(color.b, 250);
-        // cleanup
-        color.destroy();
-        color = null;
+    public function test_memory_leak():void {
+        gc();
+        trace(this, Number((System.totalMemoryNumber * 0.000000954).toFixed(3)) + " Mb");
+        for (var i:int = 0; i < 100000; i++) {
+            var vector:Vec2 = Vec2.create();
+            dictionary[vector] = true;
+            vector.destroy();
+            vector = null;
+        }
+        gc();
+        trace(this, Number((System.totalMemoryNumber * 0.000000954).toFixed(3)) + " Mb");
+        for (var o:* in dictionary) {
+            trace(o);
+        }
     }
 
-    [Test]
-    public function test_construct_zero():void {
-        var color:Color = Color.create(0, 0, 0);
-        Assert.assertEquals(color.r, 0);
-        Assert.assertEquals(color.g, 0);
-        Assert.assertEquals(color.b, 0);
-        // cleanup
-        color.destroy();
-        color = null;
+    /**
+     * Call Garbage Collector
+     */
+    public static function gc():void {
+        // mark & sweep
+        System.pauseForGCIfCollectionImminent(0);
+        System.pauseForGCIfCollectionImminent(0);
+        // Call debugger supported GC
+        try {
+            // mark & sweep
+            System.gc();
+            System.gc();
+        } catch (error:Error) {
+        }
+        // unsupported hack that seems to force a *full* GC
+        try {
+            var lc1:LocalConnection = new LocalConnection();
+            var lc2:LocalConnection = new LocalConnection();
+            lc1.connect('name');
+            lc2.connect('name');
+        } catch (error:Error) {
+        }
     }
 
-    [Test]
-    public function test_construct_salmon():void {
-        var color:Color = Color.create(0xFA, 0x80, 0x72);
-        Assert.assertEquals(color.r, 0xFA);
-        Assert.assertEquals(color.g, 0x80);
-        Assert.assertEquals(color.b, 0x72);
-        // cleanup
-        color.destroy();
-        color = null;
-    }
+
 }
 }

@@ -55,11 +55,13 @@ public class WorldTest extends Sprite {
 
     [Before]
     public function setUp():void {
+        //trace(this, "setUp");
         world = World.create(0.0, -10.0);
     }
 
     [After]
     public function tearDown():void {
+        //trace(this, "tearDown");
         world.destroy();
     }
 
@@ -100,76 +102,6 @@ public class WorldTest extends Sprite {
         // cleanup
         bodyDef.destroy();
         fixtureDef.destroy();
-        dynamicBox.destroy();
-        world.destroyBody(body.swigCPtr);
-    }
-
-    [Test]
-    public function test_custom_polygon():void {
-        var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDef.setXY(0.0, 4.0);
-
-        var body:Body = new Body();
-        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
-
-        var dynamicBox:PolygonShape = PolygonShape.create();
-        //dynamicBox.setAsBox(1.0, 1.0);
-        // <-1 -1> <1 -1> <1 1> <-1 1>
-        var vertices:Vector.<Vec2> = new <Vec2>[];
-        var vec:Vec2;
-
-        vec = Vec2.create();
-        vec.set(-1, -1);
-        vertices.push(vec);
-
-        vec = Vec2.create();
-        vec.set(1, -1);
-        vertices.push(vec);
-
-        vec = Vec2.create();
-        vec.set(1, 1);
-        vertices.push(vec);
-
-        vec = Vec2.create();
-        vec.set(-1, 1);
-        vertices.push(vec);
-
-        vertices.reverse();
-
-        var n:uint = vertices.length;
-        var verticePtrsPtr:int = CModule.malloc(n * 4);
-        var verticePtrs:Vector.<int> = new <int>[];
-        for (var j:uint = 0; j < n; j++) {
-            verticePtrs.push(vertices[j].swigCPtr);
-        }
-        CModule.writeIntVector(verticePtrsPtr, verticePtrs);
-        // 4305024,4305016,4305008,4305000
-        trace(this, CModule.readIntVector(verticePtrsPtr, verticePtrs.length));
-        dynamicBox.set(verticePtrsPtr, 4);
-
-        Assert.assertEquals(dynamicBox.getVertexCount(), 4);
-        Assert.assertNotNull(dynamicBox.vertices);
-        Assert.assertNotNull(dynamicBox.normals);
-
-        var n1:Vec2 = Vec2.create();
-        var n2:Vec2 = Vec2.create();
-        var n3:Vec2 = Vec2.create();
-        var n4:Vec2 = Vec2.create();
-        n1.swigCPtr = dynamicBox.getVertex(0);
-        n2.swigCPtr = dynamicBox.getVertex(1);
-        n3.swigCPtr = dynamicBox.getVertex(2);
-        n4.swigCPtr = dynamicBox.getVertex(3);
-        // <-1, -1> <1, -1> <1, 1> <-1, 1>
-        trace(this, "<" + n1.x + " " + n1.y + ">"
-                + "<" + n2.x + " " + n2.y + ">"
-                + "<" + n3.x + " " + n3.y + ">"
-                + "<" + n4.x + " " + n4.y + ">");
-
-
-        // cleanup
-        CModule.free(verticePtrsPtr);
-        bodyDef.destroy();
         dynamicBox.destroy();
         world.destroyBody(body.swigCPtr);
     }
