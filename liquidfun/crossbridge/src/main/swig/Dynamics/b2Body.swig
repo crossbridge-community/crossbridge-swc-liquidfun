@@ -98,11 +98,6 @@
         $self->linearVelocity.x = posX;
         $self->linearVelocity.y = posY;
     }
-    /*OTHER*/
-    // Setter Type
-    void SetType(int type) {
-        $self->type = (b2BodyType)type;
-    }
 };
 
 %extend b2Body {

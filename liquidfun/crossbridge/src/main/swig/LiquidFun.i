@@ -32,7 +32,12 @@
 // @see: http://www.adobe.com/devnet-docs/flascc/docs/capidocs/as3.html
 // @see: https://github.com/adobe-flash/crossbridge/wiki/_pages
 
+///////////////////////////////////////
+// START OF SWIG
+///////////////////////////////////////
+
 #ifdef SWIG
+
 %module LiquidFun
 
 ///////////////////////////////////////
@@ -51,6 +56,12 @@
 
 // Box2D Core
 #include <Box2D/Box2D.h>
+
+// Box2D Extras
+#include <Box2D/Rope/b2Rope.h>
+
+// Box2D Contributions
+//#include <Box2D/Dynamics/Controllers/b2Controller.h>
 
 ///////////////////////////////////////
 // Main
@@ -179,17 +190,19 @@ int main() {
 %include "Dynamics/Joints/b2WeldJoint.swig"
 %include "Dynamics/Joints/b2WheelJoint.swig"
 
+// Extras
 %include "Rope/b2Rope.swig"
 
-%include "Common/b2Draw.swig"
-
 // Contributions
-// %include "Dynamics/Controllers/b2Controller.swig"
+//%include "Dynamics/Controllers/b2Controller.swig"
+
+// Debug Draw
+%include "Common/b2Draw.swig"
 
 #endif
 
 ///////////////////////////////////////
-// END OF SWIG DIRECTIVES
+// END OF SWIG
 ///////////////////////////////////////
 
 #include <Box2D/Box2D.h>

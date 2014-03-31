@@ -93,24 +93,22 @@ public class WorldTest extends Sprite {
 
         world.step(timeStep, velocityIterations, positionIterations, particleIterations);
 
-        var angle:Number = body.getAngle();
-
-        // body: 0, 3.9972221851348877, 0
-        trace(this, "body: " + body.getX() + ", " + body.getY() + ", " + angle);
-
         Assert.assertNotNull(body.getX());
         Assert.assertNotNull(body.getY());
-        Assert.assertTrue(angle != NaN);
+        Assert.assertTrue(body.getAngle() != NaN);
+
+        // cleanup
+        bodyDef.destroy();
+        fixtureDef.destroy();
+        dynamicBox.destroy();
+        world.destroyBody(body.swigCPtr);
     }
 
     [Test]
     public function test_custom_polygon():void {
-        var bodyDefPos:Vec2 = Vec2.create()
-        bodyDefPos.set(0.0, 4.0);
-
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDef.position = bodyDefPos.swigCPtr;
+        bodyDef.setXY(0.0, 4.0);
 
         var body:Body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
@@ -168,7 +166,12 @@ public class WorldTest extends Sprite {
                 + "<" + n3.x + " " + n3.y + ">"
                 + "<" + n4.x + " " + n4.y + ">");
 
+
+        // cleanup
         CModule.free(verticePtrsPtr);
+        bodyDef.destroy();
+        dynamicBox.destroy();
+        world.destroyBody(body.swigCPtr);
     }
 
 }
