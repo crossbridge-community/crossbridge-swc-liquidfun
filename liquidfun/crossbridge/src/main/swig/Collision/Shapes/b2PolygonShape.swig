@@ -28,21 +28,27 @@
 %module b2PolygonShape
 
 //----------------------------------
+//  Ignores
+//----------------------------------
+
+// duplicates method
+%ignore b2Shape::Clone;
+
+//----------------------------------
 //  Renames
 //----------------------------------
 
-%rename(setAsBox2) b2PolygonShape::SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
+%rename(setAsBoxWithCenterPtr) b2PolygonShape::SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
 
 //----------------------------------
 //  Extensions
 //----------------------------------
 
 %extend b2PolygonShape {
-    void SetCentroid2(float32 x, float32 y) {
+    void SetCentroidXY(float32 x, float32 y) {
         $self->m_centroid.Set(x, y);
     }
-
-    void SetAsBox3(
+    void SetAsBoxWithCenter(
             float32 hx,
             float32 hy,
             float32 centerX,

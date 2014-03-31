@@ -76,7 +76,7 @@ public class PolygonShapeTest extends Sprite {
 
     }
 
-    /*[Test]
+     [Test]
      public function test_set_vertices():void {
      var shape:PolygonShape = PolygonShape.create();
      //dynamicBox.setAsBox(1.0, 1.0);
@@ -132,7 +132,7 @@ public class PolygonShapeTest extends Sprite {
      // cleanup
      CModule.free(verticePtrsPtr);
      shape.destroy();
-     }*/
+     }
 
 }
 }

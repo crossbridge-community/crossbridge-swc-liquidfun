@@ -43,6 +43,7 @@ import flash.ui.Keyboard;
 import liquidfun.display.*;
 import liquidfun.tests.*;
 import liquidfun.utils.*;
+
 import net.hires.debug.Stats;
 
 //----------------------------------
@@ -73,7 +74,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var isDrawDebug:Boolean;
 
-    private var debugDraw:Draw;
+    private var debugDraw:LFDebugDraw;
 
     private const tests:Vector.<Class> = Vector.<Class>([
         HelloWorldExample
@@ -134,12 +135,19 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, -10.0);
-        world.dump();
 
         // Create debug draw instance and assign to world
-        debugDraw = new Draw();
-        debugDraw.setFlags(Draw.SHAPE_BIT | Draw.JOINT_BIT);
+       /* debugDraw = new LFDebugDraw();
         world.setDebugDraw(debugDraw.swigCPtr);
+        //trace(debugDraw.getFlags());
+        debugDraw.setFlags(Draw.SHAPE_BIT
+                | Draw.JOINT_BIT
+                | Draw.CENTER_OF_MASS_BIT
+                | Draw.PARTICLE_BIT);*/
+        //trace(debugDraw.getFlags());
+
+        // Test b2Log trace
+        world.dump();
 
         var wall:LFRectangle;
         /*

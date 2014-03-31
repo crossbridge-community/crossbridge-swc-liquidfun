@@ -38,6 +38,7 @@
 %ignore b2Body::GetNext();
 %ignore b2Body::GetWorld();
 %ignore b2Body::SetTransform(b2Vec2 const &,float32);
+%ignore b2Body::SetLinearVelocity(b2Vec2 const &);
 
 //----------------------------------
 //  Renames
@@ -47,7 +48,7 @@
 %rename (KINEMATIC_BODY) b2_kinematicBody;
 %rename (DYNAMIC_BODY) b2_dynamicBody;
 //%rename (BULLET_BODY) b2_bulletBody;
-%rename(createFixture2) CreateFixture(const b2Shape* shape, float32 density);
+%rename(createFixtureWithDensity) CreateFixture(const b2Shape* shape, float32 density);
 
 //----------------------------------
 //  Extensions
@@ -101,16 +102,62 @@
 };
 
 %extend b2Body {
+    /* POSITION */
+    // Getter X
     float32 GetX() {
         return $self->GetPosition().x;
     }
-
+    // Getter Y
     float32 GetY() {
         return $self->GetPosition().y;
     }
-
+    /* WORLD CENTER */
+    // Getter X
+    float32 GetWorldCenterX() {
+        return $self->GetWorldCenter().x;
+    }
+    // Getter Y
+    float32 GetWorldCenterY() {
+        return $self->GetWorldCenter().y;
+    }
+    /* LOCAL CENTER */
+    // Getter X
+    float32 GetLocalCenterX() {
+        return $self->GetLocalCenter().x;
+    }
+    // Getter Y
+    float32 GetLocalCenterY() {
+        return $self->GetLocalCenter().y;
+    }
+    /* TRANSFORM */
+    // Setter
     void SetTransform(float32 posX, float32 posY, float32 angle) {
         $self->SetTransform(b2Vec2(posX, posY), angle);
+    }
+    // Getter X
+    float32 GetTransformX() {
+        return $self->GetTransform().p.x;
+    }
+    // Getter Y
+    float32 GetTransformY() {
+        return $self->GetTransform().p.y;
+    }
+    // Getter A
+    float32 GetTransformA() {
+        return $self->GetTransform().q.GetAngle();
+    }
+    /* LINEAR VELOCITY */
+    // Setter
+    void SetLinearVelocity(float32 x, float32 y) {
+        $self->SetLinearVelocity(b2Vec2(x, y));
+    }
+    // Getter X
+    float32 GetLinearVelocityX() {
+        return $self->GetLinearVelocity().x;
+    }
+    // Getter Y
+    float32 GetLinearVelocityY() {
+        return $self->GetLinearVelocity().y;
     }
 };
 
