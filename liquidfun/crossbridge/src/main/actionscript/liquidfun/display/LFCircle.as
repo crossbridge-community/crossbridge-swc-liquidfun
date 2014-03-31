@@ -46,6 +46,7 @@ public class LFCircle extends LFBaseShape {
         bodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
         bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
+
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
@@ -55,15 +56,14 @@ public class LFCircle extends LFBaseShape {
         fixtureDef = FixtureDef.create();
         fixtureDef.shape = dynamicBox.swigCPtr;
         fixtureDef.density = 1.0;
-        fixtureDef.friction = 0.3;
+        fixtureDef.friction = 0.1 + (Math.random() * 1);
+        fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
         body.createFixture(fixtureDef.swigCPtr);
 
         update();
     }
 
     public function update():void {
-        if (!stage)
-            return;
         matrix.identity();
         matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
         transform.matrix = matrix;

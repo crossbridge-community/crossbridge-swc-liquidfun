@@ -73,12 +73,9 @@ public class WorldTest extends Sprite {
 
     [Test]
     public function test_world():void {
-        var bodyDefPos:Vec2 = Vec2.create();
-        bodyDefPos.set(0.0, 4.0);
-
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDef.position = bodyDefPos.swigCPtr;
+        bodyDef.setXY(0.0, 4.0);
 
         var body:Body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
@@ -96,14 +93,13 @@ public class WorldTest extends Sprite {
 
         world.step(timeStep, velocityIterations, positionIterations, particleIterations);
 
-        var pos:Vec2 = new Vec2();
-        pos.swigCPtr = body.getPosition();
         var angle:Number = body.getAngle();
 
         // body: 0, 3.9972221851348877, 0
-        trace(this, "body: " + pos.x + ", " + pos.y + ", " + angle);
+        trace(this, "body: " + body.getX() + ", " + body.getY() + ", " + angle);
 
-        Assert.assertNotNull(pos);
+        Assert.assertNotNull(body.getX());
+        Assert.assertNotNull(body.getY());
         Assert.assertTrue(angle != NaN);
     }
 

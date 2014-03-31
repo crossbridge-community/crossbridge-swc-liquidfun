@@ -26,7 +26,6 @@ import liquidfun.utils.*;
 
 public class LFRectangle extends LFBaseShape {
     public var bodyDef:BodyDef;
-    public var bodyDefPos:Vec2;
     public var body:Body;
     public var dynamicBox:PolygonShape;
     public var fixtureDef:FixtureDef;
@@ -48,9 +47,9 @@ public class LFRectangle extends LFBaseShape {
 
         bodyDef = BodyDef.create();
         bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
-        bodyDefPos = Vec2.create()
-        bodyDefPos.set(_x / LFGlobals.scale, _y / LFGlobals.scale);
-        bodyDef.position = bodyDefPos.swigCPtr;
+        bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
+        ;
+
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
 
@@ -60,24 +59,21 @@ public class LFRectangle extends LFBaseShape {
         fixtureDef = FixtureDef.create();
         fixtureDef.shape = dynamicBox.swigCPtr;
 
-        if (isDynamic)
-            fixtureDef.density = 1.0;
-
-        fixtureDef.friction = 0.3;
+        fixtureDef.density = 1.0;
+        fixtureDef.friction = 0.1 + (Math.random() * 1);
+        fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
 
         body.createFixture(fixtureDef.swigCPtr);
 
+        //trace(/*bodyDefPos.x, bodyDefPos.y,*/body.getX(),body.getY())
         update();
     }
 
     public function update():void {
-
-        bodyDefPos.swigCPtr = body.getPosition();
         matrix.identity();
         matrix.translate(-w * 0.5, -h * 0.5);
         matrix.rotate(-body.getAngle());
-        // matrix.translate(w * 0.5, h * 0.5);
-        matrix.translate(bodyDefPos.x * LFGlobals.scale, 600 - (bodyDefPos.y * LFGlobals.scale));
+        matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
         transform.matrix = matrix;
     }
 
