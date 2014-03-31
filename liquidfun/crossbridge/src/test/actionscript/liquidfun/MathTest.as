@@ -32,6 +32,11 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class MathTest extends Sprite {
     public function MathTest() {
         CModule.rootSprite = this;

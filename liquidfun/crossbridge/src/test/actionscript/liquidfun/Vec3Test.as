@@ -32,6 +32,11 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class Vec3Test extends Sprite {
 
     private var vec3:Vec3;

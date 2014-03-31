@@ -32,6 +32,11 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class WorldTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation
@@ -64,27 +69,6 @@ public class WorldTest extends Sprite {
 
     [AfterClass]
     public static function tearDownAfterClass():void {
-    }
-
-    [Test]
-    public function test_draw():void {
-        var draw:Draw = new Draw();
-        Assert.assertNotNull(draw);
-        draw.appendFlags(Draw.AABB_BIT);
-        draw.appendFlags(Draw.CENTER_OF_MASS_BIT);
-        draw.appendFlags(Draw.JOINT_BIT);
-        draw.appendFlags(Draw.PAIR_BIT);
-        draw.appendFlags(Draw.PARTICLE_BIT);
-        draw.appendFlags(Draw.SHAPE_BIT);
-        Assert.assertEquals(draw.getFlags(), 63);
-        // cleanup
-        draw.destroy();
-        draw = null;
-    }
-
-    [Test]
-    public function test_world_get_version_string():void {
-        Assert.assertEquals(world.getVersionString(), "LiquidFun 1.0.0");
     }
 
     [Test]
@@ -121,38 +105,6 @@ public class WorldTest extends Sprite {
 
         Assert.assertNotNull(pos);
         Assert.assertTrue(angle != NaN);
-    }
-
-    [Test]
-    public function test_body():void {
-        var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.allowSleep = false;
-        bodyDef.awake = true;
-        bodyDef.active = true;
-        bodyDef.bullet = true;
-        bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        var body:Body = new Body();
-        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
-        Assert.assertEquals(body.getType(), bodyDef.type);
-        Assert.assertEquals(body.isSleepingAllowed(), bodyDef.allowSleep);
-        Assert.assertEquals(body.isAwake(), bodyDef.awake);
-        Assert.assertEquals(body.isActive(), bodyDef.active);
-        Assert.assertEquals(body.isBullet(), bodyDef.bullet);
-        // cleanup
-        world.destroyBody(body.swigCPtr);
-    }
-
-    [Test]
-    public function test_body_setType_getType():void {
-        var body:Body = new Body();
-        body.setType(LiquidFun.KINEMATIC_BODY);
-        Assert.assertEquals(body.getType(), LiquidFun.KINEMATIC_BODY);
-        body.setType(LiquidFun.STATIC_BODY);
-        Assert.assertEquals(body.getType(), LiquidFun.STATIC_BODY);
-        body.setType(LiquidFun.DYNAMIC_BODY);
-        Assert.assertEquals(body.getType(), LiquidFun.DYNAMIC_BODY);
-        // cleanup
-        world.destroyBody(body.swigCPtr);
     }
 
     [Test]

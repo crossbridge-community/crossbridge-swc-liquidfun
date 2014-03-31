@@ -30,6 +30,13 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
+import flexunit.framework.Assert;
+
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class ParticleSystemDefTest extends Sprite {
 
 
@@ -55,9 +62,42 @@ public class ParticleSystemDefTest extends Sprite {
     }
 
     [Test]
-    public function test_constructor():void {
+    public function test_construct():void {
+        /*
+         radius = 1.0f;
+         pressureStrength = 0.05f;
+         dampingStrength = 1.0f;
+         elasticStrength = 0.25f;
+         springStrength = 0.25f;
+         viscousStrength = 0.25f;
+         surfaceTensionPressureStrength = 0.2f;
+         surfaceTensionNormalStrength = 0.2f;
+         repulsiveStrength = 1.0f;
+         powderStrength = 0.5f;
+         ejectionStrength = 0.5f;
+         staticPressureStrength = 0.2f;
+         staticPressureRelaxation = 0.2f;
+         staticPressureIterations = 8;
+         colorMixingStrength = 0.5f;
+         destroyByAge = true;
+         lifetimeGranularity = 1.0f / 60.0f;
+         */
         var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
-        //  colorMixingStrength
+        // default properties
+        Assert.assertEquals(particleSystemDef.radius, 1);
+        Assert.assertEquals(particleSystemDef.pressureStrength, 0.05000000074505806);
+        Assert.assertEquals(particleSystemDef.dampingStrength, 1);
+        Assert.assertEquals(particleSystemDef.elasticStrength, 0.25);
+        Assert.assertEquals(particleSystemDef.viscousStrength, 0.25);
+        // cleanup
+        particleSystemDef.destroy();
+        particleSystemDef = null;
+    }
+
+    [Test]
+    public function test_get_set():void {
+        var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
+        // colorMixingStrength
         particleSystemDef.colorMixingStrength = 1;
         // cleanup
         particleSystemDef.destroy();

@@ -32,8 +32,12 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class ParticleGroupDefTest extends Sprite {
-
 
     public function ParticleGroupDefTest() {
         CModule.rootSprite = this;
@@ -57,7 +61,43 @@ public class ParticleGroupDefTest extends Sprite {
     }
 
     [Test]
-    public function test_constructor():void {
+    public function test_construct():void {
+        /*
+         flags = 0;
+         groupFlags = 0;
+         position = b2Vec2_zero;
+         angle = 0;
+         linearVelocity = b2Vec2_zero;
+         angularVelocity = 0;
+         color = b2ParticleColor_zero;
+         strength = 1;
+         shape = NULL;
+         shapes = NULL;
+         shapeCount = 0;
+         stride = 0;
+         particleCount = 0;
+         positionData = NULL;
+         lifetime = 0.0f;
+         userData = NULL;
+         group = NULL;
+         */
+        var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
+        // default properties
+        Assert.assertEquals(particleGroupDef.flags, 0);
+        Assert.assertEquals(particleGroupDef.groupFlags, 0);
+        Assert.assertEquals(particleGroupDef.angle, 0);
+        Assert.assertEquals(particleGroupDef.angularVelocity, 0);
+        Assert.assertEquals(particleGroupDef.strength, 1);
+        Assert.assertEquals(particleGroupDef.shapeCount, 0);
+        Assert.assertEquals(particleGroupDef.stride, 0);
+        Assert.assertEquals(particleGroupDef.lifetime, 0);
+        // cleanup
+        particleGroupDef.destroy();
+        particleGroupDef = null;
+    }
+
+    [Test]
+    public function test_get_set():void {
         var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
         // position
         Assert.assertEquals(particleGroupDef.getX(), 0);

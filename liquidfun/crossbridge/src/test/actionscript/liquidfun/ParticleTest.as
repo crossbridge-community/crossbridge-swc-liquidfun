@@ -30,6 +30,11 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class ParticleTest extends Sprite {
     // Prepare for simulation. Typically we use a time step of 1/60 of a
     // second (60Hz) and 10 iterations. This provides a high quality simulation

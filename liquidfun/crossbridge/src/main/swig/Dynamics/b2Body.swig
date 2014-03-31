@@ -86,7 +86,7 @@
             $self->linearVelocity.x = posX;
     }
     // Getter Y
-    float32 GetVX() {
+    float32 GetVY() {
         return $self->linearVelocity.y;
     }
     // Setter Y

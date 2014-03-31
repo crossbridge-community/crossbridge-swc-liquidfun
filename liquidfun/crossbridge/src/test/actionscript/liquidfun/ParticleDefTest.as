@@ -32,8 +32,12 @@ import flash.display.Sprite;
 
 import flexunit.framework.Assert;
 
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
 public class ParticleDefTest extends Sprite {
-
 
     public function ParticleDefTest() {
         CModule.rootSprite = this;
@@ -57,7 +61,27 @@ public class ParticleDefTest extends Sprite {
     }
 
     [Test]
-    public function test_constructor():void {
+    public function test_construct():void {
+        /*
+         flags = 0;
+         position = b2Vec2_zero;
+         velocity = b2Vec2_zero;
+         color = b2ParticleColor_zero;
+         lifetime = 0.0f;
+         userData = NULL;
+         group = NULL;
+         */
+        var particleDef:ParticleDef = ParticleDef.create();
+        // default properties
+        Assert.assertEquals(particleDef.flags, 0);
+        Assert.assertEquals(particleDef.lifetime, 0);
+        // cleanup
+        particleDef.destroy();
+        particleDef = null;
+    }
+
+    [Test]
+    public function test_get_set():void {
         var particleDef:ParticleDef = ParticleDef.create();
         // position
         Assert.assertEquals(particleDef.getX(), 0);

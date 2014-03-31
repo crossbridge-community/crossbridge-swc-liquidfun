@@ -57,7 +57,7 @@ public class JointDefTest extends Sprite {
     }
 
     [Test]
-    public function test_constructor():void {
+    public function test_get_set():void {
         var jointDef:JointDef = JointDef.create();
         // collideConnected
         Assert.assertFalse(jointDef.collideConnected);

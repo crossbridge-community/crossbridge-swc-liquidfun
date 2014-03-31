@@ -30,6 +30,8 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
+import flexunit.framework.Assert;
+
 public class FixtureDefTest extends Sprite {
 
 
@@ -55,7 +57,28 @@ public class FixtureDefTest extends Sprite {
     }
 
     [Test]
-    public function test_constructor():void {
+    public function test_construct():void {
+        /*
+         shape = NULL;
+         userData = NULL;
+         friction = 0.2f;
+         restitution = 0.0f;
+         density = 0.0f;
+         isSensor = false;
+         */
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        // default properties
+        Assert.assertEquals(fixtureDef.friction, 0.20000000298023224);
+        Assert.assertEquals(fixtureDef.restitution, 0);
+        Assert.assertEquals(fixtureDef.density, 0);
+        Assert.assertEquals(fixtureDef.isSensor, false);
+        // cleanup
+        fixtureDef.destroy();
+        fixtureDef = null;
+    }
+
+    [Test]
+    public function test_get_set():void {
         var fixtureDef:FixtureDef = FixtureDef.create();
         // density
         fixtureDef.density = 1;
@@ -67,8 +90,6 @@ public class FixtureDefTest extends Sprite {
         fixtureDef.isSensor = true;
         // restitution
         fixtureDef.restitution = 1;
-        // userData
-        fixtureDef.userData = 1;
         // cleanup
         fixtureDef.destroy();
         fixtureDef = null;
