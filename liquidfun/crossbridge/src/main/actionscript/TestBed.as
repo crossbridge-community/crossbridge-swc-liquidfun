@@ -39,14 +39,10 @@ import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
-import flash.utils.getTimer;
 
-import liquidfun.tests.BaseExample;
-import liquidfun.tests.HelloWorldExample;
-import liquidfun.tests.PyramidExample;
-import liquidfun.utils.LFGlobals;
-import liquidfun.display.LFRectangle;
-
+import liquidfun.display.*;
+import liquidfun.tests.*;
+import liquidfun.utils.*;
 import net.hires.debug.Stats;
 
 //----------------------------------
@@ -79,7 +75,13 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var debugDraw:Draw;
 
-    private const tests:Vector.<Class> = Vector.<Class>([HelloWorldExample,PyramidExample]);
+    private const tests:Vector.<Class> = Vector.<Class>([
+        HelloWorldExample
+        , PyramidExample
+        , VerticalStackExample
+        , VaryingRestitutionExample
+        , ParticlesExample
+    ]);
 
     //----------------------------------
     //  Private static constants
@@ -179,7 +181,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
         // draw debug if enabled
-        if(isDrawDebug)
+        if (isDrawDebug)
             world.drawDebugData();
         // update current test
         if (currentTest && currentTest.parent)

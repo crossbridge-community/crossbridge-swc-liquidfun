@@ -34,21 +34,11 @@ import flash.events.Event;
 [SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
 
 /**
- * Hello LiquidFun Physics World Example
+ * TBD
  *
  * @author Andras Csizmadia
  */
 public class ParticlesExample extends BaseExample {
-
-    //----------------------------------
-    //  Private variables
-    //----------------------------------
-
-    //----------------------------------
-    //  Private static variables
-    //----------------------------------
-
-    private static var _currentSeed:uint = 1234;
 
     //----------------------------------
     //  Constructor

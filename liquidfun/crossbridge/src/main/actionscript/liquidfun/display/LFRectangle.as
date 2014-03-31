@@ -48,7 +48,6 @@ public class LFRectangle extends LFBaseShape {
         bodyDef = BodyDef.create();
         bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
         bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
-        ;
 
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);

@@ -41,7 +41,7 @@ import liquidfun.utils.LFGlobals;
  *
  * @author Andras Csizmadia
  */
-public class PyramidExample extends BaseExample {
+public class VaryingRestitutionExample extends BaseExample {
 
     //----------------------------------
     //  Private variables
@@ -53,7 +53,7 @@ public class PyramidExample extends BaseExample {
     //  Constructor
     //----------------------------------
 
-    public function PyramidExample() {
+    public function VaryingRestitutionExample() {
     }
 
     /**
@@ -89,17 +89,17 @@ public class PyramidExample extends BaseExample {
      */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
-
-        // boxes
-        const size:int = 10;
-        for (var row:int = 0; row < size; row++) {
-            for (var column:int = 0; column <= row; column++) {
-                const nx:int = (column - row / 2) * 10;
-                const ny:int = (size - row) * 10;
-                var bs:LFRectangle = new LFRectangle(400 + nx, 300 + ny, 10, 10, LFGlobals.world);
-                boxes.push(bs);
-                addChild(bs);
-            }
+        const restitutions:Array = [0.0, 0.1, 0.3, 0.5, 0.75, 0.9, 1.0];
+        for (var i:int = 0; i < 7; i++) {
+            var bs:LFRectangle = new LFRectangle(
+                            400 + (i * 15),
+                    300,
+                    15,
+                    15,
+                    LFGlobals.world
+            );
+            boxes.push(bs);
+            addChild(bs);
         }
     }
 
