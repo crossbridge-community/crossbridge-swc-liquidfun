@@ -62,7 +62,17 @@ public class ChainShapeTest extends Sprite {
 
     [Test]
     public function test_construct():void {
+        /*
+         m_type = e_chain;
+         m_radius = b2_polygonRadius;
+         m_vertices = NULL;
+         m_count = 0;
+         m_hasPrevVertex = false;
+         m_hasNextVertex = false;
+         */
         var shape:ChainShape = ChainShape.create();
+        Assert.assertEquals(shape.type, BaseShape.CHAIN);
+        Assert.assertEquals(shape.count, 0);
         Assert.assertEquals(shape.getChildCount(), -1);
         shape.destroy();
     }

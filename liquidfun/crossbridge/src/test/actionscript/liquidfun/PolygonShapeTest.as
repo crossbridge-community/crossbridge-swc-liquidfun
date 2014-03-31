@@ -62,7 +62,15 @@ public class PolygonShapeTest extends Sprite {
 
     [Test]
     public function test_construct():void {
+        /*
+         m_type = e_polygon;
+         m_radius = b2_polygonRadius;
+         m_count = 0;
+         m_centroid.SetZero();
+         */
         var shape:PolygonShape = PolygonShape.create();
+        Assert.assertEquals(shape.type, BaseShape.POLYGON);
+        Assert.assertEquals(shape.count, 0);
         Assert.assertEquals(shape.getChildCount(), 1);
         shape.destroy();
 

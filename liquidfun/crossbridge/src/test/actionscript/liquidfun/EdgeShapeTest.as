@@ -27,6 +27,7 @@
 
 package liquidfun {
 import crossbridge.liquidfun.CModule;
+import crossbridge.liquidfun._wrap_polygonRadius;
 
 import flash.display.Sprite;
 
@@ -62,8 +63,30 @@ public class EdgeShapeTest extends Sprite {
 
     [Test]
     public function test_construct():void {
+        /*
+         m_type = e_edge;
+         m_radius = b2_polygonRadius;
+         m_vertex0.x = 0.0f;
+         m_vertex0.y = 0.0f;
+         m_vertex3.x = 0.0f;
+         m_vertex3.y = 0.0f;
+         m_hasVertex0 = false;
+         m_hasVertex3 = false;
+         */
         var shape:EdgeShape = EdgeShape.create();
+        Assert.assertEquals(shape.type, BaseShape.EDGE);
+        Assert.assertEquals(shape.getType(), BaseShape.EDGE);
+        Assert.assertEquals(shape.radius, 0.009999999776482582);
+        Assert.assertEquals(shape.hasVertex0, false);
+        Assert.assertEquals(shape.hasVertex3, false);
         Assert.assertEquals(shape.getChildCount(), 1);
+        shape.destroy();
+    }
+
+    [Test]
+    public function test_set():void {
+        var shape:EdgeShape = EdgeShape.create();
+        shape.set(1,1,2,2);
         shape.destroy();
     }
 

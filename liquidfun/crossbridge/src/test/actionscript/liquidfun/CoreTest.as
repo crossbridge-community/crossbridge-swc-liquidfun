@@ -58,7 +58,7 @@ public class CoreTest extends Sprite {
     public static function tearDownAfterClass():void {
     }
 
-    [Test]
+    /*[Test]
     public function test_memory_leak():void {
         gc();
         trace(this, Number((System.totalMemoryNumber * 0.000000954).toFixed(3)) + " Mb");
@@ -71,9 +71,9 @@ public class CoreTest extends Sprite {
         gc();
         trace(this, Number((System.totalMemoryNumber * 0.000000954).toFixed(3)) + " Mb");
         for (var o:* in dictionary) {
-            trace(o);
+            trace(this, o);
         }
-    }
+    }*/
 
     /**
      * Call Garbage Collector

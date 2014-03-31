@@ -31,6 +31,7 @@
 //  Ignores
 //----------------------------------
 
+// duplicates extended method
 %ignore b2EdgeShape::Set(b2Vec2 const &,b2Vec2 const &);
 
 //----------------------------------

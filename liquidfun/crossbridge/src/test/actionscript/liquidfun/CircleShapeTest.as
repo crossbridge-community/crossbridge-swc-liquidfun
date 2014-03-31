@@ -62,7 +62,16 @@ public class CircleShapeTest extends Sprite {
 
     [Test]
     public function test_construct():void {
+        /*
+         m_type = e_circle;
+         m_radius = 0.0f;
+         m_p.SetZero();
+         */
         var shape:CircleShape = CircleShape.create();
+        Assert.assertEquals(shape.type, BaseShape.CIRCLE);
+        Assert.assertEquals(shape.radius, 0);
+        Assert.assertEquals(shape.getX(), 0);
+        Assert.assertEquals(shape.getY(), 0);
         Assert.assertEquals(shape.getChildCount(), 1);
         shape.destroy();
     }
