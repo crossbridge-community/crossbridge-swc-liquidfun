@@ -66,7 +66,7 @@ public class ParticleGroupDefTest extends Sprite {
         particleGroupDef.setY(20);
         Assert.assertEquals(particleGroupDef.getX(), 10);
         Assert.assertEquals(particleGroupDef.getY(), 20);
-        particleGroupDef.setXY(30,40);
+        particleGroupDef.setXY(30, 40);
         Assert.assertEquals(particleGroupDef.getX(), 30);
         Assert.assertEquals(particleGroupDef.getY(), 40);
         //

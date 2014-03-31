@@ -19,7 +19,6 @@
 // THE SOFTWARE.
 
 package liquidfun.display {
-import flash.display.Sprite;
 import flash.events.Event;
 import flash.geom.Matrix;
 

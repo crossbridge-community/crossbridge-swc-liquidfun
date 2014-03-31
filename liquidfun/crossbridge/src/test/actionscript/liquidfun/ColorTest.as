@@ -64,8 +64,8 @@ public class ColorTest extends Sprite {
         color.destroy();
         // Destroy does not clear color values
         /*Assert.assertEquals(color.r, 0);
-        Assert.assertEquals(color.g, 0);
-        Assert.assertEquals(color.b, 0);*/
+         Assert.assertEquals(color.g, 0);
+         Assert.assertEquals(color.b, 0);*/
         color = Color.create(252, 251, 250);
         Assert.assertEquals(color.r, 252);
         Assert.assertEquals(color.g, 251);

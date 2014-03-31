@@ -156,48 +156,6 @@ public class WorldTest extends Sprite {
     }
 
     [Test]
-    public function test_particle_system():void {
-        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
-        var system:ParticleSystem = new ParticleSystem();
-        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
-        // cleanup
-        world.destroyParticleSystem(system.swigCPtr);
-    }
-
-    [Test]
-    public function test_particle():void {
-        var systemDef:ParticleSystemDef = ParticleSystemDef.create();
-        var system:ParticleSystem = new ParticleSystem();
-        system.swigCPtr = world.createParticleSystem(systemDef.swigCPtr);
-        world.destroyParticleSystem(system.swigCPtr);
-        var particleDef:ParticleDef = ParticleDef.create();
-        // cleanup
-        system.destroyParticle(system.createParticle(particleDef.swigCPtr))
-    }
-
-    [Test]
-    public function test_distance_joint():void {
-        var jointDef:DistanceJointDef = DistanceJointDef.create();
-        jointDef.type = LiquidFun.JOINT_DISTANCE;
-        jointDef.collideConnected = false;
-        var joint:DistanceJoint = new DistanceJoint();
-        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
-        // cleanup
-        world.destroyJoint(joint.swigCPtr);
-    }
-
-    [Test]
-    public function test_pulley_joint():void {
-        var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.type = LiquidFun.JOINT_PULLEY;
-        jointDef.collideConnected = false;
-        var joint:PulleyJoint = new PulleyJoint();
-        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
-        // cleanup
-        world.destroyJoint(joint.swigCPtr);
-    }
-
-    [Test]
     public function test_custom_polygon():void {
         var bodyDefPos:Vec2 = Vec2.create()
         bodyDefPos.set(0.0, 4.0);

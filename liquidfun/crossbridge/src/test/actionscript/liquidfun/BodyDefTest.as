@@ -66,7 +66,7 @@ public class BodyDefTest extends Sprite {
         bodyDef.setY(20);
         Assert.assertEquals(bodyDef.getX(), 10);
         Assert.assertEquals(bodyDef.getY(), 20);
-        bodyDef.setXY(30,40);
+        bodyDef.setXY(30, 40);
         Assert.assertEquals(bodyDef.getX(), 30);
         Assert.assertEquals(bodyDef.getY(), 40);
         // active

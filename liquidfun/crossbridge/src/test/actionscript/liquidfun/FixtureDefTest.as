@@ -30,8 +30,6 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-import flexunit.framework.Assert;
-
 public class FixtureDefTest extends Sprite {
 
 

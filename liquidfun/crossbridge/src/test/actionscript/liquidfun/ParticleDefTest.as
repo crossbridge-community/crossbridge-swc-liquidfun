@@ -66,7 +66,7 @@ public class ParticleDefTest extends Sprite {
         particleDef.setY(20);
         Assert.assertEquals(particleDef.getX(), 10);
         Assert.assertEquals(particleDef.getY(), 20);
-        particleDef.setXY(30,40);
+        particleDef.setXY(30, 40);
         Assert.assertEquals(particleDef.getX(), 30);
         Assert.assertEquals(particleDef.getY(), 40);
         // color

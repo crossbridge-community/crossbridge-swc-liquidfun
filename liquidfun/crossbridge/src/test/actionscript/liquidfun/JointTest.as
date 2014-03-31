@@ -30,26 +30,30 @@ import crossbridge.liquidfun.CModule;
 
 import flash.display.Sprite;
 
-import flexunit.framework.Assert;
+public class JointTest extends Sprite {
+    // Prepare for simulation. Typically we use a time step of 1/60 of a
+    // second (60Hz) and 10 iterations. This provides a high quality simulation
+    // in most game scenarios.
+    private static const timeStep:Number = 1.0 / 60.0;
+    private static const velocityIterations:int = 6;
+    private static const positionIterations:int = 2;
+    private static const particleIterations:int = 1;
 
-public class ParticleColorTest extends Sprite {
+    private var world:World;
 
-    private var color:ParticleColor;
-
-    public function ParticleColorTest() {
+    public function JointTest() {
         CModule.rootSprite = this;
         super();
     }
 
     [Before]
     public function setUp():void {
-        color = ParticleColor.create(0, 0, 0, 0);
+        world = World.create(0.0, -10.0);
     }
 
     [After]
     public function tearDown():void {
-        color.destroy();
-        color = null;
+        world.destroy();
     }
 
     [BeforeClass]
@@ -61,44 +65,28 @@ public class ParticleColorTest extends Sprite {
     }
 
     [Test]
-    public function test_construct_zero():void {
-        color.set(0, 0, 0, 0);
-        Assert.assertEquals(color.a, 0);
-        Assert.assertEquals(color.r, 0);
-        Assert.assertEquals(color.g, 0);
-        Assert.assertEquals(color.b, 0);
-        Assert.assertEquals(color.isZero(), true);
+    public function test_distance_joint():void {
+        var jointDef:DistanceJointDef = DistanceJointDef.create();
+        jointDef.type = LiquidFun.JOINT_DISTANCE;
+        jointDef.collideConnected = false;
+        var joint:DistanceJoint = new DistanceJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        // cleanup
+        jointDef.destroy();
+        world.destroyJoint(joint.swigCPtr);
     }
 
     [Test]
-    public function test_construct_salmon():void {
-        color.set(0xFA, 0x80, 0x72, 0xFF);
-        Assert.assertEquals(color.r, 0xFA);
-        Assert.assertEquals(color.g, 0x80);
-        Assert.assertEquals(color.b, 0x72);
-        Assert.assertEquals(color.a, 0xFF);
+    public function test_pulley_joint():void {
+        var jointDef:PulleyJointDef = PulleyJointDef.create();
+        jointDef.type = LiquidFun.JOINT_PULLEY;
+        jointDef.collideConnected = false;
+        var joint:PulleyJoint = new PulleyJoint();
+        joint.swigCPtr = world.createJoint(jointDef.swigCPtr);
+        // cleanup
+        jointDef.destroy();
+        world.destroyJoint(joint.swigCPtr);
     }
 
-    [Test]
-    public function test_setViolet():void {
-        color.set(0x8d, 0x38, 0xc9, 0xff);
-        Assert.assertEquals(0x8d, color.r);
-        Assert.assertEquals(0x38, color.g);
-        Assert.assertEquals(0xc9, color.b);
-        Assert.assertEquals(0xff, color.a);
-    }
-
-    [Test]
-    public function test_mix():void {
-        // Error #1065: Variable F_abort is not defined.
-        // ReferenceError: Error #1065: Variable F_abort is not defined.
-        //var colorB:ParticleColor = ParticleColor.create();
-        //color.mix(colorB.swigCPtr);
-    }
-
-    [Test]
-    public function test_from_b2color():void {
-
-    }
 }
 }

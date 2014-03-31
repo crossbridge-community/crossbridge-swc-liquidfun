@@ -62,7 +62,7 @@ public class LFCircle extends LFBaseShape {
     }
 
     public function update():void {
-        if(!stage)
+        if (!stage)
             return;
         matrix.identity();
         matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
