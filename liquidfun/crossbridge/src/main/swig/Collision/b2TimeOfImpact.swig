@@ -31,6 +31,10 @@
 //  Ignores
 //----------------------------------
 
+// methods
+%ignore b2TimeOfImpact;
+
+// structures
 %ignore b2TOIInput;
 %ignore b2TOIOutput;
 

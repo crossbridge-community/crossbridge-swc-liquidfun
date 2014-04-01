@@ -97,7 +97,12 @@ int main() {
 // @see: http://www.swig.org/Doc2.0/Customization.html#Customization_feature_flags
 
 // enable compact default arguments feature
-%feature("compactdefaultargs");
+// dev: does not seem make any difference with current project (wrappers are identical)
+// %feature("compactdefaultargs");
+
+// generate directors for all classes that have virtual methods
+// dev: does not seem make any difference with current project (wrappers are identical)
+// %feature("director");
 
 // allow const reference typemaps
 %naturalvar;
@@ -157,6 +162,7 @@ int main() {
 %include "Common/b2StackAllocator.swig"
 
 %include "Collision/b2Collision.swig"
+%include "Collision/b2BroadPhase.swig"
 %include "Collision/b2Distance.swig"
 %include "Collision/b2DynamicTree.swig"
 %include "Collision/b2TimeOfImpact.swig"

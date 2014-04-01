@@ -31,7 +31,10 @@
 //  Ignores
 //----------------------------------
 
+// methods
 %ignore b2Distance;
+
+// structures
 %ignore b2DistanceProxy;
 %ignore b2DistanceInput;
 %ignore b2DistanceOutput;

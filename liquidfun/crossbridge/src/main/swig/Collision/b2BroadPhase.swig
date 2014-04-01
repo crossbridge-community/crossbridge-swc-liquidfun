@@ -25,20 +25,23 @@
 //=END MIT LICENSE
 //
 
-%module b2DynamicTree
+%module b2BroadPhase
 
 //----------------------------------
 //  Ignores
 //----------------------------------
 
 // classes
-%ignore b2DynamicTree;
+%ignore b2BroadPhase;
+
+// methods
+%ignore b2PairLessThan;
 
 // structures
-%ignore b2TreeNode;
+%ignore b2Pair;
 
 //----------------------------------
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/b2DynamicTree.h"
+%include "../../../Box2D/Box2D/Collision/b2BroadPhase.h"

@@ -25,21 +25,17 @@
 //=END MIT LICENSE
 //
 
-%module b2Draw
+%module(directors="1") b2Draw
+
+// @see: http://www.swig.org/Doc2.0/SWIGDocumentation.html#Java_directors
+%feature("director") b2Draw;
 
 //----------------------------------
 //  Ignores
 //----------------------------------
 
+// duplicates constructor with parameters (r,g,b)
 %ignore b2Color::b2Color();
-/*
-%ignore b2Draw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color);
-%ignore b2Draw::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color);
-%ignore b2Draw::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color);
-%ignore b2Draw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color);
-%ignore b2Draw::DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count);
-%ignore b2Draw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color);
-*/
 
 //----------------------------------
 //  Renames
@@ -53,48 +49,17 @@
 %rename (PARTICLE_BIT) e_particleBit;
 
 //----------------------------------
-//  Extensions
+//  Directors
 //----------------------------------
 
-// When using typemaps that require custom ActionScript types to be used in the generated
-// AS3 wrappers you may need to import classes from custom packages.
-// This can be achieved with the as3import directive that allows you to inject
-// as3import annotations into the method declarations in the generated C/C++ wrapper code.
-// %as3import("flash.display.Shape") DrawPolygon;
+// TODO: Inject Flash specific drawing.
 
-// b2Draw extensions for easier access
-/*%extend b2Draw {
-    // Draw a closed polygon provided in CCW order.
-    void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
-        // TODO
-        AS3_Trace("DrawPolygon");
-    }
-    // Draw a solid closed polygon provided in CCW order.
-    void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
-        // TODO
-        AS3_Trace("DrawSolidPolygon");
-    }
-    // Draw a circle.
-    void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
-        // TODO
-        AS3_Trace("DrawCircle");
-    }
-    // Draw a solid circle.
-    void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
-        // TODO
-        AS3_Trace("DrawSolidCircle");
-    }
-    // Draw a particle array
-    void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
-        // TODO
-        AS3_Trace("DrawParticles");
-    }
-    // Draw a line segment.
-    void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color){
-        // TODO
-        AS3_Trace("DrawSegment");
-    }
-}*/
+%{
+    /*class b2DebugDraw : public b2Draw
+    {
+
+    };*/
+%}
 
 //----------------------------------
 //  Includes
