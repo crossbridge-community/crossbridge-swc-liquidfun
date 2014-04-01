@@ -31,6 +31,8 @@ import flash.net.LocalConnection;
 import flash.system.System;
 import flash.utils.Dictionary;
 
+import org.liquidfun.core.CModule;
+
 public class CoreTest extends Sprite {
 
     private var dictionary:Dictionary = new Dictionary(true);
