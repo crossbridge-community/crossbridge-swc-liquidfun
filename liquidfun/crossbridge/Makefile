@@ -34,12 +34,34 @@
 # FlashCC SDK root
 FLASCC:=$(FLASCC_ROOT)/sdk
 
-# ASC2 Compiler arguments
-$?AS3COMPILERARGS=java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) -merge -md -warnings
-
 # C/C++ Compiler arguments
+# 1. Remove all warning suppression
+# 2. Adds additional warnings
+# 3. Maximum optimization
+# 4. Java virtual machine arguments
+# Optional
 # Debug: -O0 -g
-CCOMPARGS:=-Wall -Wextra -Wno-write-strings -Wno-trigraphs -O4 -jvmopt=-Xmx1G
+CCOMPARGS:=-Wall -Wextra -O4 -jvmopt=-Xmx1G
+
+# ActionScript 3.0 Compiler for AVM+ arguments
+# 1. Merge the compiled source into a single output file
+# 2. Emit metadata information into the bytecode
+# 3. Warn on common actionscript mistakes
+# 4. Produce an optimized ABC file
+# 5. Turn on the inlining of functions
+$?ASC2ARGS=-merge -md -warnings -optimize -inline
+
+# SWIG Pre-Processor arguments
+# 1. Remove all warning suppression, also implies -Wextra 
+# 2. Adds the following additional warnings: 202,309,403,512,321,322 
+# 3. Enable the optimization options: -fastdispatch -fvirtual  
+# 4. Generate AS3 wrappers 
+# 5. Enable C++ processing 
+# 6. Follow all #include statements
+# 7. Ignore missing include files
+# Optional
+# Compile in compact mode: -fcompact 
+SWIGARGS:=-Wall -Wextra -O -as3 -c++ -includeall -ignoremissing -MF liquidfun-swig-dep.log
 
 # Path helper
 $?UNAME=$(shell uname -s)
@@ -69,11 +91,11 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" -fvirtual -fcompact -Wextra -as3 -c++ -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
 	########################################
 	# Generating ABC ...
 	########################################
-	cd build && $(AS3COMPILERARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
+	cd build && java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) $(ASC2ARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
 	########################################
 	# Generating O ...
 	########################################
