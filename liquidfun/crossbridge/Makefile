@@ -69,7 +69,7 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" -Wextra -as3 -c++ -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" -fvirtual -fcompact -Wextra -as3 -c++ -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -includeall -ignoremissing -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
 	########################################
 	# Generating ABC ...
 	########################################
@@ -86,7 +86,7 @@ compile:
 	########################################
 	# Generating SWC ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -lAS3++ -lFlash++ -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=crossbridge.liquidfun -o ../LiquidFun.swc
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -lAS3++ -lFlash++ -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=org.liquidfun.core -o ../LiquidFun.swc
 	########################################
 	# Post cleaning ...
 	########################################

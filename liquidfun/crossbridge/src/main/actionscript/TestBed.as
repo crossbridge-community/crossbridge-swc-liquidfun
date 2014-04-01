@@ -26,9 +26,6 @@
 //
 
 package {
-import crossbridge.liquidfun.CModule;
-import crossbridge.liquidfun.vfs.ISpecialFile;
-
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
@@ -40,11 +37,20 @@ import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
 
-import liquidfun.display.*;
-import liquidfun.tests.*;
-import liquidfun.utils.*;
-
 import net.hires.debug.Stats;
+
+import org.liquidfun.*;
+import org.liquidfun.core.CModule;
+import org.liquidfun.core.vfs.ISpecialFile;
+import org.liquidfun.display.LFRectangle;
+import org.liquidfun.tests.BaseExample;
+import org.liquidfun.tests.HelloWorldExample;
+import org.liquidfun.tests.ParticlesExample;
+import org.liquidfun.tests.PyramidExample;
+import org.liquidfun.tests.VaryingRestitutionExample;
+import org.liquidfun.tests.VerticalStackExample;
+import org.liquidfun.utils.LFDebugDraw;
+import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
 //  Metadata
@@ -137,13 +143,13 @@ public class TestBed extends Sprite implements ISpecialFile {
         world = LFGlobals.world = World.create(0.0, -10.0);
 
         // Create debug draw instance and assign to world
-       /* debugDraw = new LFDebugDraw();
-        world.setDebugDraw(debugDraw.swigCPtr);
-        //trace(debugDraw.getFlags());
-        debugDraw.setFlags(Draw.SHAPE_BIT
-                | Draw.JOINT_BIT
-                | Draw.CENTER_OF_MASS_BIT
-                | Draw.PARTICLE_BIT);*/
+        /* debugDraw = new LFDebugDraw();
+         world.setDebugDraw(debugDraw.swigCPtr);
+         //trace(debugDraw.getFlags());
+         debugDraw.setFlags(Draw.SHAPE_BIT
+         | Draw.JOINT_BIT
+         | Draw.CENTER_OF_MASS_BIT
+         | Draw.PARTICLE_BIT);*/
         //trace(debugDraw.getFlags());
 
         // Test b2Log trace
