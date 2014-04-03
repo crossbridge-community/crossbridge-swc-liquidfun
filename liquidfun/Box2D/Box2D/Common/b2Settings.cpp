@@ -22,13 +22,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-// START OF CROSSBRIDGE PATCH
-#ifdef __FLASHPLAYER__
-#include <AS3/AS3.h>
-#include <AS3/AS3++.h>
-#endif
-// END OF CROSSBRIDGE PATCH
-
 b2Version b2_version = {2, 3, 0};
 
 #define LIQUIDFUN_VERSION_MAJOR 1
@@ -122,20 +115,7 @@ int32 b2GetNumAllocs()
 // You can modify this to use your logging facility.
 void b2Log(const char* string, ...)
 {
-    // START OF CROSSBRIDGE PATCH
-    #ifdef __FLASHPLAYER__
-    // Marshalls a C character string into a local AS3 string variable.
-    AS3_DeclareVar(logString, String);
-    AS3_CopyCStringToVar(logString, string, strlen(string));
-    // Simple wrapper to trace strings to the flash log file
-    AS3_Trace("b2Log: " + logString);
-    #endif
-    // END OF CROSSBRIDGE PATCH
 #if DEBUG
-	// START OF CROSSBRIDGE PATCH
-	// Adobe Scout metric that will show up in the metric summary panel for the frame it was sent in. 
-	AS3_SendMetricString("box2.liquidfun", string);
-	// END OF CROSSBRIDGE PATCH
 	va_list args;
 	va_start(args, string);
 	vprintf(string, args);

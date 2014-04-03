@@ -48,12 +48,6 @@ In order to get the build scripts working, set the following environment variabl
 
 [Download](https://dl.dropboxusercontent.com/u/1375050/TestBed.apk)
 
-## Code Changes
-
-#### \Box2D\Common\b2Settings.cpp
-
-* Added Flash Logging to b2Log method
-
 ## TODO
 
 * Implement Flash specific DebugDraw

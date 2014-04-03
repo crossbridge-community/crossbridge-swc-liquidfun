@@ -104,7 +104,7 @@ public class TestBed extends Sprite implements ISpecialFile {
     //----------------------------------
 
     public function TestBed() {
-        CModule.rootSprite = this
+        CModule.rootSprite = this;
         addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
     }
 
@@ -123,7 +123,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Initialize CrossBridge module
         CModule.vfs.console = this;
         CModule.startAsync(this);
-        CModule.activeConsole = this;
+        //trace(CModule.activeConsole);
 
         // Add FPS and Memory monitor
         addChild(new Stats());
@@ -241,7 +241,7 @@ public class TestBed extends Sprite implements ISpecialFile {
      */
     public function write(fd:int, buf:int, nbyte:int, errnoPtr:int):int {
         var str:String = CModule.readString(buf, nbyte);
-        trace(str);
+        trace(this, "write", str);
         return nbyte;
     }
 
@@ -251,6 +251,8 @@ public class TestBed extends Sprite implements ISpecialFile {
      * will expect this function to provide the data).
      */
     public function read(fd:int, buf:int, nbyte:int, errnoPtr:int):int {
+        var str:String = CModule.readString(buf, nbyte);
+        trace(this, "read", str);
         return 0;
     }
 
