@@ -76,7 +76,11 @@
 // destructors to be executed leaving the library in an unuseable state.
 int main() {
     #ifdef __FLASHPLAYER__
+    // AS3++ Trace
     AS3_Trace("LiquidFun loaded.");
+    // Flash++ Trace
+    //AS3::local::var s = AS3::local::internal::new_String("LiquidFun loaded.");
+    //AS3::local::internal::trace(s);
     #endif
     AS3_GoAsync();
 }

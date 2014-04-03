@@ -163,10 +163,12 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Create debug draw instance and assign to world
         var debugDraw:DebugDraw = DebugDraw.create();
         world.setDebugDraw(debugDraw.swigCPtr);
-        debugDraw.setFlags(Draw.SHAPE_BIT
-                | Draw.JOINT_BIT
-                | Draw.CENTER_OF_MASS_BIT
-                | Draw.PARTICLE_BIT);
+        debugDraw.setFlags(Draw.BIT_SHAPE
+                | Draw.BIT_JOINT
+                | Draw.BIT_AABB
+                | Draw.BIT_PAIR
+                | Draw.BIT_CENTER_OF_MASS
+                | Draw.BIT_PARTICLE);
         world.drawDebugData();
 
         // Set first test

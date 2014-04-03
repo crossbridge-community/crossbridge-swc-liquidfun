@@ -38,12 +38,12 @@
 //  Renames
 //----------------------------------
 
-%rename (SHAPE_BIT) e_shapeBit;
-%rename (JOINT_BIT) e_jointBit;
-%rename (AABB_BIT) e_aabbBit;
-%rename (PAIR_BIT) e_pairBit;
-%rename (CENTER_OF_MASS_BIT) e_centerOfMassBit;
-%rename (PARTICLE_BIT) e_particleBit;
+%rename (BIT_SHAPE) e_shapeBit;
+%rename (BIT_JOINT) e_jointBit;
+%rename (BIT_AABB) e_aabbBit;
+%rename (BIT_PAIR) e_pairBit;
+%rename (BIT_CENTER_OF_MASS) e_centerOfMassBit;
+%rename (BIT_PARTICLE) e_particleBit;
 
 //----------------------------------
 //  Includes
@@ -56,11 +56,16 @@
 //----------------------------------
 
 %inline %{
+    // Extended debug draw class definition
     class b2DebugDraw : public b2Draw
     {
-        /*b2DebugDraw() {
+        public:
+            int scale;
+
+        b2DebugDraw() {
             AS3_Trace("b2DebugDraw::Created");
-        }*/
+            scale = 30;
+        }
 
         ~b2DebugDraw() {
             AS3_Trace("b2DebugDraw::Destroyed");

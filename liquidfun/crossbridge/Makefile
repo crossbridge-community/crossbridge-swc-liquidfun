@@ -108,7 +108,7 @@ compile:
 	########################################
 	# Generating SWC ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -lAS3++ -lFlash++ -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=org.liquidfun.core -o ../LiquidFun.swc
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=org.liquidfun.core -o ../LiquidFun.swc -lAS3++ -lFlash++ 
 	########################################
 	# Post cleaning ...
 	########################################
