@@ -52,4 +52,12 @@ In order to get the build scripts working, set the following environment variabl
 
 #### \Box2D\Common\b2Settings.cpp
 
-* Added Flash Logging
+* Added Flash Logging to b2Log method
+
+## TODO
+
+* Implement Flash specific DebugDraw
+* Implement Flash specific Contact handling (event/signal/call-method)
+* Test Joint and Particle systems
+* Cover all classes with unit tests
+* Create more test bed examples

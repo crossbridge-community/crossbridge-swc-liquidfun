@@ -49,7 +49,6 @@ import org.liquidfun.tests.ParticlesExample;
 import org.liquidfun.tests.PyramidExample;
 import org.liquidfun.tests.VaryingRestitutionExample;
 import org.liquidfun.tests.VerticalStackExample;
-import org.liquidfun.utils.LFDebugDraw;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -79,8 +78,6 @@ public class TestBed extends Sprite implements ISpecialFile {
     private var startTime:int;
 
     private var isDrawDebug:Boolean;
-
-    private var debugDraw:LFDebugDraw;
 
     private const tests:Vector.<Class> = Vector.<Class>([
         HelloWorldExample
@@ -142,16 +139,6 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, -10.0);
 
-        // Create debug draw instance and assign to world
-        /* debugDraw = new LFDebugDraw();
-         world.setDebugDraw(debugDraw.swigCPtr);
-         //trace(debugDraw.getFlags());
-         debugDraw.setFlags(Draw.SHAPE_BIT
-         | Draw.JOINT_BIT
-         | Draw.CENTER_OF_MASS_BIT
-         | Draw.PARTICLE_BIT);*/
-        //trace(debugDraw.getFlags());
-
         // Test b2Log trace
         world.dump();
 
@@ -172,6 +159,15 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Right
         wall = new LFRectangle(795, 300, 10, 600, LFGlobals.world, false);
         addChild(wall);
+
+        // Create debug draw instance and assign to world
+        var debugDraw:DebugDraw = DebugDraw.create();
+        world.setDebugDraw(debugDraw.swigCPtr);
+        debugDraw.setFlags(Draw.SHAPE_BIT
+                | Draw.JOINT_BIT
+                | Draw.CENTER_OF_MASS_BIT
+                | Draw.PARTICLE_BIT);
+        world.drawDebugData();
 
         // Set first test
         nextTest();

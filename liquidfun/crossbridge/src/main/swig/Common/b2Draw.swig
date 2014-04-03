@@ -25,10 +25,7 @@
 //=END MIT LICENSE
 //
 
-%module(directors="1") b2Draw
-
-// @see: http://www.swig.org/Doc2.0/SWIGDocumentation.html#Java_directors
-%feature("director") b2Draw;
+%module b2Draw
 
 //----------------------------------
 //  Ignores
@@ -49,20 +46,61 @@
 %rename (PARTICLE_BIT) e_particleBit;
 
 //----------------------------------
-//  Directors
-//----------------------------------
-
-// TODO: Inject Flash specific drawing.
-
-%{
-    /*class b2DebugDraw : public b2Draw
-    {
-
-    };*/
-%}
-
-//----------------------------------
 //  Includes
 //----------------------------------
 
 %include "../../../Box2D/Box2D/Common/b2Draw.h"
+
+//----------------------------------
+//  Inline
+//----------------------------------
+
+%inline %{
+    class b2DebugDraw : public b2Draw
+    {
+        /*b2DebugDraw() {
+            AS3_Trace("b2DebugDraw::Created");
+        }*/
+
+        ~b2DebugDraw() {
+            AS3_Trace("b2DebugDraw::Destroyed");
+        }
+
+        // Draw a closed polygon provided in CCW order.
+        void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+            AS3_Trace("DrawPolygon");
+        }
+
+        // Draw a solid closed polygon provided in CCW order.
+        void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
+            AS3_Trace("DrawSolidPolygon");
+        }
+
+        // Draw a circle.
+        void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
+            AS3_Trace("DrawCircle");
+        }
+
+        // Draw a solid circle.
+        void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
+            AS3_Trace("DrawSolidCircle");
+        }
+
+        // Draw a particle array
+        void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
+            AS3_Trace("DrawParticles");
+        }
+
+        // Draw a line segment.
+        void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color) {
+            AS3_Trace("DrawSegment");
+        }
+
+        // Draw a transform. Choose your own length scale.
+        // @param xf a transform.
+        void DrawTransform(const b2Transform& xf) {
+            AS3_Trace("DrawTransform");
+        }
+
+    };
+%}
