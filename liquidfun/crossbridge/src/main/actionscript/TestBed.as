@@ -42,14 +42,7 @@ import net.hires.debug.Stats;
 import org.liquidfun.*;
 import org.liquidfun.core.CModule;
 import org.liquidfun.core.vfs.ISpecialFile;
-import org.liquidfun.tests.BaseExample;
-import org.liquidfun.tests.ParticlesExample;
-import org.liquidfun.tests.PyramidExample;
-import org.liquidfun.tests.RigidParticlesExample;
-import org.liquidfun.tests.SandboxExample;
-import org.liquidfun.tests.SphereStackExample;
-import org.liquidfun.tests.VaryingRestitutionExample;
-import org.liquidfun.tests.VerticalStackExample;
+import org.liquidfun.tests.*;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -74,6 +67,8 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var world:World;
 
+    private var title:TextField;
+
     private var message:TextField;
 
     private var stats:Stats;
@@ -86,6 +81,14 @@ public class TestBed extends Sprite implements ISpecialFile {
         , SphereStackExample
         , PyramidExample
         , VaryingRestitutionExample
+        , DistanceJointExample
+        , MotorJointExample
+        , PrismaticJointExample
+        , PulleyJointExample
+        , RevoluteJointExample
+        , RopeJointExample
+        , WeldJointExample
+        , WheelJointExample
         , ParticlesExample
     ]);
 
@@ -127,13 +130,22 @@ public class TestBed extends Sprite implements ISpecialFile {
         CModule.startAsync(this);
         //trace(CModule.activeConsole);
 
+        title = new TextField();
+        title.width = 800;
+        addChild(title);
+        var tf:TextFormat = new TextFormat("Arial", 11, 0xCCCCCC);
+        tf.align = TextFormatAlign.CENTER;
+        title.defaultTextFormat = tf;
+        title.text = "Switch Test: SPACE | Switch Stats: S";
+
         message = new TextField();
         message.width = 800;
+        message.y = 20;
         addChild(message);
-        var tf:TextFormat = new TextFormat("Arial", 11, 0xFFFFFF);
+        tf = new TextFormat("Arial", 11, 0xFFFFFF);
         tf.align = TextFormatAlign.CENTER;
         message.defaultTextFormat = tf;
-        message.text = "Switch Test: SPACE | Switch Stats: S | Clear Forces: C";
+        message.text = "";
 
         // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, 10.0);
@@ -146,19 +158,11 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Test b2Log trace
         world.dump();
 
-        /*
-         wall = new LFRectangle(400, 600, 800, 5, world, false);
-         boxes.push(wall);
-         addChild(wall);*/
-
-        // Bottom
-        createRectangle(400, 595, 800, 5, LFGlobals.world, false);
-
-        // Left
-        createRectangle(5, 300, 10, 600, LFGlobals.world, false);
-
-        // Right
-        createRectangle(795, 300, 10, 600, LFGlobals.world, false);
+        // Walls
+        //createRectangle(400, 5, 800, 5, world, false);
+        createRectangle(400, 595, 800, 5, world, false);
+        createRectangle(5, 300, 10, 600, world, false);
+        createRectangle(795, 300, 10, 600, world, false);
 
         // Create debug draw instance and assign to world
         debugDraw = DebugDraw.create();
@@ -196,8 +200,6 @@ public class TestBed extends Sprite implements ISpecialFile {
     private function onKeyUp(event:KeyboardEvent):void {
         if (event.keyCode == Keyboard.SPACE) {
             nextTest();
-        } else if (event.keyCode == Keyboard.C) {
-            world.clearForces();
         } else if (event.keyCode == Keyboard.S) {
             stats.visible = !stats.visible;
         } else if (event.keyCode == Keyboard.D) {
@@ -217,6 +219,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         System.pauseForGCIfCollectionImminent();
         // add new test
         currentTest = BaseExample(addChild(new tests[currentIndex++]()));
+        message.text = currentTest.toString();
         if (currentIndex > tests.length - 1) currentIndex = 0;
         // debug log
         trace("nextTest", currentIndex, currentTest);

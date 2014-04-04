@@ -33,14 +33,14 @@ import org.liquidfun.BodyDef;
 import org.liquidfun.FixtureDef;
 import org.liquidfun.LiquidFun;
 import org.liquidfun.PolygonShape;
-import org.liquidfun.PulleyJoint;
-import org.liquidfun.PulleyJointDef;
 import org.liquidfun.Vec2;
+import org.liquidfun.WheelJoint;
+import org.liquidfun.WheelJointDef;
 import org.liquidfun.utils.LFGlobals;
 
-public class PulleyJointExample extends BaseExample {
+public class WheelJointExample extends BaseExample {
 
-    public function PulleyJointExample() {
+    public function WheelJointExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -68,16 +68,15 @@ public class PulleyJointExample extends BaseExample {
         bodyB.createFixture(fixtureDef.swigCPtr);
         bodies.push(bodyB);
 
-        var v1:Vec2 = Vec2.create();
-        v1.set(bodyA.getX(), bodyA.getY() - 10);
-        var v2:Vec2 = Vec2.create();
-        v2.set(bodyB.getX(), bodyB.getY() - 10);
+        var axis:Vec2 = Vec2.create();
+        axis.set(0, 1);
 
-        var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.lengthA = jointDef.lengthB = 5;
-        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), bodyB.getWorldCenter(), v1.swigCPtr, v1.swigCPtr, 1);
+        var jointDef:WheelJointDef = WheelJointDef.create();
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), axis.swigCPtr);
+        jointDef.motorSpeed = 0.0;
+        jointDef.enableMotor = true;
 
-        var joint:PulleyJoint = new PulleyJoint();
+        var joint:WheelJoint = new WheelJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
 

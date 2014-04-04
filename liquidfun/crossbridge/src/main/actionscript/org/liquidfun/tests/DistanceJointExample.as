@@ -30,17 +30,17 @@ import flash.events.Event;
 
 import org.liquidfun.Body;
 import org.liquidfun.BodyDef;
+import org.liquidfun.DistanceJoint;
+import org.liquidfun.DistanceJointDef;
 import org.liquidfun.FixtureDef;
 import org.liquidfun.LiquidFun;
 import org.liquidfun.PolygonShape;
-import org.liquidfun.PulleyJoint;
-import org.liquidfun.PulleyJointDef;
 import org.liquidfun.Vec2;
 import org.liquidfun.utils.LFGlobals;
 
-public class PulleyJointExample extends BaseExample {
+public class DistanceJointExample extends BaseExample {
 
-    public function PulleyJointExample() {
+    public function DistanceJointExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -63,21 +63,19 @@ public class PulleyJointExample extends BaseExample {
         bodies.push(bodyA);
 
         bodyDef.setXY(500 / LFGlobals.scale, 300 / LFGlobals.scale);
+        bodyDef.type = LiquidFun.STATIC_BODY;
         var bodyB:Body = new Body();
         bodyB.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
         bodyB.createFixture(fixtureDef.swigCPtr);
         bodies.push(bodyB);
 
-        var v1:Vec2 = Vec2.create();
-        v1.set(bodyA.getX(), bodyA.getY() - 10);
-        var v2:Vec2 = Vec2.create();
-        v2.set(bodyB.getX(), bodyB.getY() - 10);
+        var axis:Vec2 = Vec2.create();
+        axis.set(0, 1);
 
-        var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.lengthA = jointDef.lengthB = 5;
-        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), bodyB.getWorldCenter(), v1.swigCPtr, v1.swigCPtr, 1);
+        var jointDef:DistanceJointDef = DistanceJointDef.create();
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), axis.swigCPtr);
 
-        var joint:PulleyJoint = new PulleyJoint();
+        var joint:DistanceJoint = new DistanceJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
 
