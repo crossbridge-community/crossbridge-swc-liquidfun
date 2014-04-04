@@ -75,6 +75,8 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var message:TextField;
 
+    private var stats:Stats;
+
     private var startTime:int;
 
     private var isDrawDebug:Boolean;
@@ -126,7 +128,8 @@ public class TestBed extends Sprite implements ISpecialFile {
         //trace(CModule.activeConsole);
 
         // Add FPS and Memory monitor
-        addChild(new Stats());
+        stats = new Stats();
+        addChild(stats);
 
         message = new TextField();
         message.width = 800;
@@ -134,7 +137,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         var tf:TextFormat = new TextFormat("Arial", 11, 0xFFFFFF);
         tf.align = TextFormatAlign.CENTER;
         message.defaultTextFormat = tf;
-        message.text = "Press SPACE to switch test";
+        message.text = "Switch Test: SPACE | Switch DebugDraw: D | Switch Stats: S | Clear Forces: C";
 
         // Construct a world object, which will hold and simulate the rigid bodies.
         world = LFGlobals.world = World.create(0.0, -10.0);
@@ -162,6 +165,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // Create debug draw instance and assign to world
         var debugDraw:DebugDraw = DebugDraw.create();
+        //trace(debugDraw.drawArea);
         world.setDebugDraw(debugDraw.swigCPtr);
         debugDraw.setFlags(Draw.BIT_SHAPE
                 | Draw.BIT_JOINT
@@ -211,6 +215,8 @@ public class TestBed extends Sprite implements ISpecialFile {
             isDrawDebug = !isDrawDebug;
         else if (event.keyCode == Keyboard.C)
             world.clearForces();
+        else if (event.keyCode == Keyboard.S)
+            stats.visible = !stats.visible;
     }
 
     /**
