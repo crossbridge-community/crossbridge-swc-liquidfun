@@ -42,11 +42,11 @@ import net.hires.debug.Stats;
 import org.liquidfun.*;
 import org.liquidfun.core.CModule;
 import org.liquidfun.core.vfs.ISpecialFile;
-import org.liquidfun.utils.LFRectangle;
 import org.liquidfun.tests.BaseExample;
-import org.liquidfun.tests.HelloWorldExample;
-import org.liquidfun.tests.ParticlesExample;
 import org.liquidfun.tests.PyramidExample;
+import org.liquidfun.tests.RigidParticlesExample;
+import org.liquidfun.tests.SandboxExample;
+import org.liquidfun.tests.SphereStackExample;
 import org.liquidfun.tests.VaryingRestitutionExample;
 import org.liquidfun.tests.VerticalStackExample;
 import org.liquidfun.utils.LFGlobals;
@@ -80,11 +80,12 @@ public class TestBed extends Sprite implements ISpecialFile {
     private var debugDraw:DebugDraw;
 
     private const tests:Vector.<Class> = Vector.<Class>([
-        HelloWorldExample
+        SandboxExample
+        , VaryingRestitutionExample
         , PyramidExample
         , VerticalStackExample
-        , VaryingRestitutionExample
-        , ParticlesExample
+        , SphereStackExample
+        , RigidParticlesExample
     ]);
 
     //----------------------------------
@@ -144,20 +145,19 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Test b2Log trace
         world.dump();
 
-        var wall:LFRectangle;
         /*
          wall = new LFRectangle(400, 600, 800, 5, world, false);
          boxes.push(wall);
          addChild(wall);*/
 
         // Bottom
-        wall = new LFRectangle(400, 595, 800, 5, LFGlobals.world, false);
+        createRectangle(400, 595, 800, 5, LFGlobals.world, false);
 
         // Left
-        wall = new LFRectangle(5, 300, 10, 600, LFGlobals.world, false);
+        createRectangle(5, 300, 10, 600, LFGlobals.world, false);
 
         // Right
-        wall = new LFRectangle(795, 300, 10, 600, LFGlobals.world, false);
+        createRectangle(795, 300, 10, 600, LFGlobals.world, false);
 
         // Create debug draw instance and assign to world
         debugDraw = DebugDraw.create();
@@ -229,6 +229,27 @@ public class TestBed extends Sprite implements ISpecialFile {
         if (currentIndex > tests.length - 1) currentIndex = 0;
         // debug log
         trace("nextTest", currentIndex, currentTest);
+    }
+
+    // ======================================================
+    // Helper methods
+    // ======================================================
+
+    public static function createRectangle(_x:Number, _y:Number, _w:Number, _h:Number, world:World, isDynamic:Boolean = true):void {
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
+        bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
+
+        var body:Body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+
+        var dynamicBox:PolygonShape = PolygonShape.create();
+        dynamicBox.setAsBox(_w / (LFGlobals.scale * 2), _h / (LFGlobals.scale * 2));
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = dynamicBox.swigCPtr;
+
+        body.createFixture(fixtureDef.swigCPtr);
     }
 
     // ======================================================

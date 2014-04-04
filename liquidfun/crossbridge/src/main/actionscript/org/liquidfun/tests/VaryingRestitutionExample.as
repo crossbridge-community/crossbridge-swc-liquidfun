@@ -56,25 +56,23 @@ public class VaryingRestitutionExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
         const restitutions:Array = [0.0, 0.1, 0.3, 0.5, 0.75, 0.9, 1.0];
+
+        var shape:PolygonShape = PolygonShape.create();
+        shape.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+
         for (var i:int = 0; i < 7; i++) {
 
             var bodyDef:BodyDef = BodyDef.create();
             bodyDef.type = LiquidFun.DYNAMIC_BODY;
-            bodyDef.setXY((400 + (i * 15)) / LFGlobals.scale, (300) / LFGlobals.scale);
+            bodyDef.setXY((400 + (i * 16)) / LFGlobals.scale, (300) / LFGlobals.scale);
 
             var body:Body = new Body();
             body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
 
-            var dynamicBox:PolygonShape = PolygonShape.create();
-            dynamicBox.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
-
-            var fixtureDef:FixtureDef = FixtureDef.create();
-            fixtureDef.shape = dynamicBox.swigCPtr;
-
-            fixtureDef.density = 1.0;
-            fixtureDef.friction = 0.5;
             fixtureDef.restitution = restitutions[i];
-
             body.createFixture(fixtureDef.swigCPtr);
 
             bodies.push(body);

@@ -25,12 +25,42 @@
 //=END MIT LICENSE
 //
 
-package org.liquidfun.utils {
-public class LFBaseShape {
+package org.liquidfun.tests {
+import flash.events.Event;
 
-    public function LFBaseShape() {
+//----------------------------------
+//  Metadata
+//----------------------------------
+[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
+
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
+public class EdgeShapesExample extends BaseExample {
+
+    //----------------------------------
+    //  Constructor
+    //----------------------------------
+
+    public function EdgeShapesExample() {
     }
 
+    /**
+     * @private
+     */
+    override public function update():void {
+
+    }
+
+    /**
+     * @private
+     */
+    override protected function onAdded(event:Event):void {
+        super.onAdded(event);
+
+    }
 
 }
 }

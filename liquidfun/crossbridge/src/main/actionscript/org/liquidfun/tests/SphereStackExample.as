@@ -28,10 +28,8 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.utils.LFCircle;
-import org.liquidfun.utils.LFRectangle;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
-import org.liquidfun.utils.RandomUtil;
 
 //----------------------------------
 //  Metadata
@@ -39,31 +37,17 @@ import org.liquidfun.utils.RandomUtil;
 [SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
 
 /**
- * Hello LiquidFun Physics World Example
+ * TBD
  *
  * @author Andras Csizmadia
  */
-public class HelloWorldExample extends BaseExample {
-
-    //----------------------------------
-    //  Private variables
-    //----------------------------------
-
-    private var boxes:Vector.<LFRectangle> = new Vector.<LFRectangle>();
-
-    private var circles:Vector.<LFCircle> = new Vector.<LFCircle>();
-
-    //----------------------------------
-    //  Private static constants
-    //----------------------------------
-
-    private static const MAX_ITEMS:int = 200;
+public class SphereStackExample extends BaseExample {
 
     //----------------------------------
     //  Constructor
     //----------------------------------
 
-    public function HelloWorldExample() {
+    public function SphereStackExample() {
     }
 
     /**
@@ -71,19 +55,6 @@ public class HelloWorldExample extends BaseExample {
      */
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
-
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-        }
-        n = circles.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(circles[i].body.swigCPtr);
-        }
-        circles.length = 0;
-        boxes.length = 0;
     }
 
     /**
@@ -91,22 +62,32 @@ public class HelloWorldExample extends BaseExample {
      */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
-
-        var wall:LFRectangle = new LFRectangle(400, 300, 200, 5, LFGlobals.world, false);
-        boxes.push(wall);
-
         // boxes
-        for (var i:int = 0; i < MAX_ITEMS; i++) {
-            var bs:LFRectangle = new LFRectangle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * -1000, 10 + RandomUtil.float() * 5, 10 + RandomUtil.float() * 5, LFGlobals.world);
-            boxes.push(bs);
-        }
-        // circles
-        for (var j:int = 0; j < MAX_ITEMS; j++) {
-            var bc:LFCircle = new LFCircle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * -1000, 5 + RandomUtil.float() * 5, LFGlobals.world);
-            circles.push(bc);
-        }
+        for (var j:int = 0; j < 5; j++) {
+            for (var i:int = 0; i <= 16; i++) {
 
-        trace("Created " + MAX_ITEMS * 2 + " objects.");
+                var bodyDef:BodyDef = BodyDef.create();
+                bodyDef.type = LiquidFun.DYNAMIC_BODY;
+                bodyDef.setXY((400 + (j * 16)) / LFGlobals.scale, (50 + (i * 16)) / LFGlobals.scale);
+
+                var body:Body = new Body();
+                body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+                var shape:CircleShape = CircleShape.create();
+                shape.radius = 8 / LFGlobals.scale;
+
+                var fixtureDef:FixtureDef = FixtureDef.create();
+                fixtureDef.shape = shape.swigCPtr;
+
+                fixtureDef.density = 1.0;
+                fixtureDef.friction = 0.1 + (Math.random() * 1);
+                fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
+
+                body.createFixture(fixtureDef.swigCPtr);
+
+                bodies.push(body);
+            }
+        }
     }
 
 }

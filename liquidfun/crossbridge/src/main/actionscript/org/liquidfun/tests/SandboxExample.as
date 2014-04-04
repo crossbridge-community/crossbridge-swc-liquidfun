@@ -26,10 +26,9 @@
 //
 
 package org.liquidfun.tests {
-import flash.display.Sprite;
 import flash.events.Event;
 
-import org.liquidfun.Body;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -42,52 +41,42 @@ import org.liquidfun.utils.LFGlobals;
  *
  * @author Andras Csizmadia
  */
-public class BaseExample extends Sprite {
-
-    private static var _currentSeed:uint = 1234;
-
-    protected var bodies:Vector.<Body> = new Vector.<Body>();
+public class SandboxExample extends BaseExample {
 
     //----------------------------------
     //  Constructor
     //----------------------------------
 
-    public function BaseExample() {
-        addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
+    public function SandboxExample() {
     }
 
     /**
      * @private
      */
-    protected function onAdded(event:Event):void {
-        removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-        addEventListener(Event.REMOVED_FROM_STAGE, onRemoved, false, 0, true);
-    }
+    override protected function onAdded(event:Event):void {
+        super.onAdded(event);
 
-    /**
-     * @private
-     */
-    protected function onRemoved(event:Event):void {
-        removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
-        for (var i:int = 0; i < bodies.length; i++) {
-            LFGlobals.world.destroyBody(bodies[i].swigCPtr);
+        for (var i:int = 0; i < 500; i++) {
+            var bodyDef:BodyDef = BodyDef.create();
+            bodyDef.type = LiquidFun.DYNAMIC_BODY;
+            bodyDef.setXY(randomFloat() * 800 / LFGlobals.scale, randomFloat() * -1000 / LFGlobals.scale);
+
+            var body:Body = new Body();
+            body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+            var shape:CircleShape = CircleShape.create();
+            shape.radius = 8 / LFGlobals.scale;
+
+            var fixtureDef:FixtureDef = FixtureDef.create();
+            fixtureDef.shape = shape.swigCPtr;
+
+            fixtureDef.density = 1.0;
+            fixtureDef.friction = 0.5 + (Math.random() * 1);
+            fixtureDef.restitution = 0.5 + (Math.random() * 0.5);
+
+            body.createFixture(fixtureDef.swigCPtr);
         }
-        bodies.length = 0;
     }
 
-    /**
-     * @private
-     */
-    public function update():void {
-        // abstract
-    }
-
-    /**
-     * @private
-     * @return a number between 0-1 exclusive.
-     */
-    public static function randomFloat():Number {
-        return (_currentSeed = (_currentSeed * 16807) % 2147483647) / 0x7FFFFFFF + 0.000000000233;
-    }
 }
 }

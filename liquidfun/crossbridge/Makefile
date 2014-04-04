@@ -83,7 +83,7 @@ compile:
 	########################################
 	# Making LiquidFun ...
 	########################################
-	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" CC=gcc CXX=g++ CFLAGS="$(CCOMPARGS)" CXXFLAGS="$(CCOMPARGS)" cmake ../../Box2D/ -DBOX2D_BUILD_EXAMPLES=OFF -DBOX2D_BUILD_UNITTESTS=OFF
+	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" CC=gcc CXX=g++ CFLAGS="$(CCOMPARGS)" CXXFLAGS="$(CCOMPARGS)" cmake ../../Box2D/
 	########################################
 	# Building LiquidFun ...
 	########################################
@@ -95,7 +95,7 @@ compile:
 	########################################
 	# Generating ABC ...
 	########################################
-	cd build && java $(JVMARGS) -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) $(ASC2ARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
+	cd build && java -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) $(ASC2ARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
 	########################################
 	# Generating O ...
 	########################################

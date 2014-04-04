@@ -26,11 +26,7 @@
 //
 
 package org.liquidfun.tests {
-import flash.display.Sprite;
 import flash.events.Event;
-
-import org.liquidfun.Body;
-import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
 //  Metadata
@@ -38,56 +34,33 @@ import org.liquidfun.utils.LFGlobals;
 [SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
 
 /**
- * Hello LiquidFun Physics World Example
+ * TBD
  *
  * @author Andras Csizmadia
  */
-public class BaseExample extends Sprite {
-
-    private static var _currentSeed:uint = 1234;
-
-    protected var bodies:Vector.<Body> = new Vector.<Body>();
+public class CompoundShapesExample extends BaseExample {
 
     //----------------------------------
     //  Constructor
     //----------------------------------
 
-    public function BaseExample() {
-        addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
+    public function CompoundShapesExample() {
     }
 
     /**
      * @private
      */
-    protected function onAdded(event:Event):void {
-        removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-        addEventListener(Event.REMOVED_FROM_STAGE, onRemoved, false, 0, true);
+    override public function update():void {
+
     }
 
     /**
      * @private
      */
-    protected function onRemoved(event:Event):void {
-        removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
-        for (var i:int = 0; i < bodies.length; i++) {
-            LFGlobals.world.destroyBody(bodies[i].swigCPtr);
-        }
-        bodies.length = 0;
+    override protected function onAdded(event:Event):void {
+        super.onAdded(event);
+
     }
 
-    /**
-     * @private
-     */
-    public function update():void {
-        // abstract
-    }
-
-    /**
-     * @private
-     * @return a number between 0-1 exclusive.
-     */
-    public static function randomFloat():Number {
-        return (_currentSeed = (_currentSeed * 16807) % 2147483647) / 0x7FFFFFFF + 0.000000000233;
-    }
 }
 }

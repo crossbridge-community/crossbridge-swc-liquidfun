@@ -25,39 +25,40 @@
 //=END MIT LICENSE
 //
 
-package org.liquidfun.utils {
-import org.liquidfun.*;
+package org.liquidfun.tests {
+import flash.events.Event;
 
-public class LFCircle extends LFBaseShape {
-    public var bodyDef:BodyDef;
-    public var body:Body;
-    public var dynamicBox:CircleShape;
-    public var fixtureDef:FixtureDef;
-    public var radius:Number;
+//----------------------------------
+//  Metadata
+//----------------------------------
+[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
 
-    public function LFCircle(_x:Number, _y:Number, _r:Number, world:World) {
-        radius = _r;
-        initialize(_x, _y, _r, world);
+/**
+ * TBD
+ *
+ * @author Andras Csizmadia
+ */
+public class ElasticParticlesExample extends BaseExample {
+
+    //----------------------------------
+    //  Constructor
+    //----------------------------------
+
+    public function ElasticParticlesExample() {
     }
 
-    private function initialize(_x:Number, _y:Number, _r:Number, world:World):void {
+    /**
+     * @private
+     */
+    override public function update():void {
 
-        bodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.DYNAMIC_BODY;
-        bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
+    }
 
-        body = new Body();
-        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
-
-        dynamicBox = CircleShape.create();
-        dynamicBox.radius = _r / LFGlobals.scale;
-
-        fixtureDef = FixtureDef.create();
-        fixtureDef.shape = dynamicBox.swigCPtr;
-        fixtureDef.density = 1.0;
-        fixtureDef.friction = 0.1 + (Math.random() * 1);
-        fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
-        body.createFixture(fixtureDef.swigCPtr);
+    /**
+     * @private
+     */
+    override protected function onAdded(event:Event):void {
+        super.onAdded(event);
 
     }
 
