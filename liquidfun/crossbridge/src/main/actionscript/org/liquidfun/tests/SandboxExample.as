@@ -56,25 +56,27 @@ public class SandboxExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
+        var shape:CircleShape = CircleShape.create();
+        shape.radius = 8 / LFGlobals.scale;
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+
         for (var i:int = 0; i < 500; i++) {
-            var bodyDef:BodyDef = BodyDef.create();
-            bodyDef.type = LiquidFun.DYNAMIC_BODY;
             bodyDef.setXY(randomFloat() * 800 / LFGlobals.scale, randomFloat() * -1000 / LFGlobals.scale);
 
             var body:Body = new Body();
             body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
 
-            var shape:CircleShape = CircleShape.create();
-            shape.radius = 8 / LFGlobals.scale;
-
-            var fixtureDef:FixtureDef = FixtureDef.create();
-            fixtureDef.shape = shape.swigCPtr;
-
-            fixtureDef.density = 1.0;
             fixtureDef.friction = 0.5 + (Math.random() * 1);
             fixtureDef.restitution = 0.5 + (Math.random() * 0.5);
 
             body.createFixture(fixtureDef.swigCPtr);
+
+            bodies.push(body);
         }
     }
 

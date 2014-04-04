@@ -28,9 +28,6 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.*;
-import org.liquidfun.utils.LFGlobals;
-
 //----------------------------------
 //  Metadata
 //----------------------------------
@@ -41,20 +38,20 @@ import org.liquidfun.utils.LFGlobals;
  *
  * @author Andras Csizmadia
  */
-public class VerticalStackExample extends BaseExample {
+public class RampExample extends BaseExample {
 
     //----------------------------------
     //  Constructor
     //----------------------------------
 
-    public function VerticalStackExample() {
+    public function RampExample() {
     }
 
     /**
      * @private
      */
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
+    override public function update():void {
+
     }
 
     /**
@@ -63,32 +60,6 @@ public class VerticalStackExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
-        var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.DYNAMIC_BODY;
-
-        var shape:PolygonShape = PolygonShape.create();
-        shape.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
-
-        var fixtureDef:FixtureDef = FixtureDef.create();
-        fixtureDef.shape = shape.swigCPtr;
-        fixtureDef.density = 1.0;
-
-        for (var j:int = 0; j < 5; j++) {
-            for (var i:int = 0; i <= 16; i++) {
-
-                bodyDef.setXY((400 + (j * 16)) / LFGlobals.scale, (50 + (i * 16)) / LFGlobals.scale);
-
-                var body:Body = new Body();
-                body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
-
-                fixtureDef.friction = 0.1 + (Math.random() * 1);
-                fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
-
-                body.createFixture(fixtureDef.swigCPtr);
-
-                bodies.push(body);
-            }
-        }
     }
 
 }
