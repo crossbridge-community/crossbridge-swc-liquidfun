@@ -38,6 +38,10 @@ import org.liquidfun.PulleyJointDef;
 import org.liquidfun.Vec2;
 import org.liquidfun.utils.LFGlobals;
 
+/**
+ * Two bodies pulls each other.
+ *
+ */
 public class PulleyJointExample extends BaseExample {
 
     public function PulleyJointExample() {
@@ -80,7 +84,7 @@ public class PulleyJointExample extends BaseExample {
         var joint:PulleyJoint = new PulleyJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-
+        joints.push(joint);
     }
 
 }

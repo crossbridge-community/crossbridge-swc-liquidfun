@@ -31,9 +31,6 @@
 //  Ignores
 //----------------------------------
 
-// classes
-%ignore b2BroadPhase;
-
 // methods
 %ignore b2PairLessThan;
 

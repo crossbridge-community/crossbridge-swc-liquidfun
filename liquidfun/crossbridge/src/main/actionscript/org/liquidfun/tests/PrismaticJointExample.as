@@ -38,6 +38,9 @@ import org.liquidfun.PrismaticJointDef;
 import org.liquidfun.Vec2;
 import org.liquidfun.utils.LFGlobals;
 
+/**
+ * Can act like a moving platform
+ */
 public class PrismaticJointExample extends BaseExample {
 
     public function PrismaticJointExample() {
@@ -84,7 +87,7 @@ public class PrismaticJointExample extends BaseExample {
         var joint:PrismaticJoint = new PrismaticJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-
+        joints.push(joint);
     }
 
 }

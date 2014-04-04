@@ -30,6 +30,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 
 import org.liquidfun.Body;
+import org.liquidfun.Joint;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -47,6 +48,8 @@ public class BaseExample extends Sprite {
     private static var _currentSeed:uint = 1234;
 
     protected var bodies:Vector.<Body> = new Vector.<Body>();
+
+    protected var joints:Vector.<Joint> = new Vector.<Joint>();
 
     //----------------------------------
     //  Constructor
@@ -73,6 +76,11 @@ public class BaseExample extends Sprite {
             LFGlobals.world.destroyBody(bodies[i].swigCPtr);
         }
         bodies.length = 0;
+
+        for (var j:int = 0; j < bodies.length; j++) {
+            LFGlobals.world.destroyJoint(joints[i].swigCPtr);
+        }
+        joints.length = 0;
     }
 
     /**

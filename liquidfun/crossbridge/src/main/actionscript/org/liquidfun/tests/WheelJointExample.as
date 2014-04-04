@@ -38,6 +38,9 @@ import org.liquidfun.WheelJoint;
 import org.liquidfun.WheelJointDef;
 import org.liquidfun.utils.LFGlobals;
 
+/**
+ * Car like behaviour.
+ */
 public class WheelJointExample extends BaseExample {
 
     public function WheelJointExample() {
@@ -79,7 +82,7 @@ public class WheelJointExample extends BaseExample {
         var joint:WheelJoint = new WheelJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-
+        joints.push(joint);
     }
 
 }

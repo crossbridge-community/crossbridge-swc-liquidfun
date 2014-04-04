@@ -28,16 +28,6 @@
 %module b2DynamicTree
 
 //----------------------------------
-//  Ignores
-//----------------------------------
-
-// classes
-%ignore b2DynamicTree;
-
-// structures
-%ignore b2TreeNode;
-
-//----------------------------------
 //  Includes
 //----------------------------------
 

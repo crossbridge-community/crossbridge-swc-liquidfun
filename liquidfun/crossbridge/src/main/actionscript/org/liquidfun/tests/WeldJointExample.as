@@ -37,6 +37,9 @@ import org.liquidfun.WeldJoint;
 import org.liquidfun.WeldJointDef;
 import org.liquidfun.utils.LFGlobals;
 
+/**
+ * Joins two bodies together.
+ */
 public class WeldJointExample extends BaseExample {
 
     public function WeldJointExample() {
@@ -73,7 +76,7 @@ public class WeldJointExample extends BaseExample {
         var joint:WeldJoint = new WeldJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-
+        joints.push(joint);
     }
 
 }

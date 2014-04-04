@@ -74,10 +74,10 @@
         private:
             AS3::ui::flash::display::Graphics graphics;
             AS3::ui::flash::display::Shape canvas;
-            float fillAlpha;
-            float strokeAlpha;
         public:
             int scale;
+            float fillAlpha;
+            float strokeAlpha;
             //AS3::ui::var drawArea;
 
         b2DebugDraw() {

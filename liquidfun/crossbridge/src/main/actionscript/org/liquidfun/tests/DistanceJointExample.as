@@ -35,9 +35,11 @@ import org.liquidfun.DistanceJointDef;
 import org.liquidfun.FixtureDef;
 import org.liquidfun.LiquidFun;
 import org.liquidfun.PolygonShape;
-import org.liquidfun.Vec2;
 import org.liquidfun.utils.LFGlobals;
 
+/**
+ * Enforce distance between two bodies
+ */
 public class DistanceJointExample extends BaseExample {
 
     public function DistanceJointExample() {
@@ -63,22 +65,18 @@ public class DistanceJointExample extends BaseExample {
         bodies.push(bodyA);
 
         bodyDef.setXY(500 / LFGlobals.scale, 300 / LFGlobals.scale);
-        bodyDef.type = LiquidFun.STATIC_BODY;
         var bodyB:Body = new Body();
         bodyB.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
         bodyB.createFixture(fixtureDef.swigCPtr);
         bodies.push(bodyB);
 
-        var axis:Vec2 = Vec2.create();
-        axis.set(0, 1);
-
         var jointDef:DistanceJointDef = DistanceJointDef.create();
-        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), axis.swigCPtr);
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), bodyB.getWorldCenter());
 
         var joint:DistanceJoint = new DistanceJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-
+        joints.push(joint);
     }
 
 }

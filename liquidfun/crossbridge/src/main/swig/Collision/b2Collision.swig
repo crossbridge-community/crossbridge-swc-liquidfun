@@ -31,21 +31,9 @@
 //  Ignores
 //----------------------------------
 
-// classes
-%ignore b2Collision;
-
 // methods
 %ignore b2TestOverlap;
 %ignore b2AABB::Combine(b2AABB const &,b2AABB const &);
-
-// structures
-%ignore b2ContactFeature;
-%ignore b2ManifoldPoint;
-%ignore b2Manifold;
-%ignore b2WorldManifold;
-%ignore b2ClipVertex;
-%ignore b2RayCastInput;
-%ignore b2RayCastOutput;
 
 //----------------------------------
 //  Extensions

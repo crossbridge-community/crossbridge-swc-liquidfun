@@ -28,6 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+/**
+ * Causes a body to be pinned on an anchor point.
+ */
 public class RevoluteJointExample extends BaseExample {
 
     public function RevoluteJointExample() {

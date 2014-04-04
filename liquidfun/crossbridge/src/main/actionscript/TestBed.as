@@ -159,18 +159,17 @@ public class TestBed extends Sprite implements ISpecialFile {
         world.dump();
 
         // Walls
-        //createRectangle(400, 5, 800, 5, world, false);
-        createRectangle(400, 595, 800, 5, world, false);
-        createRectangle(5, 300, 10, 600, world, false);
-        createRectangle(795, 300, 10, 600, world, false);
+        createWalls();
 
         // Create debug draw instance and assign to world
         debugDraw = DebugDraw.create();
+        debugDraw.fillAlpha = 0.5;
         //trace(debugDraw.drawArea);
         world.setDebugDraw(debugDraw.swigCPtr);
         debugDraw.setFlags(Draw.BIT_SHAPE | Draw.BIT_JOINT | Draw.BIT_PAIR | Draw.BIT_PARTICLE);
 
-        // Set first test
+        // Set start test
+        //currentIndex = tests.indexOf(DistanceJointExample);
         nextTest();
 
         // Test switching
@@ -229,20 +228,36 @@ public class TestBed extends Sprite implements ISpecialFile {
     // Helper methods
     // ======================================================
 
-    public static function createRectangle(_x:Number, _y:Number, _w:Number, _h:Number, world:World, isDynamic:Boolean = true):void {
+    private function createWalls():void {
+        var body:Body;
+
         var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
-        bodyDef.setXY(_x / LFGlobals.scale, _y / LFGlobals.scale);
-
-        var body:Body = new Body();
-        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
-
-        var dynamicBox:PolygonShape = PolygonShape.create();
-        dynamicBox.setAsBox(_w / (LFGlobals.scale * 2), _h / (LFGlobals.scale * 2));
+        bodyDef.type = LiquidFun.STATIC_BODY;
 
         var fixtureDef:FixtureDef = FixtureDef.create();
-        fixtureDef.shape = dynamicBox.swigCPtr;
 
+        var dynamicBox:PolygonShape = PolygonShape.create();
+
+        // b
+        bodyDef.setXY(400 / LFGlobals.scale, 595 / LFGlobals.scale);
+        body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+        dynamicBox.setAsBox(800 / (LFGlobals.scale * 2), 10 / (LFGlobals.scale * 2));
+        fixtureDef.shape = dynamicBox.swigCPtr;
+        body.createFixture(fixtureDef.swigCPtr);
+        // l
+        bodyDef.setXY(5 / LFGlobals.scale, 300 / LFGlobals.scale);
+        body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+        dynamicBox.setAsBox(10 / (LFGlobals.scale * 2), 600 / (LFGlobals.scale * 2));
+        fixtureDef.shape = dynamicBox.swigCPtr;
+        body.createFixture(fixtureDef.swigCPtr);
+        // r
+        bodyDef.setXY(795 / LFGlobals.scale, 300 / LFGlobals.scale);
+        body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+        dynamicBox.setAsBox(10 / (LFGlobals.scale * 2), 600 / (LFGlobals.scale * 2));
+        fixtureDef.shape = dynamicBox.swigCPtr;
         body.createFixture(fixtureDef.swigCPtr);
     }
 
