@@ -186,17 +186,11 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Calling serviceUIRequests from the main worker allows us to service any requests
         // from background workers that want to use flash APIs that need main worker privileges.
         CModule.serviceUIRequests();
-        // update physics world
-        //startTime = getTimer();
         // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
-        // draw debug if enabled
+        // update debug draw
         debugDraw.step();
         world.drawDebugData();
-        // update current test
-        if (currentTest && currentTest.parent)
-            currentTest.update();
-        //message.text = "TimeDelta : " + (getTimer() - startTime) + "ms";
     }
 
     /**

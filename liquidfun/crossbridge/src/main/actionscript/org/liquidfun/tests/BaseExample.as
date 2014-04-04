@@ -77,13 +77,6 @@ public class BaseExample extends Sprite {
 
     /**
      * @private
-     */
-    public function update():void {
-        // abstract
-    }
-
-    /**
-     * @private
      * @return a number between 0-1 exclusive.
      */
     public static function randomFloat():Number {
