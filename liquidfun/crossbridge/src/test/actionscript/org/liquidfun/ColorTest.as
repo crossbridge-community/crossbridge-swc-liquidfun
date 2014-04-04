@@ -96,5 +96,16 @@ public class ColorTest extends Sprite {
         color.destroy();
         color = null;
     }
+
+    [Test]
+    public function test_get_rgb():void {
+        var color:Color = Color.create(0xFA, 0x80, 0x72);
+        trace(color.r, color.g, color.b, color.getRGB());
+        //250 128 114 16416882
+        //Assert.assertEquals(color.getRGB(), 0xFA8072);
+        // cleanup
+        color.destroy();
+        color = null;
+    }
 }
 }

@@ -47,11 +47,3 @@ In order to get the build scripts working, set the following environment variabl
 ### TestBed APK
 
 [Download](https://dl.dropboxusercontent.com/u/1375050/TestBed.apk)
-
-## TODO
-
-* Implement Flash specific DebugDraw
-* Implement Flash specific Contact handling (event/signal/call-method)
-* Test Joint and Particle systems
-* Cover all classes with unit tests
-* Create more test bed examples

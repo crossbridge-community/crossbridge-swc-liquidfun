@@ -19,7 +19,6 @@
 // THE SOFTWARE.
 
 package org.liquidfun.display {
-import flash.events.Event;
 import flash.geom.Matrix;
 
 import org.liquidfun.*;
@@ -41,10 +40,6 @@ public class LFRectangle extends LFBaseShape {
     }
 
     private function initialize(_x:Number, _y:Number, _w:Number, _h:Number, world:World, isDynamic:Boolean):void {
-        graphics.lineStyle(0.25, Math.random() * uint.MAX_VALUE);
-        graphics.beginFill(Math.random() * uint.MAX_VALUE, 0.2);
-        graphics.drawRect(0, 0, _w, _h);
-        graphics.endFill();
 
         bodyDef = BodyDef.create();
         bodyDef.type = isDynamic ? LiquidFun.DYNAMIC_BODY : LiquidFun.STATIC_BODY;
@@ -65,28 +60,7 @@ public class LFRectangle extends LFBaseShape {
 
         body.createFixture(fixtureDef.swigCPtr);
 
-        //trace(/*bodyDefPos.x, bodyDefPos.y,*/body.getX(),body.getY())
-        update();
     }
 
-    public function update():void {
-        matrix.identity();
-        matrix.translate(-w * 0.5, -h * 0.5);
-        matrix.rotate(-body.getAngle());
-        matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
-        transform.matrix = matrix;
-    }
-
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
-        bodyDef.destroy();
-        bodyDef = null;
-        fixtureDef.destroy();
-        fixtureDef = null;
-        dynamicBox.destroy();
-        dynamicBox = null;
-        matrix = null;
-        body = null;
-    }
 }
 }

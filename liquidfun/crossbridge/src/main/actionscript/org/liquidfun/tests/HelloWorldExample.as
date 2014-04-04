@@ -69,22 +69,6 @@ public class HelloWorldExample extends BaseExample {
     /**
      * @private
      */
-    override public function update():void {
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            boxes[i].update();
-        }
-        n = circles.length;
-        for (i = 0; i < n; i++) {
-            circles[i].update();
-        }
-    }
-
-    /**
-     * @private
-     */
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
 
@@ -93,12 +77,10 @@ public class HelloWorldExample extends BaseExample {
         n = boxes.length;
         for (i = 0; i < n; i++) {
             LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-            removeChild(boxes[i]);
         }
         n = circles.length;
         for (i = 0; i < n; i++) {
             LFGlobals.world.destroyBody(circles[i].body.swigCPtr);
-            removeChild(circles[i]);
         }
         circles.length = 0;
         boxes.length = 0;
@@ -112,19 +94,16 @@ public class HelloWorldExample extends BaseExample {
 
         var wall:LFRectangle = new LFRectangle(400, 300, 200, 5, LFGlobals.world, false);
         boxes.push(wall);
-        addChild(wall);
 
         // boxes
         for (var i:int = 0; i < MAX_ITEMS; i++) {
             var bs:LFRectangle = new LFRectangle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 10 + RandomUtil.float() * 5, 10 + RandomUtil.float() * 5, LFGlobals.world);
             boxes.push(bs);
-            addChild(bs);
         }
         // circles
         for (var j:int = 0; j < MAX_ITEMS; j++) {
             var bc:LFCircle = new LFCircle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 5 + RandomUtil.float() * 5, LFGlobals.world);
             circles.push(bc);
-            addChild(bc);
         }
 
         trace("Created " + MAX_ITEMS * 2 + " objects.");

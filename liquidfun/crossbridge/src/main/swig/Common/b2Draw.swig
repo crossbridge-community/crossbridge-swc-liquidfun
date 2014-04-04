@@ -46,6 +46,18 @@
 %rename (BIT_PARTICLE) e_particleBit;
 
 //----------------------------------
+//  Extensions
+//----------------------------------
+
+%extend b2Color {
+    unsigned long getRGB() {
+        return ((int($self->r * 255) & 0xFF) << 16)
+        + ((int($self->g * 255) & 0xFF) << 8)
+        + (int($self->b * 255) & 0xFF);
+    }
+}
+
+//----------------------------------
 //  Includes
 //----------------------------------
 
@@ -54,10 +66,6 @@
 //----------------------------------
 //  Inline
 //----------------------------------
-
-/*%{
-    #include <Flash++.h>
-%}*/
 
 %inline %{
     // Extended debug draw class definition
@@ -85,55 +93,90 @@
             AS3_Trace("b2DebugDraw::Destroyed");
         }
 
+        // Clear canvas between steps
+        void Step() {
+            graphics->clear();
+        }
+
         // Draw a closed polygon provided in CCW order.
         void DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
-            AS3_Trace("DrawPolygon");
-            for (int i = 0; i < vertexCount; ++i, ++vertices)
+            graphics->lineStyle(1, getRGB(color), 1);
+            graphics->moveTo(vertices[0].x * scale, vertices[0].y * scale);
+            for (int i = 1; i < vertexCount; ++i)
             {
-                //vertices->x
-                //vertices->y
+                graphics->lineTo(vertices[i].x * scale, vertices[i].y * scale);
             }
-
+            graphics->lineTo(vertices[0].x * scale, vertices[0].y * scale);
         }
 
         // Draw a solid closed polygon provided in CCW order.
         void DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color) {
-            AS3_Trace("DrawSolidPolygon");
-            for (int i = 0; i < vertexCount; ++i, ++vertices)
+            graphics->lineStyle(1, getRGB(color), 1);
+            graphics->moveTo(vertices[0].x * scale, vertices[0].y * scale);
+            graphics->beginFill(getRGB(color), 1);
+            for (int i = 1; i < vertexCount; ++i)
             {
-                //vertices->x
-                //vertices->y
+                graphics->lineTo(vertices[i].x * scale, vertices[i].y * scale);
             }
+            graphics->lineTo(vertices[0].x * scale, vertices[0].y * scale);
+		    graphics->endFill();
         }
 
         // Draw a circle.
         void DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color) {
-            AS3_Trace("DrawCircle");
-            //graphics.drawCircle(center.x, center.y, radius);
+            graphics->lineStyle(1, getRGB(color), 1);
+            graphics->drawCircle(center.x * scale, center.y * scale, radius * scale);
         }
 
         // Draw a solid circle.
         void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
-            AS3_Trace("DrawSolidCircle");
-            //graphics.drawCircle(center.x, center.y, radius);
+            graphics->lineStyle(1, getRGB(color), 1);
+            graphics->moveTo(0,0);
+            graphics->beginFill(getRGB(color), 1);
+            graphics->drawCircle(center.x * scale, center.y * scale, radius * scale);
+            graphics->endFill();
+            graphics->moveTo(center.x * scale, center.y * scale);
+            graphics->lineTo((center.x + axis.x * radius) * scale, (center.y + axis.y * radius) * scale);
         }
 
         // Draw a particle array
         void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
-            AS3_Trace("DrawParticles");
+            for (int i = 1; i < count; ++i)
+            {
+                graphics->lineStyle(1, getRGBA(colors[i]), 1);
+                graphics->moveTo(0,0);
+                graphics->beginFill(getRGBA(colors[i]), 1);
+                graphics->drawCircle(centers[i].x * scale, centers[i].y * scale, radius * scale);
+                graphics->endFill();
+            }
         }
 
         // Draw a line segment.
         void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color) {
-            AS3_Trace("DrawSegment");
-            //graphics.moveTo(p1.x, p1.y);
-            //graphics.lineTo(p2.x, p2.y);
+            graphics->lineStyle(1, getRGB(color), 1);
+            graphics->moveTo(p1.x * scale, p1.y * scale);
+            graphics->lineTo(p2.x * scale, p2.y * scale);
         }
 
         // Draw a transform. Choose your own length scale.
         // @param xf a transform.
         void DrawTransform(const b2Transform& xf) {
-            AS3_Trace("DrawTransform");
+            //TODO
+        }
+
+        // b2Color RGB helper method
+        unsigned int getRGB(const b2Color& color) {
+            return ((int(color.r * 255) & 0xFF) << 16)
+            + ((int(color.g * 255) & 0xFF) << 8)
+            + (int(color.b * 255) & 0xFF);
+        }
+
+        // b2ParticleColor RGBA helper method
+        unsigned int getRGBA(const b2ParticleColor& color) {
+            return ((color.r & 0xFF) << 24)
+            + ((color.g & 0xFF) << 16)
+            + ((color.b & 0xFF) << 8)
+            + (color.a & 0xFF);
         }
 
     };

@@ -26,29 +26,11 @@
 //
 
 package org.liquidfun.display {
-import flash.display.Sprite;
-import flash.events.Event;
-
-public class LFBaseShape extends Sprite {
+public class LFBaseShape {
 
     public function LFBaseShape() {
-        addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
     }
 
-    /**
-     * @private
-     */
-    protected function onAdded(event:Event):void {
-        removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-        addEventListener(Event.REMOVED_FROM_STAGE, onRemoved, false, 0, true);
-    }
-
-    /**
-     * @private
-     */
-    protected function onRemoved(event:Event):void {
-        removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
-    }
 
 }
 }

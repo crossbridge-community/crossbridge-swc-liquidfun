@@ -59,18 +59,6 @@ public class VerticalStackExample extends BaseExample {
     /**
      * @private
      */
-    override public function update():void {
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            boxes[i].update();
-        }
-    }
-
-    /**
-     * @private
-     */
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
 
@@ -79,7 +67,6 @@ public class VerticalStackExample extends BaseExample {
         n = boxes.length;
         for (i = 0; i < n; i++) {
             LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-            removeChild(boxes[i]);
         }
         boxes.length = 0;
     }
@@ -99,7 +86,6 @@ public class VerticalStackExample extends BaseExample {
                         15,
                         LFGlobals.world);
                 boxes.push(bs);
-                addChild(bs);
             }
         }
     }

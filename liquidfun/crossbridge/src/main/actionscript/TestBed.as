@@ -79,7 +79,7 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var startTime:int;
 
-    private var isDrawDebug:Boolean;
+    private var debugDraw:DebugDraw;
 
     private const tests:Vector.<Class> = Vector.<Class>([
         HelloWorldExample
@@ -127,20 +127,21 @@ public class TestBed extends Sprite implements ISpecialFile {
         CModule.startAsync(this);
         //trace(CModule.activeConsole);
 
-        // Add FPS and Memory monitor
-        stats = new Stats();
-        addChild(stats);
-
         message = new TextField();
         message.width = 800;
         addChild(message);
         var tf:TextFormat = new TextFormat("Arial", 11, 0xFFFFFF);
         tf.align = TextFormatAlign.CENTER;
         message.defaultTextFormat = tf;
-        message.text = "Switch Test: SPACE | Switch DebugDraw: D | Switch Stats: S | Clear Forces: C";
+        message.text = "Switch Test: SPACE | Switch Stats: S | Clear Forces: C";
 
         // Construct a world object, which will hold and simulate the rigid bodies.
-        world = LFGlobals.world = World.create(0.0, -10.0);
+        world = LFGlobals.world = World.create(0.0, 10.0);
+
+        // Add FPS and Memory monitor
+        stats = new Stats();
+        stats.x = 10;
+        addChild(stats);
 
         // Test b2Log trace
         world.dump();
@@ -152,28 +153,23 @@ public class TestBed extends Sprite implements ISpecialFile {
          addChild(wall);*/
 
         // Bottom
-        wall = new LFRectangle(400, 5, 800, 5, LFGlobals.world, false);
-        addChild(wall);
+        wall = new LFRectangle(400, 595, 800, 5, LFGlobals.world, false);
 
         // Left
         wall = new LFRectangle(5, 300, 10, 600, LFGlobals.world, false);
-        addChild(wall);
 
         // Right
         wall = new LFRectangle(795, 300, 10, 600, LFGlobals.world, false);
-        addChild(wall);
 
         // Create debug draw instance and assign to world
-        var debugDraw:DebugDraw = DebugDraw.create();
+        debugDraw = DebugDraw.create();
         //trace(debugDraw.drawArea);
         world.setDebugDraw(debugDraw.swigCPtr);
         debugDraw.setFlags(Draw.BIT_SHAPE
                 | Draw.BIT_JOINT
-                | Draw.BIT_AABB
                 | Draw.BIT_PAIR
                 | Draw.BIT_CENTER_OF_MASS
                 | Draw.BIT_PARTICLE);
-        world.drawDebugData();
 
         // Set first test
         nextTest();
@@ -197,8 +193,8 @@ public class TestBed extends Sprite implements ISpecialFile {
         // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
         // draw debug if enabled
-        if (isDrawDebug)
-            world.drawDebugData();
+        debugDraw.step();
+        world.drawDebugData();
         // update current test
         if (currentTest && currentTest.parent)
             currentTest.update();
@@ -209,14 +205,15 @@ public class TestBed extends Sprite implements ISpecialFile {
      * @private
      */
     private function onKeyUp(event:KeyboardEvent):void {
-        if (event.keyCode == Keyboard.SPACE)
+        if (event.keyCode == Keyboard.SPACE) {
             nextTest();
-        else if (event.keyCode == Keyboard.D)
-            isDrawDebug = !isDrawDebug;
-        else if (event.keyCode == Keyboard.C)
+        } else if (event.keyCode == Keyboard.C) {
             world.clearForces();
-        else if (event.keyCode == Keyboard.S)
+        } else if (event.keyCode == Keyboard.S) {
             stats.visible = !stats.visible;
+        } else if (event.keyCode == Keyboard.D) {
+            world.dump();
+        }
     }
 
     /**

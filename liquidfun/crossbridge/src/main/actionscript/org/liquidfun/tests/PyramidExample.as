@@ -59,18 +59,6 @@ public class PyramidExample extends BaseExample {
     /**
      * @private
      */
-    override public function update():void {
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            boxes[i].update();
-        }
-    }
-
-    /**
-     * @private
-     */
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
 
@@ -79,7 +67,6 @@ public class PyramidExample extends BaseExample {
         n = boxes.length;
         for (i = 0; i < n; i++) {
             LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-            removeChild(boxes[i]);
         }
         boxes.length = 0;
     }
@@ -98,7 +85,6 @@ public class PyramidExample extends BaseExample {
                 const ny:int = (size - row) * 10;
                 var bs:LFRectangle = new LFRectangle(400 + nx, 300 + ny, 10, 10, LFGlobals.world);
                 boxes.push(bs);
-                addChild(bs);
             }
         }
     }

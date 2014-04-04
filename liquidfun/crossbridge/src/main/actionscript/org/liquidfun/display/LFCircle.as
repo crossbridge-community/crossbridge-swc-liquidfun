@@ -19,7 +19,6 @@
 // THE SOFTWARE.
 
 package org.liquidfun.display {
-import flash.events.Event;
 import flash.geom.Matrix;
 
 import org.liquidfun.*;
@@ -39,10 +38,6 @@ public class LFCircle extends LFBaseShape {
     }
 
     private function initialize(_x:Number, _y:Number, _r:Number, world:World):void {
-        graphics.lineStyle(0.25, Math.random() * uint.MAX_VALUE);
-        graphics.beginFill(Math.random() * uint.MAX_VALUE, 0.2);
-        graphics.drawCircle(0, 0, _r);
-        graphics.endFill();
 
         bodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
@@ -61,25 +56,7 @@ public class LFCircle extends LFBaseShape {
         fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
         body.createFixture(fixtureDef.swigCPtr);
 
-        update();
     }
 
-    public function update():void {
-        matrix.identity();
-        matrix.translate(body.getX() * LFGlobals.scale, 600 - (body.getY() * LFGlobals.scale));
-        transform.matrix = matrix;
-    }
-
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
-        bodyDef.destroy();
-        bodyDef = null;
-        fixtureDef.destroy();
-        fixtureDef = null;
-        dynamicBox.destroy();
-        dynamicBox = null;
-        matrix = null;
-        body = null;
-    }
 }
 }
