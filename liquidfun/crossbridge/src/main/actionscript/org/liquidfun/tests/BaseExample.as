@@ -29,6 +29,9 @@ package org.liquidfun.tests {
 import flash.display.Sprite;
 import flash.events.Event;
 
+import org.liquidfun.Body;
+import org.liquidfun.utils.LFGlobals;
+
 //----------------------------------
 //  Metadata
 //----------------------------------
@@ -40,6 +43,8 @@ import flash.events.Event;
  * @author Andras Csizmadia
  */
 public class BaseExample extends Sprite {
+
+    protected var bodies:Vector.<Body> = new Vector.<Body>();
 
     //----------------------------------
     //  Constructor
@@ -62,6 +67,10 @@ public class BaseExample extends Sprite {
      */
     protected function onRemoved(event:Event):void {
         removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
+        for (var i:int = 0; i < bodies.length; i++) {
+            LFGlobals.world.destroyBody(bodies[i].swigCPtr);
+        }
+        bodies.length = 0;
     }
 
     /**

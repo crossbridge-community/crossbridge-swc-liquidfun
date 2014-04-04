@@ -57,14 +57,6 @@ public class ParticlesExample extends BaseExample {
     /**
      * @private
      */
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
-
-    }
-
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 

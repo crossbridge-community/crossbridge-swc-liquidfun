@@ -25,7 +25,7 @@
 //=END MIT LICENSE
 //
 
-package org.liquidfun.display {
+package org.liquidfun.utils {
 public class LFBaseShape {
 
     public function LFBaseShape() {

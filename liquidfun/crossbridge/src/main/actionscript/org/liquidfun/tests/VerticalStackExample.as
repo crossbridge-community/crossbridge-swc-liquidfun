@@ -28,7 +28,7 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.display.LFRectangle;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -44,12 +44,6 @@ import org.liquidfun.utils.LFGlobals;
 public class VerticalStackExample extends BaseExample {
 
     //----------------------------------
-    //  Private variables
-    //----------------------------------
-
-    private var boxes:Vector.<LFRectangle> = new Vector.<LFRectangle>();
-
-    //----------------------------------
     //  Constructor
     //----------------------------------
 
@@ -61,14 +55,6 @@ public class VerticalStackExample extends BaseExample {
      */
     override protected function onRemoved(event:Event):void {
         super.onRemoved(event);
-
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-        }
-        boxes.length = 0;
     }
 
     /**
@@ -79,13 +65,27 @@ public class VerticalStackExample extends BaseExample {
         // boxes
         for (var j:int = 0; j < 5; j++) {
             for (var i:int = 0; i <= 16; i++) {
-                var bs:LFRectangle = new LFRectangle(
-                                400 + (j * 16),
-                                50 + (i * 16),
-                        15,
-                        15,
-                        LFGlobals.world);
-                boxes.push(bs);
+
+                var bodyDef:BodyDef = BodyDef.create();
+                bodyDef.type = LiquidFun.DYNAMIC_BODY;
+                bodyDef.setXY((400 + (j * 16)) / LFGlobals.scale, (50 + (i * 16)) / LFGlobals.scale);
+
+                var body:Body = new Body();
+                body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+                var dynamicBox:PolygonShape = PolygonShape.create();
+                dynamicBox.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
+
+                var fixtureDef:FixtureDef = FixtureDef.create();
+                fixtureDef.shape = dynamicBox.swigCPtr;
+
+                fixtureDef.density = 1.0;
+                fixtureDef.friction = 0.1 + (Math.random() * 1);
+                fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
+
+                body.createFixture(fixtureDef.swigCPtr);
+
+                bodies.push(body);
             }
         }
     }

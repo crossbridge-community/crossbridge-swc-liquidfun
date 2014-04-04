@@ -28,8 +28,8 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.display.LFCircle;
-import org.liquidfun.display.LFRectangle;
+import org.liquidfun.utils.LFCircle;
+import org.liquidfun.utils.LFRectangle;
 import org.liquidfun.utils.LFGlobals;
 import org.liquidfun.utils.RandomUtil;
 
@@ -97,12 +97,12 @@ public class HelloWorldExample extends BaseExample {
 
         // boxes
         for (var i:int = 0; i < MAX_ITEMS; i++) {
-            var bs:LFRectangle = new LFRectangle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 10 + RandomUtil.float() * 5, 10 + RandomUtil.float() * 5, LFGlobals.world);
+            var bs:LFRectangle = new LFRectangle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * -1000, 10 + RandomUtil.float() * 5, 10 + RandomUtil.float() * 5, LFGlobals.world);
             boxes.push(bs);
         }
         // circles
         for (var j:int = 0; j < MAX_ITEMS; j++) {
-            var bc:LFCircle = new LFCircle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * 3000, 5 + RandomUtil.float() * 5, LFGlobals.world);
+            var bc:LFCircle = new LFCircle(200 + RandomUtil.float() * 400, 10 + RandomUtil.float() * -1000, 5 + RandomUtil.float() * 5, LFGlobals.world);
             circles.push(bc);
         }
 

@@ -42,7 +42,7 @@ import net.hires.debug.Stats;
 import org.liquidfun.*;
 import org.liquidfun.core.CModule;
 import org.liquidfun.core.vfs.ISpecialFile;
-import org.liquidfun.display.LFRectangle;
+import org.liquidfun.utils.LFRectangle;
 import org.liquidfun.tests.BaseExample;
 import org.liquidfun.tests.HelloWorldExample;
 import org.liquidfun.tests.ParticlesExample;
@@ -76,8 +76,6 @@ public class TestBed extends Sprite implements ISpecialFile {
     private var message:TextField;
 
     private var stats:Stats;
-
-    private var startTime:int;
 
     private var debugDraw:DebugDraw;
 

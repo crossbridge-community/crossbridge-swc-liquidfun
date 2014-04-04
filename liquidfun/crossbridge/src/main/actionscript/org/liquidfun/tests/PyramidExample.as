@@ -28,7 +28,7 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.display.LFRectangle;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -44,31 +44,10 @@ import org.liquidfun.utils.LFGlobals;
 public class PyramidExample extends BaseExample {
 
     //----------------------------------
-    //  Private variables
-    //----------------------------------
-
-    private var boxes:Vector.<LFRectangle> = new Vector.<LFRectangle>();
-
-    //----------------------------------
     //  Constructor
     //----------------------------------
 
     public function PyramidExample() {
-    }
-
-    /**
-     * @private
-     */
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
-
-        var i:int;
-        var n:int;
-        n = boxes.length;
-        for (i = 0; i < n; i++) {
-            LFGlobals.world.destroyBody(boxes[i].body.swigCPtr);
-        }
-        boxes.length = 0;
     }
 
     /**
@@ -83,8 +62,27 @@ public class PyramidExample extends BaseExample {
             for (var column:int = 0; column <= row; column++) {
                 const nx:int = (column - row / 2) * 10;
                 const ny:int = (size - row) * 10;
-                var bs:LFRectangle = new LFRectangle(400 + nx, 300 + ny, 10, 10, LFGlobals.world);
-                boxes.push(bs);
+
+                var bodyDef:BodyDef = BodyDef.create();
+                bodyDef.type = LiquidFun.DYNAMIC_BODY;
+                bodyDef.setXY((400 + nx) / LFGlobals.scale, (300 + ny) / LFGlobals.scale);
+
+                var body:Body = new Body();
+                body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+                var dynamicBox:PolygonShape = PolygonShape.create();
+                dynamicBox.setAsBox(10 / (LFGlobals.scale * 2), 10 / (LFGlobals.scale * 2));
+
+                var fixtureDef:FixtureDef = FixtureDef.create();
+                fixtureDef.shape = dynamicBox.swigCPtr;
+
+                fixtureDef.density = 1.0;
+                fixtureDef.friction = 0.1 + (Math.random() * 1);
+                fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
+
+                body.createFixture(fixtureDef.swigCPtr);
+
+                bodies.push(body);
             }
         }
     }
