@@ -55,6 +55,23 @@
 //----------------------------------
 
 %extend b2BodyDef {
+    /* CORE */
+    void Identity() {
+        $self->userData = NULL;
+        $self->position.Set(0.0f, 0.0f);
+        $self->angle = 0.0f;
+        $self->linearVelocity.Set(0.0f, 0.0f);
+        $self->angularVelocity = 0.0f;
+        $self->linearDamping = 0.0f;
+        $self->angularDamping = 0.0f;
+        $self->allowSleep = true;
+        $self->awake = true;
+        $self->fixedRotation = false;
+        $self->bullet = false;
+        $self->type = b2_staticBody;
+        $self->active = true;
+        $self->gravityScale = 1.0f;
+    }
     /*POSITION*/
     // Getter X
     float32 GetX() {

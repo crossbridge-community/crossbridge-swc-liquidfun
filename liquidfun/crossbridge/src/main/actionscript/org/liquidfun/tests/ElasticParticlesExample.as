@@ -47,12 +47,6 @@ public class ElasticParticlesExample extends BaseExample {
     public function ElasticParticlesExample() {
     }
 
-    /**
-     * @private
-     */
-    override public function update():void {
-
-    }
 
     /**
      * @private

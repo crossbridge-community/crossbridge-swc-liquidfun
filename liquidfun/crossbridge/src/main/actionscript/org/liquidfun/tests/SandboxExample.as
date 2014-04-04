@@ -65,7 +65,7 @@ public class SandboxExample extends BaseExample {
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
 
-        for (var i:int = 0; i < 500; i++) {
+        for (var i:int = 0; i < 250; i++) {
             bodyDef.setXY(randomFloat() * 800 / LFGlobals.scale, randomFloat() * -1000 / LFGlobals.scale);
 
             var body:Body = new Body();

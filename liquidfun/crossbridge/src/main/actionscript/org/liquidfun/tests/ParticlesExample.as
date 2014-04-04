@@ -28,6 +28,17 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+import org.liquidfun.CircleShape;
+import org.liquidfun.LiquidFun;
+import org.liquidfun.ParticleDef;
+
+import org.liquidfun.ParticleGroup;
+import org.liquidfun.ParticleGroupDef;
+
+import org.liquidfun.ParticleSystem;
+import org.liquidfun.ParticleSystemDef;
+import org.liquidfun.utils.LFGlobals;
+
 //----------------------------------
 //  Metadata
 //----------------------------------
@@ -50,15 +61,24 @@ public class ParticlesExample extends BaseExample {
     /**
      * @private
      */
-    override public function update():void {
-
-    }
-
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
+
+        var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
+        particleSystemDef.dampingStrength = 0.2;
+        particleSystemDef.radius = 0.035;
+
+        var particleSystem:ParticleSystem = new ParticleSystem();
+        LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
+
+        var particleShape:CircleShape = CircleShape.create();
+        particleShape.radius = 8 / LFGlobals.scale;
+
+        var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
+        particleGroupDef.shape = particleShape.swigCPtr;
+        particleGroupDef.flags = LiquidFun.PARTICLE_ELASTIC;
+        var particleGroup:ParticleGroup = new ParticleGroup();
+        particleGroup.swigCPtr = particleSystem.createParticleGroup(particleGroupDef.swigCPtr);
 
     }
 

@@ -96,5 +96,18 @@ public class FixtureDefTest extends Sprite {
         fixtureDef = null;
     }
 
+    [Test]
+    public function test_identity():void {
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        Assert.assertEquals(fixtureDef.restitution, 0);
+        fixtureDef.restitution = 1;
+        Assert.assertEquals(fixtureDef.restitution, 1);
+        fixtureDef.identity();
+        Assert.assertEquals(fixtureDef.restitution, 0);
+        // cleanup
+        fixtureDef.destroy();
+        fixtureDef = null;
+    }
+
 }
 }

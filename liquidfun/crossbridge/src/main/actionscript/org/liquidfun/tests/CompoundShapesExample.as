@@ -50,13 +50,6 @@ public class CompoundShapesExample extends BaseExample {
     /**
      * @private
      */
-    override public function update():void {
-
-    }
-
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 

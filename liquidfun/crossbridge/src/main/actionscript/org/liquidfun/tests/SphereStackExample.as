@@ -62,24 +62,24 @@ public class SphereStackExample extends BaseExample {
      */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
-        // boxes
+
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+
+        var shape:CircleShape = CircleShape.create();
+        shape.radius = 8 / LFGlobals.scale;
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+        fixtureDef.density = 1.0;
+
         for (var j:int = 0; j < 5; j++) {
             for (var i:int = 0; i <= 16; i++) {
-
-                var bodyDef:BodyDef = BodyDef.create();
-                bodyDef.type = LiquidFun.DYNAMIC_BODY;
                 bodyDef.setXY((400 + (j * 16)) / LFGlobals.scale, (50 + (i * 16)) / LFGlobals.scale);
 
                 var body:Body = new Body();
                 body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
 
-                var shape:CircleShape = CircleShape.create();
-                shape.radius = 8 / LFGlobals.scale;
-
-                var fixtureDef:FixtureDef = FixtureDef.create();
-                fixtureDef.shape = shape.swigCPtr;
-
-                fixtureDef.density = 1.0;
                 fixtureDef.friction = 0.1 + (Math.random() * 1);
                 fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
 

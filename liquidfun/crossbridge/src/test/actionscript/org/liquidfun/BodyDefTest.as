@@ -158,5 +158,18 @@ public class BodyDefTest extends Sprite {
         bodyDef = null;
     }
 
+    [Test]
+    public function test_identity():void {
+        var bodyDef:BodyDef = BodyDef.create();
+        Assert.assertEquals(bodyDef.active, true);
+        bodyDef.active = false;
+        Assert.assertEquals(bodyDef.active, false);
+        bodyDef.identity();
+        Assert.assertEquals(bodyDef.active, true);
+        // cleanup
+        bodyDef.destroy();
+        bodyDef = null;
+    }
+
 }
 }

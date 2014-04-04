@@ -40,6 +40,17 @@
 //  Extensions
 //----------------------------------
 
+%extend b2FixtureDef {
+    void Identity() {
+        $self->shape = NULL;
+        $self->userData = NULL;
+        $self->friction = 0.2f;
+        $self->restitution = 0.0f;
+        $self->density = 0.0f;
+        $self->isSensor = false;
+    }
+}
+
 %extend b2Fixture {
     uint16 GetFilterCategoryBits() {
         return $self->GetFilterData().categoryBits;

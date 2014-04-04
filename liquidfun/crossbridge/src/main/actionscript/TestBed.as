@@ -43,6 +43,7 @@ import org.liquidfun.*;
 import org.liquidfun.core.CModule;
 import org.liquidfun.core.vfs.ISpecialFile;
 import org.liquidfun.tests.BaseExample;
+import org.liquidfun.tests.ParticlesExample;
 import org.liquidfun.tests.PyramidExample;
 import org.liquidfun.tests.RigidParticlesExample;
 import org.liquidfun.tests.SandboxExample;
@@ -81,11 +82,11 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private const tests:Vector.<Class> = Vector.<Class>([
         SandboxExample
-        , VaryingRestitutionExample
-        , PyramidExample
+        , ParticlesExample
         , VerticalStackExample
         , SphereStackExample
-        , RigidParticlesExample
+        , PyramidExample
+        , VaryingRestitutionExample
     ]);
 
     //----------------------------------
@@ -163,11 +164,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         debugDraw = DebugDraw.create();
         //trace(debugDraw.drawArea);
         world.setDebugDraw(debugDraw.swigCPtr);
-        debugDraw.setFlags(Draw.BIT_SHAPE
-                | Draw.BIT_JOINT
-                | Draw.BIT_PAIR
-                | Draw.BIT_CENTER_OF_MASS
-                | Draw.BIT_PARTICLE);
+        debugDraw.setFlags(Draw.BIT_SHAPE | Draw.BIT_JOINT | Draw.BIT_PAIR | Draw.BIT_PARTICLE);
 
         // Set first test
         nextTest();
