@@ -31,28 +31,11 @@ import flash.events.Event;
 import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-//----------------------------------
-//  Metadata
-//----------------------------------
-[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
-
-/**
- * TBD
- *
- * @author Andras Csizmadia
- */
 public class VaryingRestitutionExample extends BaseExample {
-
-    //----------------------------------
-    //  Constructor
-    //----------------------------------
 
     public function VaryingRestitutionExample() {
     }
 
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
         const restitutions:Array = [0.0, 0.1, 0.3, 0.5, 0.75, 0.9, 1.0];

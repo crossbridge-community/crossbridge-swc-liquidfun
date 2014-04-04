@@ -82,11 +82,11 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private const tests:Vector.<Class> = Vector.<Class>([
         SandboxExample
-        , ParticlesExample
         , VerticalStackExample
         , SphereStackExample
         , PyramidExample
         , VaryingRestitutionExample
+        , ParticlesExample
     ]);
 
     //----------------------------------

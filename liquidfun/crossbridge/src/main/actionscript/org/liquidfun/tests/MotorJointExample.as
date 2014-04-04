@@ -28,9 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class DrawingParticlesExample extends BaseExample {
+public class MotorJointExample extends BaseExample {
 
-    public function DrawingParticlesExample() {
+    public function MotorJointExample() {
     }
 
     override protected function onAdded(event:Event):void {

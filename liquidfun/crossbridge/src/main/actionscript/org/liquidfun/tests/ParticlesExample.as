@@ -30,55 +30,42 @@ import flash.events.Event;
 
 import org.liquidfun.CircleShape;
 import org.liquidfun.LiquidFun;
-import org.liquidfun.ParticleDef;
-
 import org.liquidfun.ParticleGroup;
 import org.liquidfun.ParticleGroupDef;
-
 import org.liquidfun.ParticleSystem;
 import org.liquidfun.ParticleSystemDef;
 import org.liquidfun.utils.LFGlobals;
 
-//----------------------------------
-//  Metadata
-//----------------------------------
-[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
-
-/**
- * TBD
- *
- * @author Andras Csizmadia
- */
 public class ParticlesExample extends BaseExample {
-
-    //----------------------------------
-    //  Constructor
-    //----------------------------------
 
     public function ParticlesExample() {
     }
 
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
         var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
         particleSystemDef.dampingStrength = 0.2;
-        particleSystemDef.radius = 0.035;
+        particleSystemDef.radius = 1 / LFGlobals.scale;
 
         var particleSystem:ParticleSystem = new ParticleSystem();
         LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
 
         var particleShape:CircleShape = CircleShape.create();
-        particleShape.radius = 8 / LFGlobals.scale;
+        particleShape.radius = 10 / LFGlobals.scale;
 
         var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
         particleGroupDef.shape = particleShape.swigCPtr;
         particleGroupDef.flags = LiquidFun.PARTICLE_ELASTIC;
+        particleGroupDef.angle = -0.5;
+        particleGroupDef.groupFlags = LiquidFun.PARTICLE_GROUP_SOLID;
+        particleGroupDef.angularVelocity = 2;
+        particleGroupDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+        particleGroupDef.setColor(0, 0, 255, 255);
         var particleGroup:ParticleGroup = new ParticleGroup();
         particleGroup.swigCPtr = particleSystem.createParticleGroup(particleGroupDef.swigCPtr);
+
+        trace(particleSystem.getParticleCount());
 
     }
 

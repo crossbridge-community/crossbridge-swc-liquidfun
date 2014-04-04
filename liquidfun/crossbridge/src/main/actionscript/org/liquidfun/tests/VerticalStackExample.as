@@ -31,35 +31,11 @@ import flash.events.Event;
 import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-//----------------------------------
-//  Metadata
-//----------------------------------
-[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
-
-/**
- * TBD
- *
- * @author Andras Csizmadia
- */
 public class VerticalStackExample extends BaseExample {
-
-    //----------------------------------
-    //  Constructor
-    //----------------------------------
 
     public function VerticalStackExample() {
     }
 
-    /**
-     * @private
-     */
-    override protected function onRemoved(event:Event):void {
-        super.onRemoved(event);
-    }
-
-    /**
-     * @private
-     */
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
