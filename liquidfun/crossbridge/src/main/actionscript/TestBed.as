@@ -81,6 +81,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         , StackCircleExample
         , PyramidExample
         , VaryingRestitutionExample
+        , VaryingFrictionExample
         , JointDistanceExample
         , JointMotorExample
         , JointMouseExample
