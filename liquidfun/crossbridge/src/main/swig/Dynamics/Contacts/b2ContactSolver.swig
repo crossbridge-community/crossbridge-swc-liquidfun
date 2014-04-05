@@ -25,17 +25,10 @@
 //=END MIT LICENSE
 //
 
-%module b2Distance
-
-//----------------------------------
-//  Ignore
-//----------------------------------
-
-// duplicates b2Math.h:537: b2Distance(b2Vec2 const &,b2Vec2 const &)
-%ignore b2Distance;
+%module b2ContactSolver
 
 //----------------------------------
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/b2Distance.h"
+%include "../../../Box2D/Box2D/Dynamics/Contacts/b2ContactSolver.h"

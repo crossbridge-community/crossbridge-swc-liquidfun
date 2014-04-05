@@ -31,6 +31,7 @@
 //  Ignores
 //----------------------------------
 
+// duplicates const version
 %ignore b2Contact::GetManifold();
 %ignore b2Contact::GetNext();
 %ignore b2Contact::GetFixtureA();

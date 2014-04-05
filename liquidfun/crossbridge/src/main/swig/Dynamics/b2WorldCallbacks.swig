@@ -50,3 +50,210 @@
 //----------------------------------
 
 %include "../../../Box2D/Box2D/Dynamics/b2WorldCallbacks.h"
+
+//----------------------------------
+//  Inline
+//----------------------------------
+
+%inline %{
+    // Extended debug draw class definition
+    class b2ContactListenerImpl : public b2ContactListener
+    {
+        private:
+        public:
+
+        b2ContactListenerImpl() {
+            AS3_Trace("ContactListenerImpl::Created");
+        }
+
+        ~b2ContactListenerImpl() {
+            AS3_Trace("ContactListenerImpl::Destroyed");
+        }
+
+        // @inheritDoc
+        void BeginContact(b2Contact* contact) {
+            // TODO
+        }
+
+        // @inheritDoc
+        void EndContact(b2Contact* contact) {
+            // TODO
+        }
+
+        // @inheritDoc
+        void BeginContact(b2ParticleSystem* particleSystem,
+                                  b2ParticleBodyContact* particleBodyContact)
+        {
+            // TODO
+        }
+
+        // @inheritDoc
+        void EndContact(b2Fixture* fixture,
+                                b2ParticleSystem* particleSystem, int32 index)
+        {
+            // TODO
+        }
+
+        // @inheritDoc
+        void BeginContact(b2ParticleSystem* particleSystem,
+                                  b2ParticleContact* particleContact)
+        {
+            // TODO
+        }
+
+        // @inheritDoc
+        void EndContact(b2ParticleSystem* particleSystem,
+                                int32 indexA, int32 indexB)
+        {
+            // TODO
+        }
+
+        // @inheritDoc
+        void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+        {
+            // TODO
+        }
+
+        // @inheritDoc
+        void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
+        {
+            // TODO
+        }
+
+    };
+%}
+
+
+/*%inline %{
+    // Extended debug draw class definition
+    class b2DestructionListenerImpl : public b2DestructionListener
+    {
+        private:
+        public:
+
+        b2DestructionListenerImpl() {
+            AS3_Trace("DestructionListenerImpl::Created");
+        }
+
+        ~b2DestructionListenerImpl() {
+            AS3_Trace("DestructionListenerImpl::Destroyed");
+        }
+
+    };
+%}*/
+
+
+%inline %{
+    // Extended debug draw class definition
+    class b2ContactFilterImpl : public b2ContactFilter
+    {
+        private:
+        public:
+
+        b2ContactFilterImpl() {
+            AS3_Trace("ContactFilterImpl::Created");
+        }
+
+        ~b2ContactFilterImpl() {
+            AS3_Trace("ContactFilterImpl::Destroyed");
+        }
+
+        // @inheritDoc
+        bool ShouldCollide(b2Fixture* fixtureA, b2Fixture* fixtureB) {
+            // TODO
+            return true;
+        }
+
+        // @inheritDoc
+        bool ShouldCollide(b2Fixture* fixture,
+                                   b2ParticleSystem* particleSystem,
+                                   int32 particleIndex) {
+            // TODO
+            return true;
+        }
+
+        // @inheritDoc
+        bool ShouldCollide(b2ParticleSystem* particleSystem,
+                                   int32 particleIndexA, int32 particleIndexB) {
+            // TODO
+            return true;
+        }
+
+    };
+%}
+
+
+%inline %{
+    // Extended debug draw class definition
+    class b2QueryCallbackImpl : public b2QueryCallback
+    {
+        private:
+        public:
+
+        b2QueryCallbackImpl() {
+            AS3_Trace("QueryCallbackImpl::Created");
+        }
+
+        ~b2QueryCallbackImpl() {
+            AS3_Trace("QueryCallbackImpl::Destroyed");
+        }
+
+        // @inheritDoc
+        bool ReportFixture(b2Fixture* fixture){
+            return true;
+        }
+
+        // @inheritDoc
+        bool ReportParticle(const b2ParticleSystem* particleSystem, int32 index) {
+            // TODO
+            return false;
+        }
+
+        // @inheritDoc
+        bool ShouldQueryParticleSystem(const b2ParticleSystem* particleSystem) {
+            // TODO
+            return true;
+        }
+
+    };
+%}
+
+
+%inline %{
+    // Extended debug draw class definition
+    class b2RayCastCallbackImpl : public b2RayCastCallback
+    {
+        private:
+        public:
+
+        b2RayCastCallbackImpl() {
+            AS3_Trace("RayCastCallbackImpl::Created");
+        }
+
+        ~b2RayCastCallbackImpl() {
+            AS3_Trace("RayCastCallbackImpl::Destroyed");
+        }
+
+        // @inheritDoc
+        float32 ReportFixture(	b2Fixture* fixture, const b2Vec2& point,
+                                        const b2Vec2& normal, float32 fraction) {
+            // TODO
+            return 0;
+        }
+
+        // @inheritDoc
+        float32 ReportParticle(const b2ParticleSystem* particleSystem,
+                                       int32 index, const b2Vec2& point,
+                                       const b2Vec2& normal, float32 fraction) {
+            // TODO
+            return 0;
+        }
+
+        // @inheritDoc
+        bool ShouldQueryParticleSystem(const b2ParticleSystem* particleSystem) {
+            // TODO
+            return true;
+        }
+
+    };
+%}
