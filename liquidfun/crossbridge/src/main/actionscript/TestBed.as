@@ -26,16 +26,15 @@
 //
 
 package {
+import com.bit101.components.Label;
+import com.bit101.components.List;
+
 import flash.display.Sprite;
 import flash.display.StageAlign;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.system.System;
-import flash.text.TextField;
-import flash.text.TextFormat;
-import flash.text.TextFormatAlign;
-import flash.ui.Keyboard;
 
 import net.hires.debug.Stats;
 
@@ -48,7 +47,7 @@ import org.liquidfun.utils.LFGlobals;
 //----------------------------------
 //  Metadata
 //----------------------------------
-[SWF(backgroundColor="#666666", frameRate="60", quality="HIGH", width="800", height="600")]
+[SWF(backgroundColor="#333333", frameRate="60", quality="HIGH", width="1024", height="768")]
 
 /**
  * TestBed Example
@@ -67,31 +66,63 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var world:World;
 
-    private var title:TextField;
+    private var title:Label;
 
-    private var message:TextField;
+    private var message:Label;
 
     private var stats:Stats;
+
+    private var exampleList:List;
 
     private var debugDraw:DebugDraw;
 
     private const tests:Vector.<Class> = Vector.<Class>([
-        SandboxExample
-        , StackRectangleExample
-        , StackCircleExample
-        , PyramidExample
-        , VaryingRestitutionExample
-        , VaryingFrictionExample
-        , JointDistanceExample
-        , JointMotorExample
-        , JointMouseExample
-        , JointPrismaticExample
-        , JointPulleyExample
-        , JointRevoluteExample
-        , JointRopeExample
-        , JointWeldExample
-        , JointWheelExample
-        , ParticleSystemExample
+        SandboxExample,
+        ApplyForceExample,
+        BaseExample,
+        BodyTypesExample,
+        BreakableExample,
+        BridgeExample,
+        CantileverExample,
+        ChainExample,
+        CollisionFilteringExample,
+        CollisionProcessingExample,
+        ConfinedExample,
+        ConveyorBeltExample,
+        DominosExample,
+        ForceExample,
+        GearsExample,
+        JointDistanceExample,
+        JointMotorExample,
+        JointMouseExample,
+        JointPrismaticExample,
+        JointPulleyExample,
+        JointRevoluteExample,
+        JointRopeExample,
+        JointWeldExample,
+        JointWheelExample,
+        JumpExample,
+        OneSidedPlatformExample,
+        ParticleDrawingExample,
+        ParticleElasticExample,
+        ParticleRigidExample,
+        ParticleSystemExample,
+        PyramidExample,
+        RampExample,
+        RaycastingExample,
+        RopeExample,
+        SensorExample,
+        ShapeCompoundExample,
+        ShapeConvexHullExample,
+        ShapeEdgeExample,
+        StackCircleExample,
+        StackRectangleExample,
+        TheoJansenExample,
+        TimeOfImpactExample,
+        VaryingFrictionExample,
+        VaryingRestitutionExample,
+        WorldQueryExample
+
     ]);
 
     //----------------------------------
@@ -131,21 +162,12 @@ public class TestBed extends Sprite implements ISpecialFile {
         CModule.vfs.console = this;
         CModule.startAsync(this);
 
-        title = new TextField();
-        title.width = 800;
-        addChild(title);
-        var tf:TextFormat = new TextFormat("Arial", 11, 0xCCCCCC);
-        tf.align = TextFormatAlign.CENTER;
-        title.defaultTextFormat = tf;
-        title.text = "Switch Test: SPACE | Switch Stats: S";
+        title = new Label(this, 0, 600);
+        title.width = 1024;
+        title.text = "";
 
-        message = new TextField();
-        message.width = 800;
-        message.y = 20;
-        addChild(message);
-        tf = new TextFormat("Arial", 11, 0xFFFFFF);
-        tf.align = TextFormatAlign.CENTER;
-        message.defaultTextFormat = tf;
+        message = new Label(this, 0, 620);
+        message.y = 620;
         message.text = "";
 
         // Construct a world object, which will hold and simulate the rigid bodies.
@@ -153,8 +175,18 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // Add FPS and Memory monitor
         stats = new Stats();
-        stats.x = 10;
+        stats.x = 955;
         addChild(stats);
+
+        var setupList:List = new List(this, 800, 0);
+        setupList.width = 155;
+
+        exampleList = new List(this, 800, 100);
+        exampleList.width = 224;
+        exampleList.height = 500;
+        for (var i:int = 0; i < tests.length; i++)
+            exampleList.addItem({label: tests[i].toString(), data: tests[i]});
+        exampleList.addEventListener(Event.SELECT, onListSelect);
 
         // Test b2Log trace
         world.dump();
@@ -170,7 +202,6 @@ public class TestBed extends Sprite implements ISpecialFile {
         debugDraw.setFlags(Draw.BIT_SHAPE | Draw.BIT_JOINT | Draw.BIT_PAIR | Draw.BIT_PARTICLE);
 
         // Set start test
-        //currentIndex = tests.indexOf(JointRevoluteExample);
         newTest();
 
         // Test switching
@@ -178,6 +209,14 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // Update hook
         stage.addEventListener(Event.ENTER_FRAME, onFrameEnter, false, 0, true);
+    }
+
+    /**
+     * @private
+     */
+    private function onListSelect(event:Event):void {
+        currentIndex = tests.indexOf(exampleList.selectedItem.data);
+        newTest();
     }
 
     /**
@@ -198,44 +237,18 @@ public class TestBed extends Sprite implements ISpecialFile {
      * @private
      */
     private function onKeyUp(event:KeyboardEvent):void {
-        if (event.keyCode == Keyboard.SPACE) {
-            nextTest();
-        } else if (event.keyCode == Keyboard.BACKSPACE) {
-            prevTest();
-        } else if (event.keyCode == Keyboard.S) {
-            stats.visible = !stats.visible;
-        } else if (event.keyCode == Keyboard.D) {
-            world.dump();
-        }
-    }
-
-    /**
-     * @private
-     */
-    private function nextTest():void {
-        removeTest();
-        currentIndex++;
-        newTest();
-    }
-
-    /**
-     * @private
-     */
-    private function prevTest():void {
-        removeTest();
-        currentIndex--;
-        newTest();
+        // TODO
     }
 
     /**
      * @private
      */
     private function newTest():void {
+        removeTest();
         if (currentIndex < 0) currentIndex = tests.length - 1;
         else if (currentIndex > tests.length - 1) currentIndex = 0;
         currentTest = BaseExample(addChild(new tests[currentIndex]()));
-        message.text = currentIndex + " : " + currentTest.toString();
-
+        title.text = " " + currentIndex + " : " + currentTest.toString();
     }
 
     /**
