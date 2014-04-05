@@ -32,6 +32,7 @@ import flash.events.KeyboardEvent;
 
 import org.liquidfun.Body;
 import org.liquidfun.Joint;
+import org.liquidfun.ParticleSystem;
 import org.liquidfun.utils.LFGlobals;
 
 //----------------------------------
@@ -51,6 +52,8 @@ public class BaseExample extends Sprite {
     protected var bodies:Vector.<Body> = new Vector.<Body>();
 
     protected var joints:Vector.<Joint> = new Vector.<Joint>();
+
+    protected var systems:Vector.<ParticleSystem> = new Vector.<ParticleSystem>();
 
     //----------------------------------
     //  Constructor
@@ -73,15 +76,25 @@ public class BaseExample extends Sprite {
      */
     protected function onRemoved(event:Event):void {
         removeEventListener(Event.REMOVED_FROM_STAGE, onRemoved);
-        for (var i:int = 0; i < bodies.length; i++) {
-            LFGlobals.world.destroyBody(bodies[i].swigCPtr);
-        }
-        bodies.length = 0;
+        try {
+            for (var s:int = 0; s < systems.length; s++) {
+                LFGlobals.world.destroyParticleSystem(systems[s].swigCPtr);
+            }
+            systems.length = 0;
 
-        for (var j:int = 0; j < bodies.length; j++) {
-            LFGlobals.world.destroyJoint(joints[i].swigCPtr);
+            for (var j:int = 0; j < joints.length; j++) {
+                LFGlobals.world.destroyJoint(joints[j].swigCPtr);
+            }
+            joints.length = 0;
+
+            for (var i:int = 0; i < bodies.length; i++) {
+                LFGlobals.world.destroyBody(bodies[i].swigCPtr);
+            }
+            bodies.length = 0;
+        } catch(error:Error) {
+            trace(this, error);
         }
-        joints.length = 0;
+
     }
 
     /**

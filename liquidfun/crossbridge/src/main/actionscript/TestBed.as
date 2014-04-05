@@ -115,7 +115,8 @@ public class TestBed extends Sprite implements ISpecialFile {
         ParticleDrawingExample,
         ParticleElasticExample,
         ParticleRigidExample,
-        ParticleSystemExample,
+        ParticleExample,
+        ParticleGroupExample,
         PyramidExample,
         RampExample,
         RaycastingExample,
@@ -237,7 +238,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
         // update test
-        if(currentTest && currentTest.parent)
+        if (currentTest && currentTest.parent)
             currentTest.onFrameStep(event);
         // update debug draw
         debugDraw.step();
@@ -248,7 +249,7 @@ public class TestBed extends Sprite implements ISpecialFile {
      * @private
      */
     private function onKeyUp(event:KeyboardEvent):void {
-        if(currentTest && currentTest.parent)
+        if (currentTest && currentTest.parent)
             currentTest.onKeyUp(event);
     }
 

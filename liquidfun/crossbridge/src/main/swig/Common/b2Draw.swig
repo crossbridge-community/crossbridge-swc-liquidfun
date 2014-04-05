@@ -139,7 +139,7 @@
 
         // @inheritDoc
         void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
-            AS3_Trace("b2DebugDraw::DrawParticles");
+            //AS3_Trace("b2DebugDraw::DrawParticles");
             for (int i = 0; i < count; ++i)
             {
                 graphics->lineStyle(1, getRGBA(colors[i]), strokeAlpha);

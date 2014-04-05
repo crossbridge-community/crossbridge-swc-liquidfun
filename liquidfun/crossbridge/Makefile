@@ -61,7 +61,7 @@ $?ASC2ARGS=-merge -md -warnings -optimize -inline
 # 7. Ignore missing include files
 # Optional
 # Compile in compact mode: -fcompact 
-SWIGARGS:=-Wall -Wextra -O -as3 -c++ -includeall -ignoremissing -MF liquidfun-swig-dep.log
+SWIGARGS:=-Wall -Wextra -O -as3 -c++ -includeall -ignoremissing
 
 # Path helper
 $?UNAME=$(shell uname -s)
