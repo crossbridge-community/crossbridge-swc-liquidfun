@@ -28,6 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+import org.liquidfun.*;
+import org.liquidfun.utils.LFGlobals;
+
 public class ParticleElasticExample extends BaseExample {
 
     public function ParticleElasticExample() {
@@ -35,7 +38,33 @@ public class ParticleElasticExample extends BaseExample {
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
-        TestBed.messageArea.text = "TODO";
+
+        var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
+        particleSystemDef.dampingStrength = 0.2;
+        particleSystemDef.radius = 25 / LFGlobals.scale;
+
+        var particleSystem:ParticleSystem = new ParticleSystem();
+        particleSystem.swigCPtr = LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
+
+        var particleShape:CircleShape = CircleShape.create();
+        particleShape.radius = 150 / LFGlobals.scale;
+
+        var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
+        particleGroupDef.shape = particleShape.swigCPtr;
+        particleGroupDef.flags = LiquidFun.PARTICLE_ELASTIC;
+        //particleGroupDef.angle = 1;
+        particleGroupDef.groupFlags = LiquidFun.PARTICLE_GROUP_SOLID;
+        //particleGroupDef.setVXY(0,1);
+        particleGroupDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+        particleGroupDef.setColor(255, 255, 255, 255);
+
+        var particleGroup:ParticleGroup = new ParticleGroup();
+        particleGroup.swigCPtr = particleSystem.createParticleGroup(particleGroupDef.swigCPtr);
+
+        systems.push(particleSystem);
+
+        trace(particleSystem.getParticleCount() + "/" + particleSystem.getParticleGroupCount() + "/" + particleSystem.getMaxParticleCount())
+
     }
 
 }

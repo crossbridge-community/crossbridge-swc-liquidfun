@@ -28,16 +28,12 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.LiquidFun;
-import org.liquidfun.ParticleDef;
-import org.liquidfun.ParticleGroup;
-import org.liquidfun.ParticleSystem;
-import org.liquidfun.ParticleSystemDef;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-public class ParticleExample extends BaseExample {
+public class ParticleSpringExample extends BaseExample {
 
-    public function ParticleExample() {
+    public function ParticleSpringExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -45,27 +41,29 @@ public class ParticleExample extends BaseExample {
 
         var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
         particleSystemDef.dampingStrength = 0.2;
-        particleSystemDef.radius = 1 / LFGlobals.scale;
+        particleSystemDef.radius = 25 / LFGlobals.scale;
 
         var particleSystem:ParticleSystem = new ParticleSystem();
         particleSystem.swigCPtr = LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
 
-        //
-        for (var i:int = 0; i < 100; i++) {
-            var particleDef:ParticleDef = ParticleDef.create();
-            particleDef.flags = LiquidFun.PARTICLE_ELASTIC;
-            particleDef.setVXY(-0.5 + Math.random(), -0.5 + Math.random());
-            particleDef.setXY(Math.random() * 800 / LFGlobals.scale, Math.random() * 600 / LFGlobals.scale);
-            particleDef.setColor(255, 255, 255, 255);
-            var particle:ParticleGroup = new ParticleGroup();
-            particle.swigCPtr = particleSystem.createParticle(particleDef.swigCPtr);
+        var particleShape:CircleShape = CircleShape.create();
+        particleShape.radius = 150 / LFGlobals.scale;
 
-        }
+        var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
+        particleGroupDef.shape = particleShape.swigCPtr;
+        particleGroupDef.flags = LiquidFun.PARTICLE_SPRING;
+        //particleGroupDef.angle = 1;
+        particleGroupDef.groupFlags = LiquidFun.PARTICLE_GROUP_SOLID;
+        //particleGroupDef.setVXY(0,1);
+        particleGroupDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+        particleGroupDef.setColor(255, 255, 255, 255);
+
+        var particleGroup:ParticleGroup = new ParticleGroup();
+        particleGroup.swigCPtr = particleSystem.createParticleGroup(particleGroupDef.swigCPtr);
 
         systems.push(particleSystem);
 
         trace(particleSystem.getParticleCount() + "/" + particleSystem.getParticleGroupCount() + "/" + particleSystem.getMaxParticleCount())
-
 
     }
 
