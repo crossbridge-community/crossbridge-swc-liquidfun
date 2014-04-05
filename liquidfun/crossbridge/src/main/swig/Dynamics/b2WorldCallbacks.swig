@@ -31,19 +31,19 @@
 //  Renames
 //----------------------------------
 
-%rename (SayGoodbyeJoint) b2DestructionListener::SayGoodbye(b2Joint* joint);
-%rename (SayGoodbyeFixture) b2DestructionListener::SayGoodbye(b2Fixture* fixture);
-%rename (SayGoodbyePG) b2DestructionListener::SayGoodbye(b2ParticleGroup* group);
-%rename (SayGoodbyePS) b2DestructionListener::SayGoodbye(b2ParticleSystem* particleSystem, int32 index);
+%rename (sayGoodbyeJ) b2DestructionListener::SayGoodbye(b2Joint* joint);
+%rename (sayGoodbyeF) b2DestructionListener::SayGoodbye(b2Fixture* fixture);
+%rename (sayGoodbyePG) b2DestructionListener::SayGoodbye(b2ParticleGroup* group);
+%rename (sayGoodbyePS) b2DestructionListener::SayGoodbye(b2ParticleSystem* particleSystem, int32 index);
 
-%rename (EndContactFixtureAndPS) b2ContactListener::EndContact(b2Fixture *,b2ParticleSystem *,int32);
-%rename (EndContactPS) b2ContactListener::EndContact(b2ParticleSystem *,int32,int32);
+%rename (endContactPSF) b2ContactListener::EndContact(b2Fixture *,b2ParticleSystem *,int32);
+%rename (endContactPS) b2ContactListener::EndContact(b2ParticleSystem *,int32,int32);
 
-%rename (BeginContactBodyAndPS) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleBodyContact *);
-%rename (BeginContactPCandPS) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleContact *);
+%rename (beginContactPSBC) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleBodyContact *);
+%rename (beginContactPSPC) b2ContactListener::BeginContact(b2ParticleSystem *,b2ParticleContact *);
 
-%rename (ShouldCollideFixtureAndPS) b2ContactFilter::ShouldCollide(b2Fixture *,b2ParticleSystem *,int32);
-%rename (ShouldCollidePS) b2ContactFilter::ShouldCollide(b2ParticleSystem *,int32,int32);
+%rename (shouldCollidePSF) b2ContactFilter::ShouldCollide(b2Fixture *,b2ParticleSystem *,int32);
+%rename (shouldCollidePS) b2ContactFilter::ShouldCollide(b2ParticleSystem *,int32,int32);
 
 //----------------------------------
 //  Includes

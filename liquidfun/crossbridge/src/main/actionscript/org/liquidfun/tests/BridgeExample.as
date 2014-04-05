@@ -28,6 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+import org.liquidfun.*;
+import org.liquidfun.utils.LFGlobals;
+
 public class BridgeExample extends BaseExample {
 
     public function BridgeExample() {
@@ -35,6 +38,50 @@ public class BridgeExample extends BaseExample {
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
+
+        var groundDef:BodyDef = BodyDef.create();
+        var ground:Body = new Body();
+        ground.swigCPtr = LFGlobals.world.createBody(groundDef.swigCPtr);
+
+        var i:int;
+        var anchor:Vec2 = Vec2.create();
+        var body:Body;
+
+        // Bridge
+
+        var sd:PolygonShape = PolygonShape.create();
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        sd.setAsBox(24 / LFGlobals.scale, 5 / LFGlobals.scale);
+        fixtureDef.shape = sd.swigCPtr;
+        fixtureDef.density = 20.0;
+        fixtureDef.friction = 0.2;
+
+        var bd:BodyDef = BodyDef.create();
+        bd.type = LiquidFun.DYNAMIC_BODY;
+
+        var jd:RevoluteJointDef = RevoluteJointDef.create();
+        const numPlanks:int = 10;
+        jd.lowerAngle = -15 / (180 / Math.PI);
+        jd.upperAngle = 15 / (180 / Math.PI);
+        jd.enableLimit = true;
+
+        var prevBody:Body = ground;
+        for (i = 0; i < numPlanks; ++i) {
+            bd.setXY((100 + 22 + 44 * i) / LFGlobals.scale, 250 / LFGlobals.scale);
+            body = new Body();
+            body.swigCPtr = LFGlobals.world.createBody(bd.swigCPtr);
+            body.createFixture(fixtureDef.swigCPtr);
+
+            anchor.set((100 + 44 * i) / LFGlobals.scale, 250 / LFGlobals.scale);
+            jd.initialize(prevBody.swigCPtr, body.swigCPtr, anchor.swigCPtr);
+            LFGlobals.world.createJoint(jd.swigCPtr);
+
+            prevBody = body;
+        }
+
+        anchor.set((100 + 44 * numPlanks) / LFGlobals.scale, 250 / LFGlobals.scale);
+        jd.initialize(prevBody.swigCPtr, ground.swigCPtr, anchor.swigCPtr);
+        LFGlobals.world.createJoint(jd.swigCPtr);
 
     }
 

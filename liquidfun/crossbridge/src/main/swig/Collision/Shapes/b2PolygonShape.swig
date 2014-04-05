@@ -38,7 +38,7 @@
 //  Renames
 //----------------------------------
 
-%rename(setAsBoxWithCenterPtr) b2PolygonShape::SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
+%rename(setAsOrientedBox) b2PolygonShape::SetAsBox(float32 hx, float32 hy, const b2Vec2& center, float32 angle);
 
 //----------------------------------
 //  Extensions
@@ -48,7 +48,7 @@
     void SetCentroidXY(float32 x, float32 y) {
         $self->m_centroid.Set(x, y);
     }
-    void SetAsBoxWithCenter(
+    void SetAsOrientedBoxXY(
             float32 hx,
             float32 hy,
             float32 centerX,

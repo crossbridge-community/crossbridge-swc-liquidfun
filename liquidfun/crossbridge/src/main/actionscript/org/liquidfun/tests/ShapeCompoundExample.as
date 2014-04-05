@@ -28,6 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+import org.liquidfun.*;
+import org.liquidfun.utils.LFGlobals;
+
 public class ShapeCompoundExample extends BaseExample {
 
     public function ShapeCompoundExample() {
@@ -36,6 +39,33 @@ public class ShapeCompoundExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
+        // ShapeA
+        var shapeA:CircleShape = CircleShape.create();
+        shapeA.radius = 8 / LFGlobals.scale;
+        shapeA.setXY(-1, 0);
+        var fixtureDefA:FixtureDef = FixtureDef.create();
+        fixtureDefA.shape = shapeA.swigCPtr;
+
+        // ShapeB
+        var shapeB:CircleShape = CircleShape.create();
+        shapeB.radius = 8 / LFGlobals.scale;
+        shapeB.setXY(1, 0);
+        var fixtureDefB:FixtureDef = FixtureDef.create();
+        fixtureDefB.shape = shapeB.swigCPtr;
+
+        // BODY
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+        bodyDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var body:Body = new Body();
+        body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+        // Fixtures
+        body.createFixture(fixtureDefA.swigCPtr);
+        body.createFixture(fixtureDefB.swigCPtr);
+
+        // Save to list
+        bodies.push(body);
     }
 
 }

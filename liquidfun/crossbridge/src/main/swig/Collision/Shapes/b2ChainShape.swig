@@ -31,7 +31,7 @@
 //  Extensions
 //----------------------------------
 
-%extend b2CircleShape {
+%extend b2ChainShape {
     // TODO
 }
 

@@ -35,7 +35,7 @@ public class ParticleDrawingExample extends BaseExample {
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
-
+        TestBed.messageArea.text = "TODO";
     }
 
 }

@@ -28,19 +28,34 @@
 %module b2Collision
 
 //----------------------------------
-//  Ignores
+//  Renames
 //----------------------------------
 
-// methods
-%ignore b2TestOverlap;
-%ignore b2AABB::Combine(b2AABB const &,b2AABB const &);
+%rename(combine2) b2AABB::Combine(b2AABB const &,b2AABB const &);
 
 //----------------------------------
 //  Extensions
 //----------------------------------
 
 %extend b2AABB {
-    // TODO
+    /*LOWER BOUND*/
+    // Lower bound getter X
+    float32 GetLowerBoundX() {
+        return $self->lowerBound.x;
+    }
+    // Lower bound getter Y
+    float32 GetLowerBoundY() {
+        return $self->lowerBound.y;
+    }
+    /*UPPER BOUND*/
+    // Upper bound getter X
+    float32 GetUpperBoundX() {
+        return $self->upperBound.x;
+    }
+    // Upper bound getter Y
+    float32 GetUpperBoundY() {
+        return $self->upperBound.y;
+    }
 }
 
 //----------------------------------
