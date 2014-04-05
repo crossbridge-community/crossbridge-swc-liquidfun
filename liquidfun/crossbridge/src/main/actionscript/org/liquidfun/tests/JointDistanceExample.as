@@ -30,19 +30,19 @@ import flash.events.Event;
 
 import org.liquidfun.Body;
 import org.liquidfun.BodyDef;
+import org.liquidfun.DistanceJoint;
+import org.liquidfun.DistanceJointDef;
 import org.liquidfun.FixtureDef;
 import org.liquidfun.LiquidFun;
 import org.liquidfun.PolygonShape;
-import org.liquidfun.WeldJoint;
-import org.liquidfun.WeldJointDef;
 import org.liquidfun.utils.LFGlobals;
 
 /**
- * Joins two bodies together.
+ * Enforce distance between two bodies
  */
-public class WeldJointExample extends BaseExample {
+public class JointDistanceExample extends BaseExample {
 
-    public function WeldJointExample() {
+    public function JointDistanceExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -70,10 +70,10 @@ public class WeldJointExample extends BaseExample {
         bodyB.createFixture(fixtureDef.swigCPtr);
         bodies.push(bodyB);
 
-        var jointDef:WeldJointDef = WeldJointDef.create();
-        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter());
+        var jointDef:DistanceJointDef = DistanceJointDef.create();
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), bodyB.getWorldCenter());
 
-        var joint:WeldJoint = new WeldJoint();
+        var joint:DistanceJoint = new DistanceJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
         joints.push(joint);

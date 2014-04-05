@@ -28,9 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class RopeJointExample extends BaseExample {
+public class ShapeCompoundExample extends BaseExample {
 
-    public function RopeJointExample() {
+    public function ShapeCompoundExample() {
     }
 
     override protected function onAdded(event:Event):void {

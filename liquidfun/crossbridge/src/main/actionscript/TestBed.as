@@ -77,19 +77,20 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private const tests:Vector.<Class> = Vector.<Class>([
         SandboxExample
-        , VerticalStackExample
-        , SphereStackExample
+        , StackRectangleExample
+        , StackCircleExample
         , PyramidExample
         , VaryingRestitutionExample
-        , DistanceJointExample
-        , MotorJointExample
-        , PrismaticJointExample
-        , PulleyJointExample
-        , RevoluteJointExample
-        , RopeJointExample
-        , WeldJointExample
-        , WheelJointExample
-        , ParticlesExample
+        , JointDistanceExample
+        , JointMotorExample
+        , JointMouseExample
+        , JointPrismaticExample
+        , JointPulleyExample
+        , JointRevoluteExample
+        , JointRopeExample
+        , JointWeldExample
+        , JointWheelExample
+        , ParticleSystemExample
     ]);
 
     //----------------------------------
@@ -128,7 +129,6 @@ public class TestBed extends Sprite implements ISpecialFile {
         // Initialize CrossBridge module
         CModule.vfs.console = this;
         CModule.startAsync(this);
-        //trace(CModule.activeConsole);
 
         title = new TextField();
         title.width = 800;
@@ -169,8 +169,8 @@ public class TestBed extends Sprite implements ISpecialFile {
         debugDraw.setFlags(Draw.BIT_SHAPE | Draw.BIT_JOINT | Draw.BIT_PAIR | Draw.BIT_PARTICLE);
 
         // Set start test
-        //currentIndex = tests.indexOf(DistanceJointExample);
-        nextTest();
+        //currentIndex = tests.indexOf(JointRevoluteExample);
+        newTest();
 
         // Test switching
         stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp, false, 0, true);
@@ -199,6 +199,8 @@ public class TestBed extends Sprite implements ISpecialFile {
     private function onKeyUp(event:KeyboardEvent):void {
         if (event.keyCode == Keyboard.SPACE) {
             nextTest();
+        } else if (event.keyCode == Keyboard.BACKSPACE) {
+            prevTest();
         } else if (event.keyCode == Keyboard.S) {
             stats.visible = !stats.visible;
         } else if (event.keyCode == Keyboard.D) {
@@ -210,18 +212,41 @@ public class TestBed extends Sprite implements ISpecialFile {
      * @private
      */
     private function nextTest():void {
+        removeTest();
+        currentIndex++;
+        newTest();
+    }
+
+    /**
+     * @private
+     */
+    private function prevTest():void {
+        removeTest();
+        currentIndex--;
+        newTest();
+    }
+
+    /**
+     * @private
+     */
+    private function newTest():void {
+        if (currentIndex < 0) currentIndex = tests.length - 1;
+        else if (currentIndex > tests.length - 1) currentIndex = 0;
+        currentTest = BaseExample(addChild(new tests[currentIndex]()));
+        message.text = currentIndex + " : " + currentTest.toString();
+
+    }
+
+    /**
+     * @private
+     */
+    private function removeTest():void {
         // remove prev. test
         if (currentTest && currentTest.parent)
             removeChild(currentTest);
         currentTest = null;
         // run gc
         System.pauseForGCIfCollectionImminent();
-        // add new test
-        currentTest = BaseExample(addChild(new tests[currentIndex++]()));
-        message.text = currentTest.toString();
-        if (currentIndex > tests.length - 1) currentIndex = 0;
-        // debug log
-        trace("nextTest", currentIndex, currentTest);
     }
 
     // ======================================================

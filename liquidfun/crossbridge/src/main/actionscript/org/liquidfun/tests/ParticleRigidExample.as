@@ -28,9 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class ConvexHullExample extends BaseExample {
+public class ParticleRigidExample extends BaseExample {
 
-    public function ConvexHullExample() {
+    public function ParticleRigidExample() {
     }
 
     override protected function onAdded(event:Event):void {

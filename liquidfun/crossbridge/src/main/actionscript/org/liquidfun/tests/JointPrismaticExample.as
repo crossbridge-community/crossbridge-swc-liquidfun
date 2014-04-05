@@ -41,9 +41,9 @@ import org.liquidfun.utils.LFGlobals;
 /**
  * Can act like a moving platform
  */
-public class PrismaticJointExample extends BaseExample {
+public class JointPrismaticExample extends BaseExample {
 
-    public function PrismaticJointExample() {
+    public function JointPrismaticExample() {
     }
 
     override protected function onAdded(event:Event):void {

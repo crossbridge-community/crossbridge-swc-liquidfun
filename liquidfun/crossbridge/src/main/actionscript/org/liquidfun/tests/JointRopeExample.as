@@ -28,23 +28,12 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-import org.liquidfun.Body;
-import org.liquidfun.BodyDef;
-import org.liquidfun.FixtureDef;
-import org.liquidfun.LiquidFun;
-import org.liquidfun.PolygonShape;
-import org.liquidfun.PulleyJoint;
-import org.liquidfun.PulleyJointDef;
-import org.liquidfun.Vec2;
+import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-/**
- * Two bodies pulls each other.
- *
- */
-public class PulleyJointExample extends BaseExample {
+public class JointRopeExample extends BaseExample {
 
-    public function PulleyJointExample() {
+    public function JointRopeExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -77,11 +66,11 @@ public class PulleyJointExample extends BaseExample {
         var v2:Vec2 = Vec2.create();
         v2.set(bodyB.getX(), bodyB.getY() - 10);
 
-        var jointDef:PulleyJointDef = PulleyJointDef.create();
-        jointDef.lengthA = jointDef.lengthB = 5;
-        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter(), bodyB.getWorldCenter(), v1.swigCPtr, v1.swigCPtr, 1);
+        var jointDef:RopeJointDef = RopeJointDef.create();
+        jointDef.bodyA = bodyA.swigCPtr;
+        jointDef.bodyB = bodyB.swigCPtr;
 
-        var joint:PulleyJoint = new PulleyJoint();
+        var joint:RopeJoint = new RopeJoint();
         joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
         joints.push(joint);

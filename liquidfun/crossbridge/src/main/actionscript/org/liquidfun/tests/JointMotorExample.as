@@ -28,17 +28,46 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-/**
- * Causes a body to be pinned on an anchor point.
- */
-public class RevoluteJointExample extends BaseExample {
+import org.liquidfun.*;
+import org.liquidfun.utils.LFGlobals;
 
-    public function RevoluteJointExample() {
+public class JointMotorExample extends BaseExample {
+
+    public function JointMotorExample() {
     }
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+
+        var shape:PolygonShape = PolygonShape.create();
+        shape.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+        fixtureDef.density = 1.0;
+
+        bodyDef.setXY(300 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var bodyA:Body = new Body();
+        bodyA.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        bodyA.createFixture(fixtureDef.swigCPtr);
+        bodies.push(bodyA);
+
+        bodyDef.setXY(500 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var bodyB:Body = new Body();
+        bodyB.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        bodyB.createFixture(fixtureDef.swigCPtr);
+        bodies.push(bodyB);
+
+        var jointDef:MotorJointDef = MotorJointDef.create();
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr);
+
+        var joint:MotorJoint = new MotorJoint();
+        joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
+
+        joints.push(joint);
     }
 
 }

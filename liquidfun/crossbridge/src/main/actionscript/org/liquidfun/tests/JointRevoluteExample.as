@@ -31,9 +31,12 @@ import flash.events.Event;
 import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-public class VerticalStackExample extends BaseExample {
+/**
+ * Causes a body to be pinned on an anchor point.
+ */
+public class JointRevoluteExample extends BaseExample {
 
-    public function VerticalStackExample() {
+    public function JointRevoluteExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -49,22 +52,25 @@ public class VerticalStackExample extends BaseExample {
         fixtureDef.shape = shape.swigCPtr;
         fixtureDef.density = 1.0;
 
-        for (var j:int = 0; j < 5; j++) {
-            for (var i:int = 0; i <= 16; i++) {
+        bodyDef.setXY(300 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var bodyA:Body = new Body();
+        bodyA.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        bodyA.createFixture(fixtureDef.swigCPtr);
+        bodies.push(bodyA);
 
-                bodyDef.setXY((400 + (j * 16)) / LFGlobals.scale, (50 + (i * 16)) / LFGlobals.scale);
+        bodyDef.setXY(500 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var bodyB:Body = new Body();
+        bodyB.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        bodyB.createFixture(fixtureDef.swigCPtr);
+        bodies.push(bodyB);
 
-                var body:Body = new Body();
-                body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        var jointDef:RevoluteJointDef = RevoluteJointDef.create();
+        jointDef.initialize(bodyA.swigCPtr, bodyB.swigCPtr, bodyA.getWorldCenter());
 
-                fixtureDef.friction = 0.1 + (Math.random() * 1);
-                fixtureDef.restitution = 0.1 + (Math.random() * 0.5);
+        var joint:RevoluteJoint = new RevoluteJoint();
+        joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
 
-                body.createFixture(fixtureDef.swigCPtr);
-
-                bodies.push(body);
-            }
-        }
+        joints.push(joint);
     }
 
 }

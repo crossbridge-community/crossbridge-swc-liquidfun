@@ -41,9 +41,9 @@ import org.liquidfun.utils.LFGlobals;
 /**
  * Car like behaviour.
  */
-public class WheelJointExample extends BaseExample {
+public class JointWheelExample extends BaseExample {
 
-    public function WheelJointExample() {
+    public function JointWheelExample() {
     }
 
     override protected function onAdded(event:Event):void {

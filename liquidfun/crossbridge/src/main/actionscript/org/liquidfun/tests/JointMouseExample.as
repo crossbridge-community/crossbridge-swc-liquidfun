@@ -28,14 +28,49 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class CompoundShapesExample extends BaseExample {
+import org.liquidfun.Body;
+import org.liquidfun.BodyDef;
+import org.liquidfun.FixtureDef;
+import org.liquidfun.LiquidFun;
+import org.liquidfun.MouseJoint;
+import org.liquidfun.MouseJointDef;
+import org.liquidfun.PolygonShape;
+import org.liquidfun.utils.LFGlobals;
 
-    public function CompoundShapesExample() {
+/**
+ * Enforce distance between two bodies
+ */
+public class JointMouseExample extends BaseExample {
+
+    public function JointMouseExample() {
     }
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+
+        var shape:PolygonShape = PolygonShape.create();
+        shape.setAsBox(15 / (LFGlobals.scale * 2), 15 / (LFGlobals.scale * 2));
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+        fixtureDef.density = 1.0;
+
+        bodyDef.setXY(300 / LFGlobals.scale, 300 / LFGlobals.scale);
+        var bodyA:Body = new Body();
+        bodyA.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        bodyA.createFixture(fixtureDef.swigCPtr);
+        bodies.push(bodyA);
+
+        var jointDef:MouseJointDef = MouseJointDef.create();
+        jointDef.target = bodyA.swigCPtr;
+
+        var joint:MouseJoint = new MouseJoint();
+        joint.swigCPtr = LFGlobals.world.createJoint(jointDef.swigCPtr);
+
+        joints.push(joint);
     }
 
 }

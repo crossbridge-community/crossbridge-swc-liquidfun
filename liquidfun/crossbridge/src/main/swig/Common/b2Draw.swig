@@ -130,7 +130,6 @@
         // @inheritDoc
         void DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color) {
             graphics->lineStyle(1, getRGB(color), strokeAlpha);
-            graphics->moveTo(0,0);
             graphics->beginFill(getRGB(color), fillAlpha);
             graphics->drawCircle(center.x * scale, center.y * scale, radius * scale);
             graphics->endFill();
@@ -140,10 +139,10 @@
 
         // @inheritDoc
         void DrawParticles(const b2Vec2 *centers, float32 radius, const b2ParticleColor *colors, int32 count) {
-            for (int i = 1; i < count; ++i)
+            AS3_Trace("b2DebugDraw::DrawParticles");
+            for (int i = 0; i < count; ++i)
             {
                 graphics->lineStyle(1, getRGBA(colors[i]), strokeAlpha);
-                graphics->moveTo(0,0);
                 graphics->beginFill(getRGBA(colors[i]), fillAlpha);
                 graphics->drawCircle(centers[i].x * scale, centers[i].y * scale, radius * scale);
                 graphics->endFill();

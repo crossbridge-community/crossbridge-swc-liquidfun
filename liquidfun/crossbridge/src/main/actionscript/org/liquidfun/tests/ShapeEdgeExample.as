@@ -28,9 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class ElasticParticlesExample extends BaseExample {
+public class ShapeEdgeExample extends BaseExample {
 
-    public function ElasticParticlesExample() {
+    public function ShapeEdgeExample() {
     }
 
     override protected function onAdded(event:Event):void {

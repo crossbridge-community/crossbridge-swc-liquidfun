@@ -36,36 +36,51 @@ import org.liquidfun.ParticleSystem;
 import org.liquidfun.ParticleSystemDef;
 import org.liquidfun.utils.LFGlobals;
 
-public class ParticlesExample extends BaseExample {
+public class ParticleSystemExample extends BaseExample {
 
-    public function ParticlesExample() {
+    public function ParticleSystemExample() {
     }
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
+        //  Error #1065: Variable F___fixsfdi is not defined.
+
         var particleSystemDef:ParticleSystemDef = ParticleSystemDef.create();
         particleSystemDef.dampingStrength = 0.2;
-        particleSystemDef.radius = 1 / LFGlobals.scale;
+        particleSystemDef.radius = 30 / LFGlobals.scale;
 
         var particleSystem:ParticleSystem = new ParticleSystem();
-        LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
+        particleSystem.swigCPtr = LFGlobals.world.createParticleSystem(particleSystemDef.swigCPtr);
 
         var particleShape:CircleShape = CircleShape.create();
-        particleShape.radius = 10 / LFGlobals.scale;
+        // particleShape.radius = 30 / LFGlobals.scale;
 
         var particleGroupDef:ParticleGroupDef = ParticleGroupDef.create();
         particleGroupDef.shape = particleShape.swigCPtr;
         particleGroupDef.flags = LiquidFun.PARTICLE_ELASTIC;
-        particleGroupDef.angle = -0.5;
+        //particleGroupDef.angle = 1;
         particleGroupDef.groupFlags = LiquidFun.PARTICLE_GROUP_SOLID;
-        particleGroupDef.angularVelocity = 2;
-        particleGroupDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
-        particleGroupDef.setColor(0, 0, 255, 255);
+        //particleGroupDef.setVXY(0,1);
+        //  particleGroupDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+        particleGroupDef.setColor(255, 255, 255, 255);
+
         var particleGroup:ParticleGroup = new ParticleGroup();
         particleGroup.swigCPtr = particleSystem.createParticleGroup(particleGroupDef.swigCPtr);
 
-        trace(particleSystem.getParticleCount());
+        //
+        /* for(var i:int = 0; i < 100; i++){
+         var particleDef:ParticleDef = ParticleDef.create();
+         particleDef.flags = LiquidFun.PARTICLE_ELASTIC;
+         particleDef.setVXY(-0.5 + Math.random(),-0.5 + Math.random());
+         particleDef.setXY(Math.random()*800 / LFGlobals.scale, Math.random()*600 / LFGlobals.scale);
+         particleDef.setColor(255, 255, 255, 255);
+         var particle:ParticleGroup = new ParticleGroup();
+         particle.swigCPtr = particleSystem.createParticle(particleDef.swigCPtr);
+
+         }*/
+        trace(particleSystem.getParticleCount() + "/" + particleSystem.getParticleGroupCount() + "/" + particleSystem.getMaxParticleCount())
+
 
     }
 
