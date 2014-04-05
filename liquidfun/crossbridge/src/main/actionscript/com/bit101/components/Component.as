@@ -45,7 +45,7 @@ package com.bit101.components
 	[Event(name="draw", type="flash.events.Event")]
 	public class Component extends Sprite
 	{
-		[Embed(source="/../fonts/pf_ronda_seven.swf", symbol="PF Ronda Seven")]
+		[Embed(source="/../../main/embeds/pf_ronda_seven.swf", symbol="PF Ronda Seven")]
         protected var Ronda:Class;
 		
 		protected var _width:Number = 0;
