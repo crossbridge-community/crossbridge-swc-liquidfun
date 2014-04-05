@@ -31,37 +31,35 @@ import flash.events.Event;
 import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-public class SandboxExample extends BaseExample {
+public class ShapeEditingExample extends BaseExample {
 
-    public function SandboxExample() {
+    public function ShapeEditingExample() {
     }
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
+
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
 
         var shape:CircleShape = CircleShape.create();
         shape.radius = 8 / LFGlobals.scale;
 
         var fixtureDef:FixtureDef = FixtureDef.create();
         fixtureDef.shape = shape.swigCPtr;
+        fixtureDef.density = 1;
+        fixtureDef.friction = 1;
+        fixtureDef.restitution = 1;
 
-        var bodyDef:BodyDef = BodyDef.create();
-        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+        bodyDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
 
-        for (var i:int = 0; i < 250; i++) {
-            bodyDef.setXY((20 + (randomFloat() * 700)) / LFGlobals.scale, (20 + (randomFloat() * 100)) / LFGlobals.scale);
+        var body:Body = new Body();
+        body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
 
-            var body:Body = new Body();
-            body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+        body.createFixture(fixtureDef.swigCPtr);
 
-            fixtureDef.friction = 0.1 + (Math.random() * 1);
-            fixtureDef.restitution = 0.1 + (Math.random() * 1);
-            fixtureDef.density = 0.1 + (Math.random() * 1);
+        bodies.push(body);
 
-            body.createFixture(fixtureDef.swigCPtr);
-
-            bodies.push(body);
-        }
     }
 
 }

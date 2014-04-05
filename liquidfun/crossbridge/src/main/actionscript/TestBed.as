@@ -28,6 +28,7 @@
 package {
 import com.bit101.components.Label;
 import com.bit101.components.List;
+import com.bit101.components.TextArea;
 
 import flash.display.Sprite;
 import flash.display.StageAlign;
@@ -60,11 +61,19 @@ public class TestBed extends Sprite implements ISpecialFile {
     //  Private variables
     //----------------------------------
 
+    // Core
+
     private var currentTest:BaseExample;
 
     private var currentIndex:int;
 
+    // LiquidFun
+
     private var world:World;
+
+    private var debugDraw:DebugDraw;
+
+    // GUI
 
     private var title:Label;
 
@@ -74,17 +83,18 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private var exampleList:List;
 
-    private var debugDraw:DebugDraw;
+    public static var messageArea:TextArea;
+
+    // Tests
 
     private const tests:Vector.<Class> = Vector.<Class>([
         SandboxExample,
         ApplyForceExample,
-        BaseExample,
         BodyTypesExample,
         BreakableExample,
         BridgeExample,
         CantileverExample,
-        ChainExample,
+        JointChainExample,
         CollisionFilteringExample,
         CollisionProcessingExample,
         ConfinedExample,
@@ -122,7 +132,6 @@ public class TestBed extends Sprite implements ISpecialFile {
         VaryingFrictionExample,
         VaryingRestitutionExample,
         WorldQueryExample
-
     ]);
 
     //----------------------------------
@@ -131,9 +140,9 @@ public class TestBed extends Sprite implements ISpecialFile {
 
     private static const I_TIME:Number = 1.0 / 60.0;
 
-    private static const I_VELOCITY:int = 10;
+    private static const I_VELOCITY:int = 6;
 
-    private static const I_POSITION:int = 4;
+    private static const I_POSITION:int = 3;
 
     private static const I_PARTICLE:int = 1;
 
@@ -178,8 +187,8 @@ public class TestBed extends Sprite implements ISpecialFile {
         stats.x = 955;
         addChild(stats);
 
-        var setupList:List = new List(this, 800, 0);
-        setupList.width = 155;
+        messageArea = new TextArea(this, 800, 0);
+        messageArea.width = 155;
 
         exampleList = new List(this, 800, 100);
         exampleList.width = 224;
@@ -228,6 +237,9 @@ public class TestBed extends Sprite implements ISpecialFile {
         CModule.serviceUIRequests();
         // update world dynamics
         world.step(I_TIME, I_VELOCITY, I_POSITION, I_PARTICLE);
+        // update test
+        if(currentTest && currentTest.parent)
+            currentTest.onFrameStep(event);
         // update debug draw
         debugDraw.step();
         world.drawDebugData();
@@ -237,7 +249,8 @@ public class TestBed extends Sprite implements ISpecialFile {
      * @private
      */
     private function onKeyUp(event:KeyboardEvent):void {
-        // TODO
+        if(currentTest && currentTest.parent)
+            currentTest.onKeyUp(event);
     }
 
     /**
@@ -247,6 +260,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         removeTest();
         if (currentIndex < 0) currentIndex = tests.length - 1;
         else if (currentIndex > tests.length - 1) currentIndex = 0;
+        messageArea.text = "";
         currentTest = BaseExample(addChild(new tests[currentIndex]()));
         title.text = " " + currentIndex + " : " + currentTest.toString();
     }
@@ -279,6 +293,13 @@ public class TestBed extends Sprite implements ISpecialFile {
 
         // b
         bodyDef.setXY(400 / LFGlobals.scale, 595 / LFGlobals.scale);
+        body = new Body();
+        body.swigCPtr = world.createBody(bodyDef.swigCPtr);
+        dynamicBox.setAsBox(800 / (LFGlobals.scale * 2), 10 / (LFGlobals.scale * 2));
+        fixtureDef.shape = dynamicBox.swigCPtr;
+        body.createFixture(fixtureDef.swigCPtr);
+        // t
+        bodyDef.setXY(400 / LFGlobals.scale, 5 / LFGlobals.scale);
         body = new Body();
         body.swigCPtr = world.createBody(bodyDef.swigCPtr);
         dynamicBox.setAsBox(800 / (LFGlobals.scale * 2), 10 / (LFGlobals.scale * 2));

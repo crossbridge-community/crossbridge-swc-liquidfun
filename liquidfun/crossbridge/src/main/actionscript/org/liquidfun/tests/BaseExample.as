@@ -28,6 +28,7 @@
 package org.liquidfun.tests {
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.KeyboardEvent;
 
 import org.liquidfun.Body;
 import org.liquidfun.Joint;
@@ -81,6 +82,20 @@ public class BaseExample extends Sprite {
             LFGlobals.world.destroyJoint(joints[i].swigCPtr);
         }
         joints.length = 0;
+    }
+
+    /**
+     * @private
+     */
+    public function onFrameStep(event:Event):void {
+        // abstract
+    }
+
+    /**
+     * @private
+     */
+    public function onKeyUp(event:KeyboardEvent):void {
+        // abstract
     }
 
     /**

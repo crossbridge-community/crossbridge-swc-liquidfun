@@ -28,6 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
+import org.liquidfun.*;
+import org.liquidfun.utils.LFGlobals;
+
 public class CollisionFilteringExample extends BaseExample {
 
     public function CollisionFilteringExample() {
@@ -35,6 +38,28 @@ public class CollisionFilteringExample extends BaseExample {
 
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
+
+        var bodyDef:BodyDef = BodyDef.create();
+        bodyDef.type = LiquidFun.DYNAMIC_BODY;
+
+        var shape:CircleShape = CircleShape.create();
+        shape.radius = 8 / LFGlobals.scale;
+
+        var fixtureDef:FixtureDef = FixtureDef.create();
+        fixtureDef.shape = shape.swigCPtr;
+        fixtureDef.density = 1;
+        fixtureDef.friction = 1;
+        fixtureDef.restitution = 1;
+        fixtureDef.setFilterBits(0, 2, 1);
+
+        bodyDef.setXY(400 / LFGlobals.scale, 300 / LFGlobals.scale);
+
+        var body:Body = new Body();
+        body.swigCPtr = LFGlobals.world.createBody(bodyDef.swigCPtr);
+
+        body.createFixture(fixtureDef.swigCPtr);
+
+        bodies.push(body);
 
     }
 

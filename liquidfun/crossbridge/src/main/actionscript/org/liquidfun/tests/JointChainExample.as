@@ -28,9 +28,9 @@
 package org.liquidfun.tests {
 import flash.events.Event;
 
-public class ChainExample extends BaseExample {
+public class JointChainExample extends BaseExample {
 
-    public function ChainExample() {
+    public function JointChainExample() {
     }
 
     override protected function onAdded(event:Event):void {

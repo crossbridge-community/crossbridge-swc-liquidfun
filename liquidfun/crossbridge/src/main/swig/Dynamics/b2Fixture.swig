@@ -41,6 +41,7 @@
 //----------------------------------
 
 %extend b2FixtureDef {
+    /*CORE*/
     void Identity() {
         $self->shape = NULL;
         $self->userData = NULL;
@@ -48,6 +49,25 @@
         $self->restitution = 0.0f;
         $self->density = 0.0f;
         $self->isSensor = false;
+    }
+    /*FILTER*/
+    // Setter for all sub-properties
+    void SetFilterBits(uint16 categoryBits, uint16 maskBits, int16 groupIndex) {
+        $self->filter.categoryBits = categoryBits;
+        $self->filter.maskBits = maskBits;
+        $self->filter.groupIndex = groupIndex;
+    }
+    // Setter for category
+    void SetFilterCategoryBits(uint16 categoryBits) {
+        $self->filter.categoryBits = categoryBits;
+    }
+    // Setter for mask
+    void SetFilterMaskBits(uint16 maskBits) {
+        $self->filter.maskBits = maskBits;
+    }
+    // Setter for group
+    void SetFilterGroupBits(int16 groupIndex) {
+        $self->filter.groupIndex = groupIndex;
     }
 }
 
