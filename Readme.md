@@ -1,5 +1,7 @@
 LiquidFun Version [1.0.0][]
 
+[![Build Status](https://travis-ci.org/vpmedia/liquidfun.svg?branch=master)](https://travis-ci.org/vpmedia/liquidfun)
+
 # Welcome to LiquidFun!
 
 LiquidFun is a 2D physics engine for games.  Go to our
