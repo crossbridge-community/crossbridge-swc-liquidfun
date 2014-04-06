@@ -61,6 +61,9 @@ public class DestructionListenerExample extends BaseExample {
         bodies.push(body);
 
         var listener:DestructionListenerImpl = DestructionListenerImpl.create();
+        listener.onFixtureDestroyed = function(ptr:int):void {
+            trace("onFixtureDestroyed: " + ptr);
+        }
         LFGlobals.world.setDestructionListener(listener.swigCPtr);
 
     }

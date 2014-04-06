@@ -61,6 +61,24 @@ public class CollisionProcessingExample extends BaseExample {
         bodies.push(body);
 
         var listener:ContactListenerImpl = ContactListenerImpl.create();
+        listener.onBeginContact = function(ptr:int):void {
+            trace("onBeginContact: " + ptr);
+        }
+        listener.onBeginPSContact = function(ptr:int):void {
+            trace("onBeginPSContact: " + ptr);
+        }
+        listener.onEndContact = function(ptr:int):void {
+            trace("onEndContact: " + ptr);
+        }
+        listener.onEndPSContact = function(ptr:int):void {
+            trace("onEndPSContact: " + ptr);
+        }
+        listener.onPreSolve = function(ptr:int):void {
+            trace("onPreSolve: " + ptr);
+        }
+        listener.onPostSolve = function(ptr:int):void {
+            trace("onPostSolve: " + ptr);
+        }
         LFGlobals.world.setContactListener(listener.swigCPtr);
     }
 
