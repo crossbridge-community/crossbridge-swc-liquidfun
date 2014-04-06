@@ -1,2 +1,12 @@
-language: objective-c
-script: ./liquidfun/tools/build_distribution.sh
+notifications:
+    email: false
+
+language: java
+
+before_install:
+    - sudo apt-get install cmake
+    - sudo apt-get install libglapi-mesa
+    - sudo apt-get install libglu1-mesa-dev
+    - cd liquidfun/Box2D
+    - cmake -G"Unix Makefiles"
+    - make
