@@ -73,11 +73,13 @@
         // @inheritDoc
         void BeginContact(b2Contact* contact) {
             // TODO
+            AS3_Trace("ContactListenerImpl::BeginContact");
         }
 
         // @inheritDoc
         void EndContact(b2Contact* contact) {
             // TODO
+            AS3_Trace("ContactListenerImpl::EndContact");
         }
 
         // @inheritDoc
@@ -85,6 +87,7 @@
                                   b2ParticleBodyContact* particleBodyContact)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::BeginContact");
         }
 
         // @inheritDoc
@@ -92,6 +95,7 @@
                                 b2ParticleSystem* particleSystem, int32 index)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::EndContact");
         }
 
         // @inheritDoc
@@ -99,6 +103,7 @@
                                   b2ParticleContact* particleContact)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::BeginContact");
         }
 
         // @inheritDoc
@@ -106,25 +111,28 @@
                                 int32 indexA, int32 indexB)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::EndContact");
         }
 
         // @inheritDoc
         void PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::PreSolve");
         }
 
         // @inheritDoc
         void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
         {
             // TODO
+            AS3_Trace("ContactListenerImpl::PostSolve");
         }
 
     };
 %}
 
 
-/*%inline %{
+%inline %{
     // Extended debug draw class definition
     class b2DestructionListenerImpl : public b2DestructionListener
     {
@@ -139,8 +147,23 @@
             AS3_Trace("DestructionListenerImpl::Destroyed");
         }
 
+        void SayGoodbye(b2Joint* joint) {
+            AS3_Trace("DestructionListenerImpl::SayGoodbyeJ");
+        }
+
+        void SayGoodbye(b2Fixture* fixture) {
+            AS3_Trace("DestructionListenerImpl::SayGoodbyeF");
+        }
+
+        void SayGoodbye(b2ParticleGroup* group) {
+            AS3_Trace("DestructionListenerImpl::SayGoodbyePG");
+        }
+
+        void SayGoodbye(b2ParticleSystem* particleSystem, int32 index) {
+            AS3_Trace("DestructionListenerImpl::SayGoodbyePS");
+        }
     };
-%}*/
+%}
 
 
 %inline %{

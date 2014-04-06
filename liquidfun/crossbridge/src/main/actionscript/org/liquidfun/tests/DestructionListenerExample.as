@@ -31,9 +31,9 @@ import flash.events.Event;
 import org.liquidfun.*;
 import org.liquidfun.utils.LFGlobals;
 
-public class CollisionProcessingExample extends BaseExample {
+public class DestructionListenerExample extends BaseExample {
 
-    public function CollisionProcessingExample() {
+    public function DestructionListenerExample() {
     }
 
     override protected function onAdded(event:Event):void {
@@ -60,8 +60,9 @@ public class CollisionProcessingExample extends BaseExample {
 
         bodies.push(body);
 
-        var listener:ContactListenerImpl = ContactListenerImpl.create();
-        LFGlobals.world.setContactListener(listener.swigCPtr);
+        var listener:DestructionListenerImpl = DestructionListenerImpl.create();
+        LFGlobals.world.setDestructionListener(listener.swigCPtr);
+
     }
 
 }

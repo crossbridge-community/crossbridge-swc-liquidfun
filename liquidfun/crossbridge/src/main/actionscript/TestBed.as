@@ -99,6 +99,7 @@ public class TestBed extends Sprite implements ISpecialFile {
         CollisionProcessingExample,
         ConfinedExample,
         ConveyorBeltExample,
+        DestructionListenerExample,
         DominosExample,
         GearsExample,
         JointDistanceExample,
