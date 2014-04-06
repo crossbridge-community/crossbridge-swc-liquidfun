@@ -38,6 +38,8 @@ public class LFGlobals {
 
     public static var world:World;
 
+    public static var groundBody:Body;
+
     public static var bodyDef:BodyDef;
 
     public static var fixtureDef:FixtureDef;

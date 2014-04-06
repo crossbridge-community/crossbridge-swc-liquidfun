@@ -119,6 +119,19 @@
 };
 
 %extend b2Body {
+    /*TYPE*/
+    // Getter Static
+    bool isStatic() {
+        return $self->GetType() == b2_staticBody;
+    }
+    // Getter Dynamic
+    bool isDynamic() {
+        return $self->GetType() == b2_dynamicBody;
+    }
+    // Getter Kinematic
+    bool isKinematic() {
+        return $self->GetType() == b2_kinematicBody;
+    }
     /* POSITION */
     // Getter X
     float32 GetX() {

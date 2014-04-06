@@ -147,9 +147,6 @@ int main() {
 // Includes
 ///////////////////////////////////////
 
-// Pull in type information from CrossBridge library for the types declared in math.h.
-%include "math.i"
-
 // LiquidFun (Order is mandatory!)
 %include "Common/b2Settings.swig"
 %include "Common/b2Math.swig"

@@ -31,7 +31,16 @@
 //  Ignores
 //----------------------------------
 
+// methods
+%ignore b2CollideCircles;
+%ignore b2CollidePolygonAndCircle;
+%ignore b2CollidePolygons;
+%ignore b2CollideEdgeAndCircle;
+%ignore b2CollideEdgeAndPolygon;
+%ignore b2ClipSegmentToLine;
 %ignore b2TestOverlap;
+%ignore b2MixFriction;
+%ignore b2MixRestitution;
 
 //----------------------------------
 //  Renames
