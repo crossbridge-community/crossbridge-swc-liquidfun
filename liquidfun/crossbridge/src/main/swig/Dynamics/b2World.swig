@@ -53,6 +53,13 @@
     void SetGravity(float32 gravityX, float32 gravityY) {
         $self->SetGravity(b2Vec2(gravityX, gravityY));
     }
+    // Legacy API support
+    void QueryPoint(b2QueryCallback* callback, int x, int y) {
+        b2AABB aabb;
+        aabb.lowerBound.Set(x - b2_linearSlop, y - b2_linearSlop);
+        aabb.upperBound.Set(x + b2_linearSlop, y + b2_linearSlop);
+        $self->QueryAABB(callback, aabb);
+    }
     // Getter for debug draw
     // Dev: Cannot expose private var
     /*bool HasDebugDraw() {

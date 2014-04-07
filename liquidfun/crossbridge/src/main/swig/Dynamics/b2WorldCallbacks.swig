@@ -63,8 +63,10 @@
         public:
             void (*onBeginContact)(b2Contact*);
             void (*onEndContact)(b2Contact*);
-            void (*onBeginPSContact)(b2Contact*);
-            void (*onEndPSContact)(b2Contact*);
+            void (*onBeginPSContact)(b2ParticleSystem*, b2ParticleBodyContact*);
+            void (*onEndPSContact)(b2Fixture*, b2ParticleSystem*, int32);
+            void (*onBeginParticleContact)(b2ParticleSystem*, b2ParticleContact*);
+            void (*onEndParticleContact)(b2ParticleSystem*, int32, int32);
             void (*onPreSolve)(b2Contact*, const b2Manifold*);
             void (*onPostSolve)(b2Contact*, const b2ContactImpulse*);
 
@@ -78,34 +80,50 @@
 
         // @inheritDoc
         void BeginContact(b2Contact* contact) {
+            if(onBeginContact != NULL)
+                onBeginContact(contact);
         }
 
         // @inheritDoc
         void EndContact(b2Contact* contact) {
+            if(onEndContact != NULL)
+                onEndContact(contact);
         }
 
         // @inheritDoc
         void BeginContact(b2ParticleSystem* particleSystem, b2ParticleBodyContact* particleBodyContact) {
+            if(onBeginPSContact != NULL)
+                onBeginPSContact(particleSystem, particleBodyContact);
         }
 
         // @inheritDoc
         void EndContact(b2Fixture* fixture, b2ParticleSystem* particleSystem, int32 index) {
+            if(onEndPSContact != NULL)
+                onEndPSContact(fixture, particleSystem, index);
         }
 
         // @inheritDoc
         void BeginContact(b2ParticleSystem* particleSystem, b2ParticleContact* particleContact) {
+            if(onBeginParticleContact != NULL)
+                onBeginParticleContact(particleSystem, particleContact);
         }
 
         // @inheritDoc
         void EndContact(b2ParticleSystem* particleSystem, int32 indexA, int32 indexB) {
+            if(onEndParticleContact != NULL)
+                onEndParticleContact(particleSystem, indexA, indexB);
         }
 
         // @inheritDoc
         void PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
+            if(onPreSolve != NULL)
+                onPreSolve(contact, oldManifold);
         }
 
         // @inheritDoc
         void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {
+            if(onPostSolve != NULL)
+                onPostSolve(contact, impulse);
         }
 
     };
@@ -121,7 +139,7 @@
             void (*onJointDestroyed)(b2Joint*);
             void (*onFixtureDestroyed)(b2Fixture*);
             void (*onParticleGroupDestroyed)(b2ParticleGroup*);
-            void (*onParticleSystemDestroyed)(b2ParticleSystem*);
+            void (*onParticleSystemDestroyed)(b2ParticleSystem*, int32);
 
         b2DestructionListenerImpl() {
             AS3_Trace("DestructionListenerImpl::Created");
@@ -148,7 +166,7 @@
 
         void SayGoodbye(b2ParticleSystem* particleSystem, int32 index) {
             if(onParticleSystemDestroyed != NULL)
-                onParticleSystemDestroyed(particleSystem);
+                onParticleSystemDestroyed(particleSystem, index);
         }
     };
 %}
@@ -160,6 +178,9 @@
     {
         private:
         public:
+            bool (*onContactFixture)(b2Fixture*, b2Fixture*);
+            bool (*onContactParticleSystem)(b2Fixture*, b2ParticleSystem*, int32);
+            bool (*onContactParticle)(b2ParticleSystem*, int32, int32);
 
         b2ContactFilterImpl() {
             AS3_Trace("ContactFilterImpl::Created");
@@ -171,7 +192,8 @@
 
         // @inheritDoc
         bool ShouldCollide(b2Fixture* fixtureA, b2Fixture* fixtureB) {
-            // TODO
+            if(onContactFixture != NULL)
+                return onContactFixture(fixtureA, fixtureB);
             return true;
         }
 
@@ -179,14 +201,16 @@
         bool ShouldCollide(b2Fixture* fixture,
                                    b2ParticleSystem* particleSystem,
                                    int32 particleIndex) {
-            // TODO
+            if(onContactParticleSystem != NULL)
+                return onContactParticleSystem(fixture, particleSystem, particleIndex);
             return true;
         }
 
         // @inheritDoc
         bool ShouldCollide(b2ParticleSystem* particleSystem,
                                    int32 particleIndexA, int32 particleIndexB) {
-            // TODO
+            if(onContactParticle != NULL)
+                return onContactParticle(particleSystem, particleIndexA, particleIndexB);
             return true;
         }
 
@@ -200,6 +224,9 @@
     {
         private:
         public:
+            bool (*onQueryFixture)(b2Fixture*);
+            bool (*onQueryParticle)(const b2ParticleSystem*, int32);
+            bool (*onQueryParticleSystem)(const b2ParticleSystem*);
 
         b2QueryCallbackImpl() {
             AS3_Trace("QueryCallbackImpl::Created");
@@ -211,18 +238,22 @@
 
         // @inheritDoc
         bool ReportFixture(b2Fixture* fixture){
+            if(onQueryFixture != NULL)
+                return onQueryFixture(fixture);
             return true;
         }
 
         // @inheritDoc
         bool ReportParticle(const b2ParticleSystem* particleSystem, int32 index) {
-            // TODO
+            if(onQueryParticle != NULL)
+                return onQueryParticle(particleSystem, index);
             return false;
         }
 
         // @inheritDoc
         bool ShouldQueryParticleSystem(const b2ParticleSystem* particleSystem) {
-            // TODO
+            if(onQueryParticleSystem != NULL)
+                return onQueryParticleSystem(particleSystem);
             return true;
         }
 
@@ -236,6 +267,9 @@
     {
         private:
         public:
+            float32 (*onRayCastFixture)(b2Fixture*, const b2Vec2&, const b2Vec2&, float32);
+            float32 (*onRayCastParticle)(const b2ParticleSystem*, int32, const b2Vec2&, const b2Vec2&, float32);
+            float32 (*onRayCastParticleSystem)(const b2ParticleSystem*);
 
         b2RayCastCallbackImpl() {
             AS3_Trace("RayCastCallbackImpl::Created");
@@ -247,22 +281,24 @@
 
         // @inheritDoc
         float32 ReportFixture(	b2Fixture* fixture, const b2Vec2& point,
-                                        const b2Vec2& normal, float32 fraction) {
-            // TODO
+                                const b2Vec2& normal, float32 fraction) {
+            if(onRayCastFixture != NULL)
+                return onRayCastFixture(fixture, point, normal, fraction);
             return 0;
         }
 
         // @inheritDoc
-        float32 ReportParticle(const b2ParticleSystem* particleSystem,
-                                       int32 index, const b2Vec2& point,
+        float32 ReportParticle(const b2ParticleSystem* particleSystem, int32 index, const b2Vec2& point,
                                        const b2Vec2& normal, float32 fraction) {
-            // TODO
+            if(onRayCastParticle != NULL)
+                return onRayCastParticle(particleSystem, index, point, normal, fraction);
             return 0;
         }
 
         // @inheritDoc
         bool ShouldQueryParticleSystem(const b2ParticleSystem* particleSystem) {
-            // TODO
+            if(onRayCastParticleSystem != NULL)
+                return onRayCastParticleSystem(particleSystem);
             return true;
         }
 

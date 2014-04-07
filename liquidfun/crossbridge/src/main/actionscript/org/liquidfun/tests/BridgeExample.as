@@ -29,6 +29,7 @@ package org.liquidfun.tests {
 import flash.events.Event;
 
 import org.liquidfun.*;
+import org.liquidfun.RevoluteJoint;
 import org.liquidfun.utils.LFGlobals;
 
 public class BridgeExample extends BaseExample {
@@ -76,13 +77,16 @@ public class BridgeExample extends BaseExample {
             jd.initialize(prevBody.swigCPtr, body.swigCPtr, anchor.swigCPtr);
             LFGlobals.world.createJoint(jd.swigCPtr);
 
+            bodies.push(body);
             prevBody = body;
         }
 
         anchor.set((100 + 44 * numPlanks) / LFGlobals.scale, 250 / LFGlobals.scale);
         jd.initialize(prevBody.swigCPtr, ground.swigCPtr, anchor.swigCPtr);
-        LFGlobals.world.createJoint(jd.swigCPtr);
+        var joint:RevoluteJoint = new RevoluteJoint();
+        joint.swigCPtr = LFGlobals.world.createJoint(jd.swigCPtr);
 
+        joints.push(joint);
     }
 
 }
