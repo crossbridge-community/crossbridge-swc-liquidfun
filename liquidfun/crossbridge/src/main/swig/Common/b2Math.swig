@@ -53,19 +53,21 @@
 }
 
 %extend b2Transform {
-    // Vec2 getter X
+    /*POSITION*/
+    // Getter X
     float32 getX() {
         return $self->p.x;
     }
-    // Vec2 getter Y
+    // Getter Y
     float32 getY() {
         return $self->p.y;
     }
-    // Rotation getter Sin
+    /*ROTATION*/
+    // Getter Sin
     float32 getRotSin() {
         return $self->q.s;
     }
-    // Rotation getter Cos
+    // Getter Cos
     float32 getRotCos() {
         return $self->q.c;
     }

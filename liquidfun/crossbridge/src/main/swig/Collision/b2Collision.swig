@@ -54,22 +54,40 @@
 
 %extend b2AABB {
     /*LOWER BOUND*/
-    // Lower bound getter X
+    // Getter X
     float32 GetLowerBoundX() {
         return $self->lowerBound.x;
     }
-    // Lower bound getter Y
+    // Getter Y
     float32 GetLowerBoundY() {
         return $self->lowerBound.y;
     }
     /*UPPER BOUND*/
-    // Upper bound getter X
+    // Getter X
     float32 GetUpperBoundX() {
         return $self->upperBound.x;
     }
-    // Upper bound getter Y
+    // Getter Y
     float32 GetUpperBoundY() {
         return $self->upperBound.y;
+    }
+    /*CENTER*/
+    // Getter X
+    float32 GetCenterX() {
+        return $self->GetCenter().x;
+    }
+    // Getter Y
+    float32 GetCenterY() {
+        return $self->GetCenter().y;
+    }
+    /*EXTENTS*/
+    // Getter X
+    float32 GetExtentsX() {
+        return $self->GetExtents().x;
+    }
+    // Getter Y
+    float32 GetExtentsY() {
+        return $self->GetExtents().y;
     }
 }
 

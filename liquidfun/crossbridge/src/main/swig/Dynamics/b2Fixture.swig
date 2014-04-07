@@ -57,15 +57,15 @@
         $self->filter.maskBits = maskBits;
         $self->filter.groupIndex = groupIndex;
     }
-    // Setter for category
+    // Setter for Category
     void SetFilterCategoryBits(uint16 categoryBits) {
         $self->filter.categoryBits = categoryBits;
     }
-    // Setter for mask
+    // Setter for Mask
     void SetFilterMaskBits(uint16 maskBits) {
         $self->filter.maskBits = maskBits;
     }
-    // Setter for group
+    // Setter for Group Index
     void SetFilterGroupBits(int16 groupIndex) {
         $self->filter.groupIndex = groupIndex;
     }

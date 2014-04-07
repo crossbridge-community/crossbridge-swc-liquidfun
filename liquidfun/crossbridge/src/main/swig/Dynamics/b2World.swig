@@ -38,6 +38,7 @@
 %ignore b2World::GetJointList();
 %ignore b2World::GetParticleSystemList();
 %ignore b2World::SetGravity(b2Vec2 const &);
+%ignore b2World::GetGravity();
 
 //----------------------------------
 //  Extensions
@@ -49,9 +50,17 @@
         b2World* pWorld = new b2World(b2Vec2(gravityX, gravityY));
         return pWorld;
     }
-    // Setter for gravityXY
+    // Setter XY
     void SetGravity(float32 gravityX, float32 gravityY) {
         $self->SetGravity(b2Vec2(gravityX, gravityY));
+    }
+    // Getter X
+    float32 GetGravityX() {
+        return $self->GetGravity().x;
+    }
+    // Getter Y
+    float32 GetGravityY() {
+        return $self->GetGravity().y;
     }
     // Legacy API support
     void QueryPoint(b2QueryCallback* callback, int x, int y) {

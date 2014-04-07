@@ -189,6 +189,46 @@
     float32 GetLinearVelocityY() {
         return $self->GetLinearVelocity().y;
     }
+    /*WORLD POINT*/
+    // Getter X
+    float32 GetWorldPointX(const b2Vec2& localPoint) {
+        return $self->GetWorldPoint(localPoint).x;
+    }
+    // Getter Y
+    float32 GetWorldPointY(const b2Vec2& localPoint) {
+        return $self->GetWorldPoint(localPoint).y;
+    }
+    /*WORLD VECTOR*/
+    // Getter X
+    float32 GetWorldVectorX(const b2Vec2& localVector) {
+        return $self->GetWorldVector(localVector).x;
+    }
+    // Getter Y
+    float32 GetWorldVectorY(const b2Vec2& localVector) {
+        return $self->GetWorldVector(localVector).y;
+    }
+    /*LOCAL POINT*/
+    // Getter X
+    float32 GetLocalPointX(const b2Vec2& localPoint) {
+        return $self->GetLocalPoint(localPoint).x;
+    }
+    // Getter Y
+    float32 GetLocalPointY(const b2Vec2& localPoint) {
+        return $self->GetLocalPoint(localPoint).y;
+    }
+    /*LOCAL VECTOR*/
+    // Getter X
+    float32 GetLocalVectorX(const b2Vec2& localVector) {
+        return $self->GetLocalVector(localVector).x;
+    }
+    // Getter Y
+    float32 GetLocalVectorY(const b2Vec2& localVector) {
+        return $self->GetLocalVector(localVector).y;
+    }
+    /*LinearVelocityFromWorldPoint*/
+    // TODO
+    /*LinearVelocityFromLocalPoint*/
+    // TODO
 };
 
 //----------------------------------

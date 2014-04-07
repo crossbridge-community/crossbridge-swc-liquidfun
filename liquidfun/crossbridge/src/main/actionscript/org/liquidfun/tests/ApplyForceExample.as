@@ -43,7 +43,7 @@ public class ApplyForceExample extends BaseExample {
     override protected function onAdded(event:Event):void {
         super.onAdded(event);
 
-        TestBed.messageArea.text = "Press 'A' or 'D' to apply force";
+        TestBed.messageArea.text = "Press 'W', 'S', 'A' or 'D' to apply force";
 
         var bodyDef:BodyDef = BodyDef.create();
         bodyDef.type = LiquidFun.DYNAMIC_BODY;
@@ -73,9 +73,23 @@ public class ApplyForceExample extends BaseExample {
      */
     override public function onKeyUp(event:KeyboardEvent):void {
         if (event.keyCode == Keyboard.A) {
-            body.applyTorque(50, true);
+            body.applyTorque(12, true);
         } else if (event.keyCode == Keyboard.D) {
-            body.applyTorque(-50, true);
+            body.applyTorque(-12, true);
+        } else if (event.keyCode == Keyboard.W) {
+            body.applyAngularImpulse(12, true);
+        } else if (event.keyCode == Keyboard.S) {
+            body.applyAngularImpulse(-12, true);
+        } else if (event.keyCode == Keyboard.X) {
+            const force:Vec2 = Vec2.create();
+            force.set(0, 12);
+            body.applyForceToCenter(force.swigCPtr, true);
+            force.destroy();
+        } else if (event.keyCode == Keyboard.Y) {
+            const force2:Vec2 = Vec2.create();
+            force2.set(12, 0);
+            body.applyForceToCenter(force2.swigCPtr, true);
+            force2.destroy();
         }
     }
 

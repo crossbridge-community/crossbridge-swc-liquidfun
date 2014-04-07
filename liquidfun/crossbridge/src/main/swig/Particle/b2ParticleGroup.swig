@@ -102,6 +102,27 @@
     }
 }
 
+%extend b2ParticleGroup {
+    /*CENTER*/
+    // Getter X
+    float32 GetCenterX() {
+        return $self->GetCenter().x;
+    }
+    // Getter Y
+    float32 GetCenterY() {
+        return $self->GetCenter().y;
+    }
+    /*LINEAR VELOCITY*/
+    // Getter X
+    float32 GetLinearVelocityX() {
+        return $self->GetLinearVelocity().x;
+    }
+    // Getter Y
+    float32 GetLinearVelocityY() {
+        return $self->GetLinearVelocity().y;
+    }
+}
+
 //----------------------------------
 //  Includes
 //----------------------------------
