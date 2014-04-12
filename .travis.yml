@@ -1,3 +1,6 @@
+notifications:
+    email: false
+
 language: cpp
 
 compiler:
@@ -12,6 +15,3 @@ before_install:
     - cmake -G"Unix Makefiles"
     
 script: make
-    
-notifications:
-    email: false
