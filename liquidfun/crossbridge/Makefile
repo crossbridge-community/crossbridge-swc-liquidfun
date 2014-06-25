@@ -78,12 +78,12 @@ compile:
 	# Initializing ...
 	########################################
 	mkdir -p build
-	mkdir -p ../Box2D/Box2D/Dynamics/Controllers/
-	cp -r ../Contributions/Enhancements/Controllers/* ../Box2D/Box2D/Dynamics/Controllers/
+	mkdir -p ./../Box2D/Box2D/Dynamics/Controllers/
+	cp -r ./../Contributions/Enhancements/Controllers/* ./../Box2D/Box2D/Dynamics/Controllers/
 	########################################
 	# Making LiquidFun ...
 	########################################
-	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" CC=gcc CXX=g++ CFLAGS="$(CCOMPARGS)" CXXFLAGS="$(CCOMPARGS)" cmake ../../Box2D/ -DBOX2D_BUILD_EXAMPLES=OFF -DBOX2D_BUILD_UNITTESTS=OFF
+	cd build && PATH="$(call unixpath,$(FLASCC)/usr/bin):$(PATH)" CC=gcc CXX=g++ CFLAGS="$(CCOMPARGS)" CXXFLAGS="$(CCOMPARGS)" cmake ./../../Box2D/ -DBOX2D_BUILD_EXAMPLES=OFF -DBOX2D_BUILD_UNITTESTS=OFF
 	########################################
 	# Building LiquidFun ...
 	########################################
@@ -91,7 +91,7 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i
+	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I./../../Box2D/ -I./../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ./../src/main/swig/LiquidFun.i
 	########################################
 	# Generating ABC ...
 	########################################
@@ -100,7 +100,7 @@ compile:
 	# Generating O ...
 	########################################
 	cp -f src/main/templates/exports.txt build/ 
-	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I../Box2D/ -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
+	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I./../Box2D/ -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
 	########################################
 	# Generating Exports ...
 	########################################
@@ -108,7 +108,7 @@ compile:
 	########################################
 	# Generating SWC ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=org.liquidfun.core -o ../LiquidFun.swc -lAS3++ -lFlash++ 
+	cd build && "$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -flto-api=exports.txt -I./../../Box2D/ LiquidFun.abc LiquidFun_wrap.cxx Box2D/Release/libLiquidFun.a -emit-swc=org.liquidfun.core -o ../LiquidFun.swc -lAS3++ -lFlash++ 
 	########################################
 	# Post cleaning ...
 	########################################
