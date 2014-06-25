@@ -32,7 +32,7 @@
 # Runtime: Cygwin with FlasCC
 
 # FlashCC SDK root
-FLASCC:=$(FLASCC_ROOT)/sdk
+$?FLASCC:=$(FLASCC_ROOT)/sdk
 
 # C/C++ Compiler arguments
 # 1. Remove all warning suppression
@@ -41,7 +41,7 @@ FLASCC:=$(FLASCC_ROOT)/sdk
 # 4. Java virtual machine arguments
 # Optional
 # Debug: -O0 -g
-CCOMPARGS:=-Wall -Wextra -O4 -jvmopt=-Xmx1G
+$?CCOMPARGS:=-Wall -Wextra -O4 -jvmopt=-Xmx1G
 
 # ActionScript 3.0 Compiler for AVM+ arguments
 # 1. Merge the compiled source into a single output file
@@ -61,7 +61,7 @@ $?ASC2ARGS=-merge -md -warnings -optimize -inline
 # 7. Ignore missing include files
 # Optional
 # Compile in compact mode: -fcompact 
-SWIGARGS:=-Wall -Wextra -O -as3 -c++ -includeall -ignoremissing
+$?SWIGARGS:=-Wall -Wextra -O -as3 -c++ -includeall -ignoremissing
 
 # Path helper
 $?UNAME=$(shell uname -s)
