@@ -24,17 +24,22 @@
 notifications:
     email: false
 
-language: cpp
+git: 
+    depth: 1
 
-compiler:
-  - gcc
-  - clang
+language: objective-c
 
-before_install:
-    - sudo apt-get install cmake
-    - sudo apt-get install libglapi-mesa
-    - sudo apt-get install libglu1-mesa-dev
-    - cd liquidfun/Box2D
-    - cmake -G"Unix Makefiles"
-    
-script: make
+before_script:
+    - brew update
+    - brew install adobe-air-sdk
+    - mkdir -p ./crossbridge
+    - mkdir -p ./mymount
+    - wget -i install.txt
+    - ls
+    - hdiutil attach ./CrossBridge_1.0.3.devbuild.dmg -mountpoint ./mymount
+    - rsync -l -r --exclude=.Trashes ./mymount/ ./crossbridge/
+    - export _JAVA_OPTIONS="-Xms256m -Xmx2048m"
+    - cd ./liquidfun/crossbridge
+
+script:
+    - make FLASCC=/Users/travis/build/vpmedia/liquidfun/crossbridge/sdk
