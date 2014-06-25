@@ -91,11 +91,11 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i &> LiquidFun_swig.log
+	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I../../Box2D/ -I../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ../src/main/swig/LiquidFun.i
 	########################################
 	# Generating ABC ...
 	########################################
-	cd build && java -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) $(ASC2ARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as &> LiquidFun_asc2.log
+	cd build && java -jar $(call nativepath,$(FLASCC)/usr/lib/asc2.jar) $(ASC2ARGS) -import $(call nativepath,$(FLASCC)/usr/lib/builtin.abc) -import $(call nativepath,$(FLASCC)/usr/lib/playerglobal.abc) LiquidFun.as
 	########################################
 	# Generating O ...
 	########################################
