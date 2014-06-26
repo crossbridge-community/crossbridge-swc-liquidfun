@@ -91,7 +91,7 @@ compile:
 	########################################
 	# Generating CXX ...
 	########################################
-	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I./../../Box2D/ -I./../src/main/swig -module LiquidFun -outdir . -o ./LiquidFun_wrap.cxx ./../src/main/swig/LiquidFun.i
+	cd build && "$(FLASCC)/usr/bin/swig" $(SWIGARGS) -package org.liquidfun -I$(PWD)/src/main/swig -I$(PWD)/../Box2D -module LiquidFun -outdir . -o $(PWD)/build/LiquidFun_wrap.cxx $(PWD)/src/main/swig/LiquidFun.i
 	########################################
 	# Generating ABC ...
 	########################################
@@ -100,7 +100,7 @@ compile:
 	# Generating O ...
 	########################################
 	cp -f src/main/templates/exports.txt build/ 
-	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I./../Box2D/ -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
+	"$(FLASCC)/usr/bin/g++" $(CCOMPARGS) -I./../Box2D -c build/LiquidFun_wrap.cxx -o build/LiquidFun_wrap.o
 	########################################
 	# Generating Exports ...
 	########################################
