@@ -31,4 +31,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h"
+%include "Box2D/Dynamics/Joints/b2DistanceJoint.h"

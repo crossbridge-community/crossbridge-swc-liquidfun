@@ -39,4 +39,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Common/b2IntrusiveList.h"
+%include "Box2D/Common/b2IntrusiveList.h"

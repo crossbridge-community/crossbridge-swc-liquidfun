@@ -41,4 +41,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/b2BroadPhase.h"
+%include "Box2D/Collision/b2BroadPhase.h"

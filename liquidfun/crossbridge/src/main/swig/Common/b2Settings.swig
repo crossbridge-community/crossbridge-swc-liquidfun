@@ -44,4 +44,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Common/b2Settings.h"
+%include "Box2D/Common/b2Settings.h"

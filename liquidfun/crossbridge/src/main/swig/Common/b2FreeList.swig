@@ -37,4 +37,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Common/b2FreeList.h"
+%include "Box2D/Common/b2FreeList.h"

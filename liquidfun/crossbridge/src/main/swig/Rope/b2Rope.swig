@@ -31,4 +31,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Rope/b2Rope.h"
+%include "Box2D/Rope/b2Rope.h"

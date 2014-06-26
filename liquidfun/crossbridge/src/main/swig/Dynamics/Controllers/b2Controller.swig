@@ -39,4 +39,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/Controllers/b2Controller.h"
+%include "Box2D/Dynamics/Controllers/b2Controller.h"

@@ -127,4 +127,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Particle/b2ParticleGroup.h"
+%include "Box2D/Particle/b2ParticleGroup.h"

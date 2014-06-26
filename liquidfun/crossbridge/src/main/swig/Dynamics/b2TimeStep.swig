@@ -41,4 +41,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/b2TimeStep.h"
+%include "Box2D/Dynamics/b2TimeStep.h"

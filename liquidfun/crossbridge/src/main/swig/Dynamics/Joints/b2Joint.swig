@@ -87,4 +87,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/Joints/b2Joint.h"
+%include "Box2D/Dynamics/Joints/b2Joint.h"

@@ -95,4 +95,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/b2Collision.h"
+%include "Box2D/Collision/b2Collision.h"

@@ -48,4 +48,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h"
+%include "Box2D/Collision/Shapes/b2EdgeShape.h"

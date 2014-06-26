@@ -49,4 +49,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/Contacts/b2Contact.h"
+%include "Box2D/Dynamics/Contacts/b2Contact.h"

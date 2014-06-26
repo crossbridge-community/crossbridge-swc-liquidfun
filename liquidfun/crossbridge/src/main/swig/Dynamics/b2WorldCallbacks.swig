@@ -49,7 +49,7 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/b2WorldCallbacks.h"
+%include "Box2D/Dynamics/b2WorldCallbacks.h"
 
 //----------------------------------
 //  Inline

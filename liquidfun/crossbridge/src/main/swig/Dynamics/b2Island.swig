@@ -37,4 +37,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Dynamics/b2Island.h"
+%include "Box2D/Dynamics/b2Island.h"

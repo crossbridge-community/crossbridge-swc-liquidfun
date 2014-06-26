@@ -31,4 +31,4 @@
 //  Includes
 //----------------------------------
 
-%include "../../../Box2D/Box2D/Collision/b2DynamicTree.h"
+%include "Box2D/Collision/b2DynamicTree.h"
