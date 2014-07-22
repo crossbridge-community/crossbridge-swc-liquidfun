@@ -1,6 +1,6 @@
 LiquidFun Version [1.0.0][]
 
-[![Build Status](https://travis-ci.org/vpmedia/liquidfun.svg?branch=master)](https://travis-ci.org/vpmedia/liquidfun)
+[![Build Status](https://travis-ci.org/crossbridge-community/liquidfun.svg?branch=master)](https://travis-ci.org/crossbridge-community/liquidfun)
 
 # Welcome to LiquidFun!
 
