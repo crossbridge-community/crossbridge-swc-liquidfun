@@ -33,10 +33,10 @@ before_script:
     - mkdir -p ./mymount
     - wget -i install.txt
     - ls
-    - hdiutil attach ./CrossBridge_1.0.3.devbuild.dmg -mountpoint ./mymount
+    - hdiutil attach ./CrossBridge_1.0.4.3.dmg -mountpoint ./mymount
     - rsync -l -r --exclude=.Trashes ./mymount/ ./crossbridge/
     - export _JAVA_OPTIONS="-Xms256m -Xmx2048m"
     - cd ./liquidfun/crossbridge
 
 script:
-    - make FLASCC=/Users/travis/build/vpmedia/liquidfun/crossbridge/sdk
+    - make FLASCC=/Users/travis/build/crossbridge-community/liquidfun/crossbridge/sdk
