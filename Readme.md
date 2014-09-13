@@ -1,37 +1,51 @@
-LiquidFun Version [1.0.0][]
+crossbridge-swc-liquidfun
+=========================
 
 [![Build Status](https://travis-ci.org/crossbridge-community/liquidfun.svg?branch=master)](https://travis-ci.org/crossbridge-community/liquidfun)
 
-# Welcome to LiquidFun!
+## Getting Started
 
-LiquidFun is a 2D physics engine for games.  Go to our
-[landing page][] to browse our documentation and see some examples.
+### Tooling Version Requirements
 
-LiquidFun is an extension of [Box2D][], it adds a particle based fluid and soft
-body simulation to the rigid body functionality in [Box2D][].  LiquidFun can be
-built for many different systems (Android, Windows, OS X, Linux), see
-`Box2D/Documentation/Building/`
+Following are the minimum required versions for the tools and libraries you
+need for building LiquidFun for Flash:
 
-Discuss LiquidFun with other developers and users on the
-[LiquidFun Google Group][].  File issues on the [LiquidFun Issues Tracker][]
-or post your questions to [stackoverflow.com][] with a mention of
-**liquidfun**.
+* CrossBridge SDK: http://sourceforge.net/projects/crossbridge-community/files/
+* Adobe AIR SDK: http://www.adobe.com/devnet/air/air-sdk-download.html
+* Apache Flex SDK: https://flex.apache.org/installer.html
+* Apache Ant: https://ant.apache.org/bindownload.cgi
+* JDK: http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html
 
-Please see `Box2D/Documentation/Building/` to learn how to build LiquidFun and
-run the testbed.
+### Env. Variable Requirements
 
-For applications on Google Play that integrate this tool, usage is tracked.
-This tracking is done automatically using the embedded version string
-(b2_liquidFunVersionString), and helps us continue to optimize it. Aside from
-consuming a few extra bytes in your application binary, it shouldn't affect
-your application at all.  We use this information to let us know if LiquidFun
-is useful and if we should continue to invest in it.  Since this is open
-source, you are free to remove the version string but we would appreciate if
-you would leave it in.
+In order to get the build scripts working, set the following environment variables (style is important):
 
-  [LiquidFun Google Group]: http://group.google.com/group/liquidfun
-  [LiquidFun Issues Tracker]: http://github.com/google/liquidfun/issues
-  [stackoverflow.com]: http://www.stackoverflow.com
-  [landing page]: http://google.github.io/liquidfun
-  [1.0.0]: http://google.github.io/liquidfun/ReleaseNotes.html
-  [Box2D]: http://box2d.org
+* FLASCC_ROOT=\SDK_DIR\adobe-crossbridge\
+* FLASCC_AIR_ROOT=/cygdrive/c/SDK_DIR/adobe-air/
+* FLASCC_GDB_RUNTIME=/cygdrive/c/SDK_DIR/flashplayer.exe
+* AIR_HOME=\SDK_DIR\adobe-air\
+* FLEX_HOME=\SDK_DIR\apache-flex\
+
+## Assembling
+
+#### Flash SWC Library 
+
+    >build.bat
+
+#### Example SWF + Unit Test + Documentation
+
+    >ant -f assemble.xml clean build test document
+
+## Releases
+
+### Library SWC
+
+[Download](https://dl.dropboxusercontent.com/u/1375050/LiquidFun.swc)
+
+### TestBed SWF
+
+[Download](https://dl.dropboxusercontent.com/u/1375050/TestBed.swf)
+
+### TestBed APK
+
+[Download](https://dl.dropboxusercontent.com/u/1375050/TestBed.apk)
