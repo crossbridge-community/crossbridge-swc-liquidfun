@@ -33,7 +33,7 @@ before_script:
     - mkdir -p ./mymount
     - wget -i install.txt
     - ls
-    - hdiutil attach ./CrossBridge_1.0.4.3.dmg -mountpoint ./mymount
+    - hdiutil attach ./CrossBridge_15.0.0.3.dmg -mountpoint ./mymount
     - rsync -l -r --exclude=.Trashes ./mymount/ ./crossbridge/
     - export _JAVA_OPTIONS="-Xms256m -Xmx2048m"
     - cd ./liquidfun/crossbridge
